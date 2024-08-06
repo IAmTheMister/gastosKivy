@@ -52,13 +52,13 @@ class Mes:
         self.layout_inputs_mes.add_widget(self.input_ano)
         self.layout_mes.add_widget(self.layout_inputs_mes)
 
-        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.stats_mes,usuario),
+        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.boton_stats_mes, usuario),
                                    height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.categoria_mes,usuario),
+        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.boton_categoria_mes, usuario),
                                        height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_gastos = Button(text='Gastos', on_press=partial(self.gastos_mes,usuario),
+        btn_mostrar_gastos = Button(text='Gastos', on_press=partial(self.boton_gastos_mes, usuario),
                                     height=Window.height * 0.05, size_hint_y=None)
 
         self.layout_botones_mes.add_widget(btn_mostrar_stats)
@@ -69,21 +69,21 @@ class Mes:
         self.layout_mes.add_widget(self.layout_stats_mes)
         self.main_layout.add_widget(self.layout_mes)
 
-    def stats_mes(self,usuario, instance):
+    def boton_stats_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
             self.altura = 0.22
         else:
             self.calcular_stats_mes(usuario)
 
-    def categoria_mes(self,usuario, instance):
+    def boton_categoria_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
             self.altura = 0.22
         else:
             self.calcular_gasto_categorias_mes(usuario)
 
-    def gastos_mes(self,usuario, instance):
+    def boton_gastos_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
             self.altura = 0.22
@@ -95,6 +95,7 @@ class Mes:
         mes_actual = int(self.input_mes.text)
         gasto_actual, ingresos_actual = self.calcular_saldo_mes(usuario,ano_actual, mes_actual)
         saldo_actual = ingresos_actual - gasto_actual
+        alquiler_mes = self.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -107,6 +108,14 @@ class Mes:
         valor_saldo = Label(text=str(round(saldo_actual, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
+        nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " €", height=Window.height * 0.05,
+                            size_hint_y=None)
+
+        nombre_sin_alquiler = Label(text="Gasto sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " €", height=Window.height * 0.05,
+                               size_hint_y=None)
+
         self.layout_saldo_mes.add_widget(nombre_ingreso)
         self.layout_saldo_mes.add_widget(valor_ingreso)
 
@@ -115,6 +124,12 @@ class Mes:
 
         self.layout_saldo_mes.add_widget(nombre_saldo)
         self.layout_saldo_mes.add_widget(valor_saldo)
+
+        self.layout_saldo_mes.add_widget(nombre_alquiler)
+        self.layout_saldo_mes.add_widget(valor_alquiler)
+
+        self.layout_saldo_mes.add_widget(nombre_sin_alquiler)
+        self.layout_saldo_mes.add_widget(valor_sin_alquiler)
 
         self.layout_stats_mes.add_widget(self.layout_saldo_mes)
         self.altura += 0.15
@@ -137,26 +152,61 @@ class Mes:
 
         return gasto_total, ingresos
 
+    def calcular_alquiler_mes(self,usuario,ano, mes):
+        alquiler_mes = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                cat = row[2]
+                if row and fecha_row.year == ano and fecha_row.month == mes and cat == "Alquiler":
+                    alquiler_mes += round(float(row[3]), 2)
+        return alquiler_mes
+
     def calcular_gasto_categorias_mes(self,usuario):
+        self.layout_encabezados_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
+        ano = int(self.input_ano.text)
+        mes = int(self.input_mes.text)
+        gasto_mes, ingresos_mes = self.calcular_saldo_mes(usuario, ano, mes)
+        alquiler_mes = self.calcular_alquiler_mes(usuario, ano, mes)
+
+        encabezado_categoria = Label(text = "Categoría", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_porcentaje = Label(text="%", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_por_sin_alq = Label(text="% sin alquiler", height=Window.height * 0.05, size_hint_y=None)
+        self.layout_encabezados_categoria_mes.add_widget(encabezado_categoria)
+        self.layout_encabezados_categoria_mes.add_widget(encabezado_gasto)
+        self.layout_encabezados_categoria_mes.add_widget(encabezado_porcentaje)
+        self.layout_encabezados_categoria_mes.add_widget(encabezado_por_sin_alq)
+        self.layout_stats_mes.add_widget(self.layout_encabezados_categoria_mes)
+
         for i in range(len(categorias)):
-            self.layout_categoria_mes = GridLayout(cols=2, rows=1, height=Window.height * 0.05,
-                                               size_hint_y=None)
+            self.layout_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
             gasto_categoría = 0
             with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 for row in reader:
                     fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                    ano = int(self.input_ano.text)
-                    mes = int(self.input_mes.text)
                     if row and row[2] == categorias[i] and fecha_row.year == ano and fecha_row.month == mes:
                         gasto_categoría += round(float(row[3]), 2)
             if gasto_categoría > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
-                valor = Label(text=str(round(gasto_categoría,2))+" €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
+                valor = Label(text=str(round(gasto_categoría,2))+" €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
+                porcentaje = Label(text=str(round(gasto_categoría/gasto_mes*100,2))+"%", height=Window.height * 0.05,
+                                   size_hint_y=None)
+                self.layout_categoria_mes.add_widget(porcentaje)
+                if categorias[i] != "Alquiler":
+                    porcentaje_sin_alquiler = Label(text=str(round(gasto_categoría / (gasto_mes-alquiler_mes)*100, 2)) + "%", height=Window.height * 0.05,
+                                   size_hint_y=None)
+                else:
+                    porcentaje_sin_alquiler = Label(
+                        text="",
+                        height=Window.height * 0.05,
+                        size_hint_y=None)
+                self.layout_categoria_mes.add_widget(porcentaje_sin_alquiler)
                 self.layout_stats_mes.add_widget(self.layout_categoria_mes)
-                self.altura += 0.05
 
     def mostrar_lista_gastos_mes(self,usuario):
         self.scrollview_mes = ScrollView(height = Window.height * (1 - self.altura), size_hint_y = None)

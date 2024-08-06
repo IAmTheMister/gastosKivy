@@ -48,14 +48,14 @@ class Ano:
 
         self.layout_ano.add_widget(self.input_ano)
 
-        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.stats_ano,usuario),
+        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.boton_stats_ano, usuario),
                                    height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.categoria_ano,usuario),
+        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.boton_categoria_ano, usuario),
                                        height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_gastos = Button(text='Gastos', on_press = partial(self.gastos_ano,usuario),
-                                       height=Window.height * 0.05, size_hint_y=None)
+        btn_mostrar_gastos = Button(text='Gastos', on_press = partial(self.boton_gastos_ano, usuario),
+                                    height=Window.height * 0.05, size_hint_y=None)
 
         self.layout_botones_ano.add_widget(btn_mostrar_stats)
         self.layout_botones_ano.add_widget(btn_mostrar_categoria)
@@ -65,54 +65,47 @@ class Ano:
         self.layout_ano.add_widget(self.layout_stats_ano)
         self.main_layout.add_widget(self.layout_ano)
 
-    def stats_ano(self,usuario, instance):
+    def boton_stats_ano(self, usuario, instance):
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
-            self.calcular_saldo_ano(usuario)
+            self.calcular_stats_ano(usuario)
 
-    def categoria_ano(self,usuario, instance):
+    def boton_categoria_ano(self, usuario, instance):
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
             self.calcular_gasto_categorias_ano(usuario)
 
-    def gastos_ano(self,usuario, instance):
+    def boton_gastos_ano(self, usuario, instance):
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
             self.mostrar_lista_gastos_ano(usuario)
 
-    def calcular_saldo_ano(self,usuario):
-        gasto_total = 0
-        ingresos = 0
-
-        with open(usuario + "/ingresos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                ano = int(self.input_ano.text)
-                if row and fecha_row.year == ano:
-                    ingresos += round(float(row[1]), 2)
-
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                ano = int(self.input_ano.text)
-                if row and fecha_row.year == ano:
-                    gasto_total += round(float(row[3]), 2)
+    def calcular_stats_ano(self, usuario):
+        ano = int(self.input_ano.text)
+        gasto_ano, ingresos_ano = self.calcular_saldo_ano(ano, usuario)
+        alquiler_ano = self.calcular_alquiler_ano(ano,usuario)
         self.layout_saldo_ano = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_total, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_ano, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_ingreso = Label(text=str(round(ingresos, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+        valor_ingreso = Label(text=str(round(ingresos_ano, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_saldo = Label(text="Saldo:", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo = Label(text=str(round(ingresos - gasto_total, 2)) + " €", height=Window.height * 0.05,
+        valor_saldo = Label(text=str(round(ingresos_ano - gasto_ano, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
+
+        nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_alquiler = Label(text=str(round(alquiler_ano, 2)) + " €", height=Window.height * 0.05,
+                               size_hint_y=None)
+
+        nombre_sin_alquiler = Label(text="Gasto sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_sin_alquiler = Label(text=str(round(gasto_ano - alquiler_ano, 2)) + " €", height=Window.height * 0.05,
+                                   size_hint_y=None)
 
         self.layout_saldo_ano.add_widget(nombre_ingreso)
         self.layout_saldo_ano.add_widget(valor_ingreso)
@@ -123,11 +116,60 @@ class Ano:
         self.layout_saldo_ano.add_widget(nombre_saldo)
         self.layout_saldo_ano.add_widget(valor_saldo)
 
+        self.layout_saldo_ano.add_widget(nombre_alquiler)
+        self.layout_saldo_ano.add_widget(valor_alquiler)
+
+        self.layout_saldo_ano.add_widget(nombre_sin_alquiler)
+        self.layout_saldo_ano.add_widget(valor_sin_alquiler)
+
         self.layout_stats_ano.add_widget(self.layout_saldo_ano)
 
+    def calcular_saldo_ano(self, ano, usuario):
+        gasto_total = 0
+        ingresos = 0
+        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano:
+                    ingresos += round(float(row[1]), 2)
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano:
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total, ingresos
+    
+    def calcular_alquiler_ano(self, ano, usuario):
+        alquiler = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                cat = row[2]
+                if row and fecha_row.year == ano and cat == "Alquiler":
+                    alquiler += round(float(row[3]), 2)
+        return alquiler
+
     def calcular_gasto_categorias_ano(self,usuario):
+        ano = int(self.input_ano.text)
+
+        self.layout_encabezados_categoria_ano = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
+        encabezado_categoria = Label(text="Categoría", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_porcentaje = Label(text="%", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_por_sin_alq = Label(text="% sin alquiler", height=Window.height * 0.05, size_hint_y=None)
+        self.layout_encabezados_categoria_ano.add_widget(encabezado_categoria)
+        self.layout_encabezados_categoria_ano.add_widget(encabezado_gasto)
+        self.layout_encabezados_categoria_ano.add_widget(encabezado_porcentaje)
+        self.layout_encabezados_categoria_ano.add_widget(encabezado_por_sin_alq)
+        self.layout_stats_ano.add_widget(self.layout_encabezados_categoria_ano)
+        
+        gasto_ano, ingresos_ano = self.calcular_saldo_ano(ano, usuario)
+        alquiler_ano = self.calcular_alquiler_ano(ano,usuario)
         for i in range(len(categorias)):
-            self.layout_categoria_ano = GridLayout(cols=2, rows=1, height=Window.height * 0.05,
+            self.layout_categoria_ano = GridLayout(cols=4, rows=1, height=Window.height * 0.05,
                                                    size_hint_y=None)
             gasto_categoría = 0
             with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
@@ -139,9 +181,24 @@ class Ano:
                         gasto_categoría += round(float(row[3]), 2)
             if gasto_categoría > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
-                valor = Label(text=str(round(gasto_categoría, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_ano.add_widget(nombre)
+                valor = Label(text=str(round(gasto_categoría, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_ano.add_widget(valor)
+                porcentaje = Label(text=str(round(gasto_categoría / gasto_ano * 100, 2)) + "%",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+                self.layout_categoria_ano.add_widget(porcentaje)
+                if categorias[i] != "Alquiler":
+                    porcentaje_sin_alquiler = Label(
+                        text=str(round(gasto_categoría / (gasto_ano - alquiler_ano) * 100, 2)) + "%",
+                        height=Window.height * 0.05,
+                        size_hint_y=None)
+                else:
+                    porcentaje_sin_alquiler = Label(
+                        text="",
+                        height=Window.height * 0.05,
+                        size_hint_y=None)
+                self.layout_categoria_ano.add_widget(porcentaje_sin_alquiler)
                 self.layout_stats_ano.add_widget(self.layout_categoria_ano)
 
     def mostrar_lista_gastos_ano(self,usuario):

@@ -45,13 +45,13 @@ class Dia:
         
         self.layout_dia.add_widget(self.input_dia)
 
-        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.stats_dia,usuario),
+        btn_mostrar_stats = Button(text='Estadísticas', on_press=partial(self.boton_stats_dia, usuario),
                                    height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.categoria_dia,usuario),
+        btn_mostrar_categoria = Button(text='Categoria', on_press=partial(self.boton_categoria_dia, usuario),
                                        height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_gastos = Button(text='Gastos', on_press=partial(self.gastos_dia,usuario),
+        btn_mostrar_gastos = Button(text='Gastos', on_press=partial(self.boton_gastos_dia, usuario),
                                     height=Window.height * 0.05, size_hint_y=None)
 
         self.layout_botones_dia.add_widget(btn_mostrar_stats)
@@ -62,19 +62,19 @@ class Dia:
         self.layout_dia.add_widget(self.layout_stats_dia)
         self.main_layout.add_widget(self.layout_dia)
 
-    def stats_dia(self,usuario, instance):
+    def boton_stats_dia(self, usuario, instance):
         if len(self.layout_stats_dia.children) > 0:
             self.layout_stats_dia.clear_widgets()
         else:
-            self.calcular_gasto_total_dia(usuario)
+            self.gasto_dia(usuario)
 
-    def categoria_dia(self,usuario, instance):
+    def boton_categoria_dia(self, usuario, instance):
         if len(self.layout_stats_dia.children) > 0:
             self.layout_stats_dia.clear_widgets()
         else:
             self.calcular_gasto_categorias_dia(usuario)
 
-    def gastos_dia(self,usuario, instance):
+    def boton_gastos_dia(self, usuario, instance):
         if len(self.layout_stats_dia.children) > 0:
             self.layout_stats_dia.clear_widgets()
         else:
@@ -103,8 +103,18 @@ class Dia:
         self.layout_stats_dia.add_widget(self.scrollview_dia)
 
     def calcular_gasto_categorias_dia(self,usuario):
+        gasto_dia = self.calcular_gasto_dia(usuario, self.input_dia.text)
+        self.layout_encabezados_categoria_dia = GridLayout(cols=3, height=Window.height * 0.05, size_hint_y=None)
+        encabezado_categoria = Label(text="Categoría", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_porcentaje = Label(text="%", height=Window.height * 0.05, size_hint_y=None)
+        self.layout_encabezados_categoria_dia.add_widget(encabezado_categoria)
+        self.layout_encabezados_categoria_dia.add_widget(encabezado_gasto)
+        self.layout_encabezados_categoria_dia.add_widget(encabezado_porcentaje)
+        self.layout_stats_dia.add_widget(self.layout_encabezados_categoria_dia)
+        
         for i in range(len(categorias)):
-            self.layout_categoria = GridLayout(cols=2, rows=1, height=Window.height * 0.05,
+            self.layout_categoria = GridLayout(cols=3, rows=1, height=Window.height * 0.05,
                                                size_hint_y=None)
             gasto_categoría = 0
             with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
@@ -115,17 +125,14 @@ class Dia:
             if gasto_categoría > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 valor = Label(text=str(round(gasto_categoría,2))+" €", height=Window.height * 0.05, size_hint_y=None)
+                porcentaje = Label(text=str(round(gasto_categoría/gasto_dia*100, 2)) + "%", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria.add_widget(nombre)
                 self.layout_categoria.add_widget(valor)
+                self.layout_categoria.add_widget(porcentaje)
                 self.layout_stats_dia.add_widget(self.layout_categoria)
 
-    def calcular_gasto_total_dia(self,usuario):
-        gasto_total = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                if row and row[0] == self.input_dia.text:
-                    gasto_total += round(float(row[3]), 2)
+    def gasto_dia(self, usuario):
+        gasto_total = self.calcular_gasto_dia(usuario, self.input_dia.text)
         self.layout_gasto_total = GridLayout(cols=2, rows=1, height=Window.height * 0.05,
                                              size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -133,6 +140,15 @@ class Dia:
         self.layout_gasto_total.add_widget(nombre_gasto)
         self.layout_gasto_total.add_widget(valor_gasto)
         self.layout_stats_dia.add_widget(self.layout_gasto_total)
+
+    def calcular_gasto_dia(self, usuario, dia):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[0] == dia:
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total
 
     def boton_volver_dia(self, instance):
         self.main_layout.remove_widget(self.layout_dia)
