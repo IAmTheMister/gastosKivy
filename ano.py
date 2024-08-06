@@ -14,6 +14,8 @@ import json
 from functools import partial
 from datetime import datetime
 
+from calculos import Calculos
+
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes"]
@@ -69,13 +71,13 @@ class Ano:
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
-            self.calcular_stats_ano(usuario)
+            self.mostrar_stats_ano(usuario)
 
     def boton_categoria_ano(self, usuario, instance):
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
-            self.calcular_gasto_categorias_ano(usuario)
+            self.mostrar_gasto_categorias_ano(usuario)
 
     def boton_gastos_ano(self, usuario, instance):
         if len(self.layout_stats_ano.children) > 0:
@@ -83,10 +85,11 @@ class Ano:
         else:
             self.mostrar_lista_gastos_ano(usuario)
 
-    def calcular_stats_ano(self, usuario):
+    def mostrar_stats_ano(self, usuario):
+        clase_calc = Calculos()
         ano = int(self.input_ano.text)
-        gasto_ano, ingresos_ano = self.calcular_saldo_ano(ano, usuario)
-        alquiler_ano = self.calcular_alquiler_ano(ano,usuario)
+        gasto_ano, ingresos_ano = clase_calc.calcular_saldo_ano(ano, usuario)
+        alquiler_ano = clase_calc.calcular_alquiler_ano(ano,usuario)
         self.layout_saldo_ano = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -124,35 +127,9 @@ class Ano:
 
         self.layout_stats_ano.add_widget(self.layout_saldo_ano)
 
-    def calcular_saldo_ano(self, ano, usuario):
-        gasto_total = 0
-        ingresos = 0
-        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                if row and fecha_row.year == ano:
-                    ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                if row and fecha_row.year == ano:
-                    gasto_total += round(float(row[3]), 2)
-        return gasto_total, ingresos
-    
-    def calcular_alquiler_ano(self, ano, usuario):
-        alquiler = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                cat = row[2]
-                if row and fecha_row.year == ano and cat == "Alquiler":
-                    alquiler += round(float(row[3]), 2)
-        return alquiler
+    def mostrar_gasto_categorias_ano(self, usuario):
+        clase_calc = Calculos()
 
-    def calcular_gasto_categorias_ano(self,usuario):
         ano = int(self.input_ano.text)
 
         self.layout_encabezados_categoria_ano = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
@@ -166,8 +143,8 @@ class Ano:
         self.layout_encabezados_categoria_ano.add_widget(encabezado_por_sin_alq)
         self.layout_stats_ano.add_widget(self.layout_encabezados_categoria_ano)
         
-        gasto_ano, ingresos_ano = self.calcular_saldo_ano(ano, usuario)
-        alquiler_ano = self.calcular_alquiler_ano(ano,usuario)
+        gasto_ano, ingresos_ano = clase_calc.calcular_saldo_ano(ano, usuario)
+        alquiler_ano = clase_calc.calcular_alquiler_ano(ano,usuario)
         for i in range(len(categorias)):
             self.layout_categoria_ano = GridLayout(cols=4, rows=1, height=Window.height * 0.05,
                                                    size_hint_y=None)

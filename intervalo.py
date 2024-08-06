@@ -13,6 +13,8 @@ import json
 from functools import partial
 from datetime import datetime
 
+from calculos import Calculos
+
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes"]
@@ -72,14 +74,14 @@ class Intervalo:
             self.layout_stats_intervalo.clear_widgets()
             self.altura = 0.22
         else:
-            self.calcular_stats_intervalo(usuario)
+            self.mostrar_stats_intervalo(usuario)
 
     def categoria_intervalo(self,usuario, instance):
         if len(self.layout_stats_intervalo.children) > 0:
             self.layout_stats_intervalo.clear_widgets()
             self.altura = 0.22
         else:
-            self.calcular_gasto_categorias_intervalo(usuario)
+            self.mostrar_gasto_categorias_intervalo(usuario)
 
     def gastos_intervalo(self,usuario, instance):
         if len(self.layout_stats_intervalo.children) > 0:
@@ -88,10 +90,11 @@ class Intervalo:
         else:
             self.mostrar_lista_gastos_intervalo(usuario)
 
-    def calcular_stats_intervalo(self, usuario):
+    def mostrar_stats_intervalo(self, usuario):
+        clase_calc = Calculos()
         inicio = self.input_inicio.text
         fin = self.input_fin.text
-        gasto_total, ingresos = self.calcular_saldo_intervalo(fin, inicio, usuario)
+        gasto_total, ingresos = clase_calc.calcular_saldo_intervalo(fin, inicio, usuario)
         self.layout_saldo_intervalo = GridLayout(cols=2, height=Window.height * 0.15,
                                                  size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -113,30 +116,10 @@ class Intervalo:
         self.layout_saldo_intervalo.add_widget(valor_saldo)
 
         self.layout_stats_intervalo.add_widget(self.layout_saldo_intervalo)
-        self.altura += 0.15
 
-    def calcular_saldo_intervalo(self, fin, inicio, usuario):
-        gasto_total = 0
-        ingresos = 0
-        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                fecha_inicio = datetime.strptime(inicio, "%d/%m/%Y")
-                fecha_fin = datetime.strptime(fin, "%d/%m/%Y")
-                if row and fecha_inicio <= fecha_row <= fecha_fin:
-                    ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                fecha_inicio = datetime.strptime(inicio, "%d/%m/%Y")
-                fecha_fin = datetime.strptime(fin, "%d/%m/%Y")
-                if row and fecha_inicio <= fecha_row <= fecha_fin:
-                    gasto_total += round(float(row[3]), 2)
-        return gasto_total, ingresos
+    def mostrar_gasto_categorias_intervalo(self, usuario):
+        clase_calc = Calculos()
 
-    def calcular_gasto_categorias_intervalo(self,usuario):
         inicio = self.input_inicio.text
         fin = self.input_fin.text
 
@@ -149,7 +132,7 @@ class Intervalo:
         self.layout_encabezados_categoria_intervalo.add_widget(encabezado_porcentaje)
         self.layout_stats_intervalo.add_widget(self.layout_encabezados_categoria_intervalo)
 
-        gasto_intervalo, ingresos_intervalo = self.calcular_saldo_intervalo(fin, inicio, usuario)
+        gasto_intervalo, ingresos_intervalo = clase_calc.calcular_saldo_intervalo(fin, inicio, usuario)
         
         for i in range(len(categorias)):
             self.layout_categoria_intervalo = GridLayout(cols=3, rows=1, height=Window.height * 0.05,

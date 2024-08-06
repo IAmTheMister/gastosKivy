@@ -14,6 +14,8 @@ import json
 from functools import partial
 from datetime import datetime
 
+from calculos import Calculos
+
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes"]
@@ -66,13 +68,13 @@ class Dia:
         if len(self.layout_stats_dia.children) > 0:
             self.layout_stats_dia.clear_widgets()
         else:
-            self.gasto_dia(usuario)
+            self.mostrar_gasto_dia(usuario)
 
     def boton_categoria_dia(self, usuario, instance):
         if len(self.layout_stats_dia.children) > 0:
             self.layout_stats_dia.clear_widgets()
         else:
-            self.calcular_gasto_categorias_dia(usuario)
+            self.mostrar_gasto_categorias_dia(usuario)
 
     def boton_gastos_dia(self, usuario, instance):
         if len(self.layout_stats_dia.children) > 0:
@@ -102,8 +104,9 @@ class Dia:
         self.scrollview_dia.add_widget(self.layout_gasto_dia)
         self.layout_stats_dia.add_widget(self.scrollview_dia)
 
-    def calcular_gasto_categorias_dia(self,usuario):
-        gasto_dia = self.calcular_gasto_dia(usuario, self.input_dia.text)
+    def mostrar_gasto_categorias_dia(self, usuario):
+        clase_calc = Calculos()
+        gasto_dia = clase_calc.calcular_gasto_dia(usuario, self.input_dia.text)
         self.layout_encabezados_categoria_dia = GridLayout(cols=3, height=Window.height * 0.05, size_hint_y=None)
         encabezado_categoria = Label(text="Categoría", height=Window.height * 0.05, size_hint_y=None)
         encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
@@ -131,24 +134,30 @@ class Dia:
                 self.layout_categoria.add_widget(porcentaje)
                 self.layout_stats_dia.add_widget(self.layout_categoria)
 
-    def gasto_dia(self, usuario):
-        gasto_total = self.calcular_gasto_dia(usuario, self.input_dia.text)
-        self.layout_gasto_total = GridLayout(cols=2, rows=1, height=Window.height * 0.05,
-                                             size_hint_y=None)
+    def mostrar_gasto_dia(self, usuario):
+        clase_calc = Calculos()
+        gasto_total_dia = clase_calc.calcular_gasto_dia(usuario, self.input_dia.text)
+        fecha_dia = datetime.strptime(self.input_dia.text, "%d/%m/%Y")
+        gasto_total_mes, ingresos_mes = clase_calc.calcular_saldo_mes(usuario,fecha_dia.year, fecha_dia.month)
+        alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,fecha_dia.year, fecha_dia.month)
+        self.layout_gasto_total = GridLayout(cols=2)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_total,2))+" €", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_total_dia,2))+" €", height=Window.height * 0.05, size_hint_y=None)
         self.layout_gasto_total.add_widget(nombre_gasto)
         self.layout_gasto_total.add_widget(valor_gasto)
-        self.layout_stats_dia.add_widget(self.layout_gasto_total)
 
-    def calcular_gasto_dia(self, usuario, dia):
-        gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                if row and row[0] == dia:
-                    gasto_total += round(float(row[3]), 2)
-        return gasto_total
+        nombre_porcentaje = Label(text="% gasto mensual:", height=Window.height * 0.05, size_hint_y=None)
+        valor_porcentaje = Label(text=str(round(gasto_total_dia/gasto_total_mes*100, 2)) + "%", height=Window.height * 0.05, size_hint_y=None)
+        self.layout_gasto_total.add_widget(nombre_porcentaje)
+        self.layout_gasto_total.add_widget(valor_porcentaje)
+
+        nombre_porcentaje_sin = Label(text="% gasto mensual sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_porcentaje_sin = Label(text=str(round(gasto_total_dia / (gasto_total_mes - alquiler_mes) * 100, 2)) + "%",
+                                 height=Window.height * 0.05, size_hint_y=None)
+        self.layout_gasto_total.add_widget(nombre_porcentaje_sin)
+        self.layout_gasto_total.add_widget(valor_porcentaje_sin)
+
+        self.layout_stats_dia.add_widget(self.layout_gasto_total)
 
     def boton_volver_dia(self, instance):
         self.main_layout.remove_widget(self.layout_dia)

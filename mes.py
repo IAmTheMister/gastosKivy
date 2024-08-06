@@ -14,6 +14,8 @@ import json
 from functools import partial
 from datetime import datetime
 
+from calculos import Calculos
+
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes"]
@@ -74,14 +76,14 @@ class Mes:
             self.layout_stats_mes.clear_widgets()
             self.altura = 0.22
         else:
-            self.calcular_stats_mes(usuario)
+            self.mostrar_stats_mes(usuario)
 
     def boton_categoria_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
             self.altura = 0.22
         else:
-            self.calcular_gasto_categorias_mes(usuario)
+            self.mostrar_gasto_categorias_mes(usuario)
 
     def boton_gastos_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
@@ -90,12 +92,13 @@ class Mes:
         else:
             self.mostrar_lista_gastos_mes(usuario)
 
-    def calcular_stats_mes(self,usuario):
+    def mostrar_stats_mes(self, usuario):
+        clase_calc = Calculos()
         ano_actual = int(self.input_ano.text)
         mes_actual = int(self.input_mes.text)
-        gasto_actual, ingresos_actual = self.calcular_saldo_mes(usuario,ano_actual, mes_actual)
+        gasto_actual, ingresos_actual = clase_calc.calcular_saldo_mes(usuario,ano_actual, mes_actual)
         saldo_actual = ingresos_actual - gasto_actual
-        alquiler_mes = self.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
+        alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -134,41 +137,13 @@ class Mes:
         self.layout_stats_mes.add_widget(self.layout_saldo_mes)
         self.altura += 0.15
 
-    def calcular_saldo_mes(self,usuario, ano, mes):
-        gasto_total = 0
-        ingresos = 0
-        with open(usuario + "/ingresos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                if row and fecha_row.year == ano and fecha_row.month == mes:
-                    ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                if row and fecha_row.year == ano and fecha_row.month == mes:
-                    gasto_total += round(float(row[3]), 2)
-
-        return gasto_total, ingresos
-
-    def calcular_alquiler_mes(self,usuario,ano, mes):
-        alquiler_mes = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                cat = row[2]
-                if row and fecha_row.year == ano and fecha_row.month == mes and cat == "Alquiler":
-                    alquiler_mes += round(float(row[3]), 2)
-        return alquiler_mes
-
-    def calcular_gasto_categorias_mes(self,usuario):
+    def mostrar_gasto_categorias_mes(self, usuario):
+        clase_calc = Calculos()
         self.layout_encabezados_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
         ano = int(self.input_ano.text)
         mes = int(self.input_mes.text)
-        gasto_mes, ingresos_mes = self.calcular_saldo_mes(usuario, ano, mes)
-        alquiler_mes = self.calcular_alquiler_mes(usuario, ano, mes)
+        gasto_mes, ingresos_mes = clase_calc.calcular_saldo_mes(usuario, ano, mes)
+        alquiler_mes = clase_calc.calcular_alquiler_mes(usuario, ano, mes)
 
         encabezado_categoria = Label(text = "Categoría", height=Window.height * 0.05, size_hint_y=None)
         encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
