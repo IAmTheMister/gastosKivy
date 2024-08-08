@@ -10,6 +10,7 @@ from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.dropdown import DropDown
+import os
 import csv
 import json
 from functools import partial
@@ -62,6 +63,10 @@ class Perfil:
             write = csv.writer(csvfile, delimiter=",")
             for i in range(len(lista_usuarios)):
                 write.writerow([lista_usuarios[i][0], lista_usuarios[i][1]])
+
+        os.rename(usuario, usuario_nuevo)
+        os.rename(usuario_nuevo + "/ingresos" + "_" + usuario + ".csv", usuario_nuevo + "/ingresos" + "_" + usuario_nuevo + ".csv")
+        os.rename(usuario_nuevo + "/gastos" + "_" + usuario + ".csv", usuario_nuevo + "/gastos" + "_" + usuario_nuevo + ".csv")
 
     def cambiar_contrasena(self, usuario, instance):
         contrasena_nueva = self.contrasena_nueva.text
