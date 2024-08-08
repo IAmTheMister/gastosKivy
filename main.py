@@ -27,6 +27,7 @@ from editargasto import EditarGasto
 from editaringreso import EditarIngreso
 from totales import ClaseTotal
 from buscar_concepto import BuscarConcepto
+from perfil import Perfil
 
 class MiApp(App):
     def build(self):
@@ -119,6 +120,7 @@ class MiApp(App):
     def menu_principal(self,usuario):
         self.main_page = GridLayout(cols=1, spacing=10)
         self.layout_menu = GridLayout(cols=2, spacing=10)
+        self.layout_navegacion_menu = GridLayout(cols=2, spacing=5, height=Window.height * 0.1, size_hint_y=None)
         btn_anadir_gasto = Button(text='Añadir gasto', on_press=partial(self.pagina_anadir_gasto,usuario), height=Window.height * 0.1,
                                   size_hint_y=None)
         btn_anadir_ingreso = Button(text='Añadir ingreso', height=Window.height * 0.1,on_press=partial(self.pagina_anadir_ingreso,usuario),
@@ -145,7 +147,14 @@ class MiApp(App):
         btn_exit = Button(text='Salir', on_press=self.exit_app,height=Window.height * 0.1, size_hint_y=None,
                                background_color=(2,2,2,1), color = (0,0,0,1))
 
-        self.main_page.add_widget(btn_exit)
+        btn_perfil= Button(text='Perfil', on_press = partial(self.pagina_perfil, usuario),
+                           height=Window.height * 0.1, size_hint_y=None, size_hint_x = 0.2,
+                          background_color=(2, 2, 2, 1), color=(0, 0, 0, 1))
+
+        self.layout_navegacion_menu.add_widget(btn_exit)
+        self.layout_navegacion_menu.add_widget(btn_perfil)
+        self.main_page.add_widget(self.layout_navegacion_menu)
+
         self.layout_menu.add_widget(btn_anadir_gasto)
         self.layout_menu.add_widget(btn_anadir_ingreso)
         self.layout_menu.add_widget(btn_editar_gasto)
@@ -208,6 +217,11 @@ class MiApp(App):
         self.main_layout.remove_widget(self.main_page)
         clase_buscar_concepto = BuscarConcepto(self.main_layout, self.main_page)
         clase_buscar_concepto.menu_concepto(usuario)
+
+    def pagina_perfil(self,usuario, instance):
+        self.main_layout.remove_widget(self.main_page)
+        clase_perfil = Perfil(self.main_layout, self.main_page)
+        clase_perfil.menu_perfil(usuario)
 
     def exit_app(self, instance):
         App.get_running_app().stop()
