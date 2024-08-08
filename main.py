@@ -26,6 +26,7 @@ from anadiringreso import AnadirIngreso
 from editargasto import EditarGasto
 from editaringreso import EditarIngreso
 from totales import ClaseTotal
+from buscar_concepto import BuscarConcepto
 
 class MiApp(App):
     def build(self):
@@ -137,6 +138,10 @@ class MiApp(App):
         btn_total = Button(text='Estadisticas totales', on_press=partial(self.pagina_total, usuario), height=Window.height * 0.1,
                          size_hint_y=None)
 
+        btn_buscar_concepto = Button(text='Buscar por concepto', on_press=partial(self.pagina_buscar_concepto, usuario),
+                           height=Window.height * 0.1,
+                           size_hint_y=None)
+
         btn_exit = Button(text='Salir', on_press=self.exit_app,height=Window.height * 0.1, size_hint_y=None,
                                background_color=(2,2,2,1), color = (0,0,0,1))
 
@@ -150,6 +155,7 @@ class MiApp(App):
         self.layout_menu.add_widget(btn_mes)
         self.layout_menu.add_widget(btn_ano)
         self.layout_menu.add_widget(btn_total)
+        self.layout_menu.add_widget(btn_buscar_concepto)
         self.main_page.add_widget(self.layout_menu)
         self.main_layout.add_widget(self.main_page)
 
@@ -197,6 +203,11 @@ class MiApp(App):
         self.main_layout.remove_widget(self.main_page)
         clase_total = ClaseTotal(self.main_layout, self.main_page)
         clase_total.menu_total(usuario)
+
+    def pagina_buscar_concepto(self,usuario, instance):
+        self.main_layout.remove_widget(self.main_page)
+        clase_buscar_concepto = BuscarConcepto(self.main_layout, self.main_page)
+        clase_buscar_concepto.menu_concepto(usuario)
 
     def exit_app(self, instance):
         App.get_running_app().stop()
