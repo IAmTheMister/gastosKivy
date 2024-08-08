@@ -17,7 +17,6 @@ from hashlib import sha256
 from functools import partial
 import os
 
-
 from dia import Dia
 from intervalo import Intervalo
 from mes import Mes
@@ -26,7 +25,7 @@ from anadirgasto import AnadirGasto
 from anadiringreso import AnadirIngreso
 from editargasto import EditarGasto
 from editaringreso import EditarIngreso
-
+from totales import ClaseTotal
 
 class MiApp(App):
     def build(self):
@@ -123,18 +122,20 @@ class MiApp(App):
                                   size_hint_y=None)
         btn_anadir_ingreso = Button(text='Añadir ingreso', height=Window.height * 0.1,on_press=partial(self.pagina_anadir_ingreso,usuario),
                                   size_hint_y=None)
-        btn_dia = Button(text='Gastos por dia', on_press= partial(self.pagina_dia,usuario), height = Window.height*0.1,
+        btn_dia = Button(text='Estadisticas por dia', on_press= partial(self.pagina_dia,usuario), height = Window.height*0.1,
                          size_hint_y =None)
-        btn_intervalo = Button(text='Gastos por intervalo', on_press = partial(self.pagina_intervalo,usuario), height = Window.height*0.1,
+        btn_intervalo = Button(text='Estadisticas por intervalo', on_press = partial(self.pagina_intervalo,usuario), height = Window.height*0.1,
                                size_hint_y =None)
-        btn_mes = Button(text='Gastos por mes', on_press = partial(self.pagina_mes,usuario), height=Window.height * 0.1,
+        btn_mes = Button(text='Estadisticas por mes', on_press = partial(self.pagina_mes,usuario), height=Window.height * 0.1,
                          size_hint_y=None)
-        btn_ano = Button(text='Gastos por año', on_press = partial(self.pagina_ano,usuario), height = Window.height*0.1,
+        btn_ano = Button(text='Estadisticas por año', on_press = partial(self.pagina_ano,usuario), height = Window.height*0.1,
                          size_hint_y =None)
         btn_editar_gasto = Button(text='Editar gasto', on_press = partial(self.pagina_editar_gasto,usuario), height=Window.height * 0.1,
                                   size_hint_y=None)
         btn_editar_ingreso = Button(text='Editar ingreso', on_press = partial(self.pagina_editar_ingreso,usuario), height=Window.height * 0.1,
                                     size_hint_y=None)
+        btn_total = Button(text='Estadisticas totales', on_press=partial(self.pagina_total, usuario), height=Window.height * 0.1,
+                         size_hint_y=None)
 
         btn_exit = Button(text='Salir', on_press=self.exit_app,height=Window.height * 0.1, size_hint_y=None,
                                background_color=(2,2,2,1), color = (0,0,0,1))
@@ -148,6 +149,7 @@ class MiApp(App):
         self.layout_menu.add_widget(btn_intervalo)
         self.layout_menu.add_widget(btn_mes)
         self.layout_menu.add_widget(btn_ano)
+        self.layout_menu.add_widget(btn_total)
         self.main_page.add_widget(self.layout_menu)
         self.main_layout.add_widget(self.main_page)
 
@@ -190,6 +192,11 @@ class MiApp(App):
         self.main_layout.remove_widget(self.main_page)
         clase_editar_ingreso = EditarIngreso(self.main_layout, self.main_page)
         clase_editar_ingreso.menu_editar_ingreso(usuario)
+
+    def pagina_total(self,usuario,instance):
+        self.main_layout.remove_widget(self.main_page)
+        clase_total = ClaseTotal(self.main_layout, self.main_page)
+        clase_total.menu_total(usuario)
 
     def exit_app(self, instance):
         App.get_running_app().stop()

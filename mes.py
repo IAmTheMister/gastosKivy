@@ -24,7 +24,7 @@ class Mes:
     def __init__(self, main_layout, main_page):
         self.main_layout = main_layout
         self.main_page = main_page
-        self.altura = 0.22
+        self.altura = 0.27
 
     def menu_mes(self,usuario):
         self.layout_mes = GridLayout(cols=1, spacing=10, height = Window.height)
@@ -74,23 +74,23 @@ class Mes:
     def boton_stats_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
-            self.altura = 0.22
+            self.altura = 0.27
         else:
             self.mostrar_stats_mes(usuario)
 
     def boton_categoria_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
-            self.altura = 0.22
+            self.altura = 0.27
         else:
             self.mostrar_gasto_categorias_mes(usuario)
 
     def boton_gastos_mes(self, usuario, instance):
         if len(self.layout_stats_mes.children) > 0:
             self.layout_stats_mes.clear_widgets()
-            self.altura = 0.22
+            self.altura = 0.27
         else:
-            self.mostrar_lista_gastos_mes(usuario)
+            self.mostrar_gastos_mes(usuario)
 
     def mostrar_stats_mes(self, usuario):
         clase_calc = Calculos()
@@ -135,7 +135,6 @@ class Mes:
         self.layout_saldo_mes.add_widget(valor_sin_alquiler)
 
         self.layout_stats_mes.add_widget(self.layout_saldo_mes)
-        self.altura += 0.15
 
     def mostrar_gasto_categorias_mes(self, usuario):
         clase_calc = Calculos()
@@ -183,31 +182,79 @@ class Mes:
                 self.layout_categoria_mes.add_widget(porcentaje_sin_alquiler)
                 self.layout_stats_mes.add_widget(self.layout_categoria_mes)
 
-    def mostrar_lista_gastos_mes(self,usuario):
-        self.scrollview_mes = ScrollView(height = Window.height * (1 - self.altura), size_hint_y = None)
+    def mostrar_gastos_mes(self, usuario):
+        self.layout_gastos_mes = GridLayout(cols=1)
+        self.layout_botones_buscar_mes = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
+        self.scrollview_mes = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
+        self.layout_lista_gastos_mes = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_mes.bind(minimum_height=self.layout_lista_gastos_mes.setter('height'))
+        self.dropdown_categoria = DropDown()
+        for cat in categorias:
+            btn = Button(text=cat, size_hint_y=None, height=Window.height * 0.05)
+            btn.bind(on_release=lambda btn: self.dropdown_categoria.select(btn.text))
+            self.dropdown_categoria.add_widget(btn)
 
-        self.layout_gasto_mes = GridLayout(cols=4, size_hint_y=None)
-        self.layout_gasto_mes.bind(minimum_height=self.layout_gasto_mes.setter('height'))
+        btn_todas = Button(text="Categoria", size_hint_y=None, height=Window.height * 0.05)
+        btn_todas.bind(on_release=lambda btn_todas: self.dropdown_categoria.select(btn_todas.text))
+        self.dropdown_categoria.add_widget(btn_todas)
 
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        self.mainbutton_categoria = Button(text='Categoria', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_categoria.bind(on_release=self.dropdown_categoria.open)
+        self.dropdown_categoria.bind(on_select=lambda instance, x: setattr(self.mainbutton_categoria, 'text', x))
+        self.layout_botones_buscar_mes.add_widget(self.mainbutton_categoria)
+
+        btn_buscar = Button(text="Buscar", on_press=partial(self.buscar_gastos_mes, usuario),
+                            size_hint_y=None, height=Window.height * 0.05)
+        self.layout_botones_buscar_mes.add_widget(btn_buscar)
+        self.layout_gastos_mes.add_widget(self.layout_botones_buscar_mes)
+        self.layout_stats_mes.add_widget(self.layout_gastos_mes)
+
+    def buscar_gastos_mes(self, usuario, instance):
+        if len(self.layout_lista_gastos_mes.children) > 0:
+            self.layout_gastos_mes.remove_widget(self.scrollview_mes)
+            self.scrollview_mes.remove_widget(self.layout_lista_gastos_mes)
+            self.layout_lista_gastos_mes.clear_widgets()
+            self.altura = 0.27
+        else:
+            self.mostrar_lista_gastos_mes(usuario)
+
+    def mostrar_lista_gastos_mes(self, usuario):
+        ano = int(self.input_ano.text)
+        mes = int(self.input_mes.text)
+        cat = self.mainbutton_categoria.text
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                ano = int(self.input_ano.text)
-                mes = int(self.input_mes.text)
-                if row and fecha_row.year == ano and fecha_row.month == mes:
-                    label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
-                    label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
-                    label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                    label_precio_mes = Label(text=row[3] +" €", height=Window.height * 0.05, size_hint_y=None)
+                if cat == "Categoria":
+                    if row and fecha_row.year == ano and fecha_row.month == mes:
+                        label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-                    self.layout_gasto_mes.add_widget(label_fecha_mes)
-                    self.layout_gasto_mes.add_widget(label_concepto_mes)
-                    self.layout_gasto_mes.add_widget(label_categoria_mes)
-                    self.layout_gasto_mes.add_widget(label_precio_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_concepto_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_categoria_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_precio_mes)
+                else:
+                    if row and fecha_row.year == ano and fecha_row.month == mes and row[2] == cat:
+                        label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-        self.scrollview_mes.add_widget(self.layout_gasto_mes)
-        self.layout_stats_mes.add_widget(self.scrollview_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_concepto_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_categoria_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_precio_mes)
+
+        if len(self.layout_lista_gastos_mes.children) == 0:
+            label_no_gastos = Label(text = "No hay gastos", height=Window.height * 0.05, size_hint_y=None)
+            self.layout_lista_gastos_mes.add_widget(label_no_gastos)
+
+        self.scrollview_mes.add_widget(self.layout_lista_gastos_mes)
+        self.layout_gastos_mes.add_widget(self.scrollview_mes)
 
     def boton_volver_mes(self, instance):
         self.main_layout.remove_widget(self.layout_mes)

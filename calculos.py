@@ -101,3 +101,28 @@ class Calculos:
                 if row and fecha_row.year == ano and cat == "Alquiler":
                     alquiler += round(float(row[3]), 2)
         return alquiler
+
+    def calcular_saldo_total(self, usuario):
+        gasto_total = 0
+        ingresos = 0
+        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row:
+                    ingresos += round(float(row[1]), 2)
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row:
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total, ingresos
+
+    def calcular_alquiler_total(self, usuario):
+        alquiler = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                cat = row[2]
+                if row and cat == "Alquiler":
+                    alquiler += round(float(row[3]), 2)
+        return alquiler

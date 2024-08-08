@@ -25,7 +25,7 @@ class Ano:
     def __init__(self, main_layout, main_page):
         self.main_layout = main_layout
         self.main_page = main_page
-        self.altura = 0.22
+        self.altura = 0.27
 
     def menu_ano(self, usuario):
         self.layout_ano = GridLayout(cols=1, spacing=10, height=Window.height)
@@ -83,7 +83,7 @@ class Ano:
         if len(self.layout_stats_ano.children) > 0:
             self.layout_stats_ano.clear_widgets()
         else:
-            self.mostrar_lista_gastos_ano(usuario)
+            self.mostrar_gastos_ano(usuario)
 
     def mostrar_stats_ano(self, usuario):
         clase_calc = Calculos()
@@ -178,30 +178,77 @@ class Ano:
                 self.layout_categoria_ano.add_widget(porcentaje_sin_alquiler)
                 self.layout_stats_ano.add_widget(self.layout_categoria_ano)
 
-    def mostrar_lista_gastos_ano(self,usuario):
+    def mostrar_gastos_ano(self, usuario):
+        self.layout_gastos_ano = GridLayout(cols=1)
+        self.layout_botones_buscar_ano = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_ano = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
+        self.layout_lista_gastos_ano = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_ano.bind(minimum_height=self.layout_lista_gastos_ano.setter('height'))
+        self.dropdown_categoria = DropDown()
+        for cat in categorias:
+            btn = Button(text=cat, size_hint_y=None, height=Window.height * 0.05)
+            btn.bind(on_release=lambda btn: self.dropdown_categoria.select(btn.text))
+            self.dropdown_categoria.add_widget(btn)
 
-        self.layout_gasto_ano = GridLayout(cols=4, size_hint_y=None)
-        self.layout_gasto_ano.bind(minimum_height=self.layout_gasto_ano.setter('height'))
+        btn_todas = Button(text="Categoria", size_hint_y=None, height=Window.height * 0.05)
+        btn_todas.bind(on_release=lambda btn_todas: self.dropdown_categoria.select(btn_todas.text))
+        self.dropdown_categoria.add_widget(btn_todas)
 
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        self.mainbutton_categoria = Button(text='Categoria', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_categoria.bind(on_release=self.dropdown_categoria.open)
+        self.dropdown_categoria.bind(on_select=lambda instance, x: setattr(self.mainbutton_categoria, 'text', x))
+        self.layout_botones_buscar_ano.add_widget(self.mainbutton_categoria)
+
+        btn_buscar = Button(text="Buscar", on_press=partial(self.buscar_gastos_ano, usuario),
+                            size_hint_y=None, height=Window.height * 0.05)
+        self.layout_botones_buscar_ano.add_widget(btn_buscar)
+        self.layout_gastos_ano.add_widget(self.layout_botones_buscar_ano)
+        self.layout_stats_ano.add_widget(self.layout_gastos_ano)
+
+    def buscar_gastos_ano(self, usuario, instance):
+        if len(self.layout_lista_gastos_ano.children) > 0:
+            self.layout_gastos_ano.remove_widget(self.scrollview_ano)
+            self.scrollview_ano.remove_widget(self.layout_lista_gastos_ano)
+            self.layout_lista_gastos_ano.clear_widgets()
+        else:
+            self.mostrar_lista_gastos_ano(usuario)
+
+    def mostrar_lista_gastos_ano(self, usuario):
+        ano = int(self.input_ano.text)
+        cat = self.mainbutton_categoria.text
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                ano = int(self.input_ano.text)
-                if row and fecha_row.year == ano:
-                    label_fecha_ano = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
-                    label_concepto_ano = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
-                    label_categoria_ano = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                    label_precio_ano = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                if cat == "Categoria":
+                    if row and fecha_row.year == ano:
+                        label_fecha_ano = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_ano = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_ano = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_ano = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-                    self.layout_gasto_ano.add_widget(label_fecha_ano)
-                    self.layout_gasto_ano.add_widget(label_concepto_ano)
-                    self.layout_gasto_ano.add_widget(label_categoria_ano)
-                    self.layout_gasto_ano.add_widget(label_precio_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_fecha_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_concepto_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_categoria_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_precio_ano)
+                else:
+                    if row and fecha_row.year == ano and row[2] == cat:
+                        label_fecha_ano = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_ano = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_ano = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_ano = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-        self.scrollview_ano.add_widget(self.layout_gasto_ano)
-        self.layout_stats_ano.add_widget(self.scrollview_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_fecha_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_concepto_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_categoria_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_precio_ano)
+
+        if len(self.layout_lista_gastos_ano.children) == 0:
+            label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
+            self.layout_lista_gastos_ano.add_widget(label_no_gastos)
+
+        self.scrollview_ano.add_widget(self.layout_lista_gastos_ano)
+        self.layout_gastos_ano.add_widget(self.scrollview_ano)
 
     def boton_volver_ano(self, instance):
         self.main_layout.remove_widget(self.layout_ano)

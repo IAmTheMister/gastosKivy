@@ -8,6 +8,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.dropdown import DropDown
 import csv
 import json
 from functools import partial
@@ -19,11 +20,12 @@ categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes"]
 
+
 class Intervalo:
     def __init__(self, main_layout, main_page):
         self.main_layout = main_layout
         self.main_page = main_page
-        self.altura = 0.22
+        self.altura = 0.27
 
     def menu_intervalo(self,usuario):
         self.layout_intervalo = GridLayout(cols=1, spacing=10)
@@ -72,23 +74,20 @@ class Intervalo:
     def stats_intervalo(self,usuario, instance):
         if len(self.layout_stats_intervalo.children) > 0:
             self.layout_stats_intervalo.clear_widgets()
-            self.altura = 0.22
         else:
             self.mostrar_stats_intervalo(usuario)
 
     def categoria_intervalo(self,usuario, instance):
         if len(self.layout_stats_intervalo.children) > 0:
             self.layout_stats_intervalo.clear_widgets()
-            self.altura = 0.22
         else:
             self.mostrar_gasto_categorias_intervalo(usuario)
 
     def gastos_intervalo(self,usuario, instance):
         if len(self.layout_stats_intervalo.children) > 0:
             self.layout_stats_intervalo.clear_widgets()
-            self.altura = 0.22
         else:
-            self.mostrar_lista_gastos_intervalo(usuario)
+            self.mostrar_gastos_intervalo(usuario)
 
     def mostrar_stats_intervalo(self, usuario):
         clase_calc = Calculos()
@@ -155,33 +154,80 @@ class Intervalo:
                 self.layout_categoria_intervalo.add_widget(valor)
                 self.layout_categoria_intervalo.add_widget(porcentaje)
                 self.layout_stats_intervalo.add_widget(self.layout_categoria_intervalo)
-                self.altura += 0.05
 
-    def mostrar_lista_gastos_intervalo(self,usuario):
+    def mostrar_gastos_intervalo(self, usuario):
+        self.layout_gastos_intervalo = GridLayout(cols=1)
+        self.layout_botones_buscar_intervalo = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_intervalo = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
+        self.layout_lista_gastos_intervalo = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_intervalo.bind(minimum_height=self.layout_lista_gastos_intervalo.setter('height'))
+        self.dropdown_categoria = DropDown()
+        for cat in categorias:
+            btn = Button(text=cat, size_hint_y=None, height=Window.height * 0.05)
+            btn.bind(on_release=lambda btn: self.dropdown_categoria.select(btn.text))
+            self.dropdown_categoria.add_widget(btn)
 
-        self.layout_gasto_intervalo = GridLayout(cols=4, size_hint_y=None)
-        self.layout_gasto_intervalo.bind(minimum_height=self.layout_gasto_intervalo.setter('height'))
+        btn_todas = Button(text="Categoria", size_hint_y=None, height=Window.height * 0.05)
+        btn_todas.bind(on_release=lambda btn_todas: self.dropdown_categoria.select(btn_todas.text))
+        self.dropdown_categoria.add_widget(btn_todas)
 
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        self.mainbutton_categoria = Button(text='Categoria', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_categoria.bind(on_release=self.dropdown_categoria.open)
+        self.dropdown_categoria.bind(on_select=lambda instance, x: setattr(self.mainbutton_categoria, 'text', x))
+        self.layout_botones_buscar_intervalo.add_widget(self.mainbutton_categoria)
+
+        btn_buscar = Button(text="Buscar", on_press=partial(self.buscar_gastos_intervalo, usuario),
+                            size_hint_y=None, height=Window.height * 0.05)
+        self.layout_botones_buscar_intervalo.add_widget(btn_buscar)
+        self.layout_gastos_intervalo.add_widget(self.layout_botones_buscar_intervalo)
+        self.layout_stats_intervalo.add_widget(self.layout_gastos_intervalo)
+
+    def buscar_gastos_intervalo(self, usuario, instance):
+        if len(self.layout_lista_gastos_intervalo.children) > 0:
+            self.layout_gastos_intervalo.remove_widget(self.scrollview_intervalo)
+            self.scrollview_intervalo.remove_widget(self.layout_lista_gastos_intervalo)
+            self.layout_lista_gastos_intervalo.clear_widgets()
+            self.altura = 0.27
+        else:
+            self.mostrar_lista_gastos_intervalo(usuario)
+
+    def mostrar_lista_gastos_intervalo(self, usuario):
+        fecha_inicio = datetime.strptime(self.input_inicio.text, "%d/%m/%Y")
+        fecha_fin = datetime.strptime(self.input_fin.text, "%d/%m/%Y")
+        cat = self.mainbutton_categoria.text
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
-                fecha_inicio = datetime.strptime(self.input_inicio.text, "%d/%m/%Y")
-                fecha_fin = datetime.strptime(self.input_fin.text, "%d/%m/%Y")
-                if row and fecha_inicio <= fecha_row <= fecha_fin:
-                    self.label_fecha_intervalo = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
-                    self.label_concepto_intervalo = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
-                    self.label_categoria_intervalo = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                    self.label_precio_intervalo = Label(text=row[3]+" €", height=Window.height * 0.05, size_hint_y=None)
+                if cat == "Categoria":
+                    if row and fecha_inicio <= fecha_row <= fecha_fin:
+                        label_fecha_intervalo = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_intervalo = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_intervalo = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_intervalo = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-                    self.layout_gasto_intervalo.add_widget(self.label_fecha_intervalo)
-                    self.layout_gasto_intervalo.add_widget(self.label_concepto_intervalo)
-                    self.layout_gasto_intervalo.add_widget(self.label_categoria_intervalo)
-                    self.layout_gasto_intervalo.add_widget(self.label_precio_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_fecha_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_concepto_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_categoria_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_precio_intervalo)
+                else:
+                    if row and fecha_inicio <= fecha_row <= fecha_fin and row[2] == cat:
+                        label_fecha_intervalo = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_intervalo = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_intervalo = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_intervalo = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
-        self.scrollview_intervalo.add_widget(self.layout_gasto_intervalo)
-        self.layout_stats_intervalo.add_widget(self.scrollview_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_fecha_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_concepto_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_categoria_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_precio_intervalo)
+
+        if len(self.layout_lista_gastos_intervalo.children) == 0:
+            label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
+            self.layout_lista_gastos_intervalo.add_widget(label_no_gastos)
+
+        self.scrollview_intervalo.add_widget(self.layout_lista_gastos_intervalo)
+        self.layout_gastos_intervalo.add_widget(self.scrollview_intervalo)
 
     def boton_volver_intervalo(self, instance):
         self.main_layout.remove_widget(self.layout_intervalo)
