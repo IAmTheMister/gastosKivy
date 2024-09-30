@@ -28,10 +28,11 @@ from editaringreso import EditarIngreso
 from totales import ClaseTotal
 from buscar_concepto import BuscarConcepto
 from perfil import Perfil
+from viajes import Viajes
 
 class MiApp(App):
     def build(self):
-        Window.size = (400,600)
+        Window.size = (600,600)
         # Crea una caja vertical (BoxLayout)
         self.main_layout = BoxLayout(orientation='vertical', spacing=10, padding=10)
         with self.main_layout.canvas.before:
@@ -144,6 +145,10 @@ class MiApp(App):
                            height=Window.height * 0.1,
                            size_hint_y=None)
 
+        btn_viajes = Button(text='Viajes', on_press=partial(self.pagina_viajes, usuario),
+                                     height=Window.height * 0.1,
+                                     size_hint_y=None)
+
         btn_exit = Button(text='Salir', on_press=self.exit_app,height=Window.height * 0.1, size_hint_y=None,
                                background_color=(2,2,2,1), color = (0,0,0,1))
 
@@ -165,6 +170,7 @@ class MiApp(App):
         self.layout_menu.add_widget(btn_ano)
         self.layout_menu.add_widget(btn_total)
         self.layout_menu.add_widget(btn_buscar_concepto)
+        self.layout_menu.add_widget(btn_viajes)
         self.main_page.add_widget(self.layout_menu)
         self.main_layout.add_widget(self.main_page)
 
@@ -217,6 +223,11 @@ class MiApp(App):
         self.main_layout.remove_widget(self.main_page)
         clase_buscar_concepto = BuscarConcepto(self.main_layout, self.main_page)
         clase_buscar_concepto.menu_concepto(usuario)
+
+    def pagina_viajes(self,usuario, instance):
+        self.main_layout.remove_widget(self.main_page)
+        clase_viajes = Viajes(self.main_layout, self.main_page)
+        clase_viajes.menu_viajes(usuario)
 
     def pagina_perfil(self,usuario, instance):
         self.main_layout.remove_widget(self.main_page)

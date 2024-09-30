@@ -94,7 +94,7 @@
 10/08/2024,Latin party,Ocio,6.01
 10/08/2024,Cerveza O'Learys,Ocio,8.76
 10/08/2024,Uber,Transporte,11.95
-11/08/2024,Vuelos Polonia,Viajes,59.01
+11/08/2024,Vuelos Polonia,Viajes,59.01,Polonia
 11/08/2024,Platanos,Comida,0.94
 11/08/2024,Bolos,Ocio,8.15
 11/08/2024,Buffet pizzas,Restaurantes,11.16
@@ -139,34 +139,34 @@
 23/08/2024,Platanos,Comida,0.84
 23/08/2024,Camiseta blanca,Caprichos,7.95
 23/08/2024,Permanente,Caprichos,5.13
-23/08/2024,Champu y gel,Viajes,3.17
+23/08/2024,Champu y gel,Viajes,3.17,Polonia
 23/08/2024,Tonica,Ocio,3.56
 23/08/2024,Estudio 26,Ocio,4.32
 23/08/2024,Cerveza,Ocio,5.19
 23/08/2024,Ronda,Ocio,18.77
 23/08/2024,Cerveza,Ocio,5.1
-24/08/2024,Ensalada cesar,Viajes,14.97
-24/08/2024,AirBnb Gdansk,Viajes,45
-24/08/2024,Bolt,Viajes,3.14
-24/08/2024,Agua,Viajes,1.19
-24/08/2024,Chimney,Viajes,5.71
-24/08/2024,Agua,Viajes,1.28
-24/08/2024,Coctel,Viajes,5.46
-24/08/2024,Kebab,Viajes,5.46
-24/08/2024,Ayran,Viajes,1.91
-25/08/2024,Pierogarnia Mandu,Viajes,13.73
-25/08/2024,Matcha,Viajes,5.18
-25/08/2024,Buses,Viajes,9.38
-25/08/2024,Napoleonka y omlet,Viajes,3.33
-25/08/2024,Agua,Viajes,0.47
-25/08/2024,Agua,Viajes,1.19
-25/08/2024,Farmacia,Viajes,41.99
-25/08/2024,Chupitos,Viajes,10.56
-26/08/2024,Biedronka,Viajes,21.98
-26/08/2024,Mirinda pomelo,Viajes,1.36
-26/08/2024,Farmacia,Viajes,9.87
-26/08/2024,Uber,Viajes,3.63
-26/08/2024,Desayuno y fantas,Viajes,11.51
+24/08/2024,Ensalada cesar,Viajes,14.97,Polonia
+24/08/2024,AirBnb Gdansk,Viajes,45,Polonia
+24/08/2024,Bolt,Viajes,3.14,Polonia
+24/08/2024,Agua,Viajes,1.19,Polonia
+24/08/2024,Chimney,Viajes,5.71,Polonia
+24/08/2024,Agua,Viajes,1.28,Polonia
+24/08/2024,Coctel,Viajes,5.46,Polonia
+24/08/2024,Kebab,Viajes,5.46,Polonia
+24/08/2024,Ayran,Viajes,1.91,Polonia
+25/08/2024,Pierogarnia Mandu,Viajes,13.73,Polonia
+25/08/2024,Matcha,Viajes,5.18,Polonia
+25/08/2024,Buses,Viajes,9.38,Polonia
+25/08/2024,Napoleonka y omlet,Viajes,3.33,Polonia
+25/08/2024,Agua,Viajes,0.47,Polonia
+25/08/2024,Agua,Viajes,1.19,Polonia
+25/08/2024,Farmacia,Viajes,41.99,Polonia
+25/08/2024,Chupitos,Viajes,10.56,Polonia
+26/08/2024,Biedronka,Viajes,21.98,Polonia
+26/08/2024,Mirinda pomelo,Viajes,1.36,Polonia
+26/08/2024,Farmacia,Viajes,9.87,Polonia
+26/08/2024,Uber,Viajes,3.63,Polonia
+26/08/2024,Desayuno y fantas,Viajes,11.51,Polonia
 23/08/2024,Bus nocturno,Transporte,9.43
 27/08/2024,Burrito,Comida,4.28
 27/08/2024,Patinete,Transporte,1.72
@@ -244,20 +244,20 @@
 06/09/2024,Carne picada mixta 1200,Comida,12.26
 06/09/2024,Huevos,Comida,3.15
 06/09/2024,Pechuga pollo,Comida,4.25
-05/09/2024,Shell,Viajes,11.47
-05/09/2024,Peaje,Viajes,4.5
-05/09/2024,Cena,Viajes,7.2
+05/09/2024,Shell,Viajes,11.47,Logroño 1
+05/09/2024,Peaje,Viajes,4.5,Logroño 1
+05/09/2024,Cena,Viajes,7.2,Logroño 1
 05/09/2024,Cafe,Comida,4.85
-05/09/2024,Cepsa Logroño,Viajes,50.6
-06/09/2024,Tren Logroño,Viajes,60.7
-06/09/2024,Uber galapagar,Viajes,21
-06/09/2024,BP Galapagar,Viajes,30.28
-07/09/2024,Cafe,Viajes,2.37
-07/09/2024,Pizza con agua,Viajes,8.8
-07/09/2024,Muffin,Viajes,3.1
-07/09/2024,Repsol Logroño,Gasolina,52.85
-07/09/2024,Peaje,Viajes,6.85
-08/09/2024,Bosque de Carymar Ágreda,Viajes,25
+05/09/2024,Cepsa Logroño,Viajes,50.6,Logroño 1
+06/09/2024,Tren Logroño,Viajes,60.7,Logroño 2
+06/09/2024,Uber galapagar,Viajes,21,Logroño 2
+06/09/2024,BP Galapagar,Viajes,30.28,Logroño 1
+07/09/2024,Cafe,Viajes,2.37,Logroño 2
+07/09/2024,Pizza con agua,Viajes,8.8,Logroño 2
+07/09/2024,Muffin,Viajes,3.1,Logroño 2
+07/09/2024,Repsol Logroño,Gasolina,52.85,Logroño 2
+07/09/2024,Peaje,Viajes,6.85,Logroño 2
+08/09/2024,Bosque de Carymar Ágreda,Viajes,25,Logroño 2
 10/09/2024,Gazpacho,Comida,15.96
 10/09/2024,Kiwis,Comida,0.79
 10/09/2024,Agua 6L,Comida,3.12
@@ -303,7 +303,7 @@
 17/09/2024,BP Galapagar,Gasolina,55.52
 17/09/2024,Cerdo estofado,Comida,4.17
 17/09/2024,Pollo filetes y pechuga,Comida,11.72
-17/09/2024,Barça - YB,Viajes,61
+17/09/2024,Barça - YB,Viajes,61,Barcelona
 18/09/2024,Cuchillas,Hogar,54.99
 18/09/2024,Enchufe doble,Hogar,3.9
 18/09/2024,Stickers JDT,Caprichos,4.99
@@ -362,16 +362,16 @@
 27/09/2024,Huevos XL,Comida,3.25
 27/09/2024,Cebolleta,Comida,1.29
 28/09/2024,BP Galapagar,Gasolina,53.74
-29/09/2024,Donut,Viajes,1.4
-29/09/2024,Valenbisi,Viajes,3.99
-29/09/2024,El Tarantin,Viajes,48.2
-29/09/2024,Agua,Viajes,1.6
-29/09/2024,Manolitos,Viajes,2.55
-29/09/2024,Galp Valencia,Viajes,30.87
-29/09/2024,BP Galapagar,Viajes,34.49
-30/09/2024,Entrada Atheltic - Espanyol,Viajes,82.5
-30/09/2024,Manolo bakes Albert,Viajes,13.6
-30/09/2024,Salchichon Albert,Viajes,12.95
+29/09/2024,Donut,Viajes,1.4,Valencia
+29/09/2024,Valenbisi,Viajes,3.99,Valencia
+29/09/2024,El Tarantin,Viajes,48.2,Valencia
+29/09/2024,Agua,Viajes,1.6,Valencia
+29/09/2024,Manolitos,Viajes,2.55,Valencia
+29/09/2024,Galp Valencia,Viajes,30.87,Valencia
+29/09/2024,BP Galapagar,Viajes,34.49,Valencia
+30/09/2024,Entrada Atheltic - Espanyol,Viajes,82.5,Pais Vasco
+30/09/2024,Manolo bakes Albert,Viajes,13.6,Barcelona
+30/09/2024,Salchichon Albert,Viajes,12.95,Barcelona
 30/09/2024,Agua,Comida,2.72
 30/09/2024,Mozarella rallada,Comida,1.54
 30/09/2024,Pizzas,Comida,3.19
