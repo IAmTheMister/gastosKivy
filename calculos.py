@@ -145,6 +145,29 @@ class Calculos:
                     alquiler_mes += round(float(row[3]), 2)
         return alquiler_mes
 
+
+    def calcular_gasto_ing_ano(self, ano, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano:
+                    if row[4] == "Ingresos":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
+    def calcular_gasto_ahorros_ano(self, ano, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano:
+                    if row[4] == "Ahorros":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
     def calcular_saldo_ano(self, ano, usuario):
         gasto_total = 0
         ingresos = 0

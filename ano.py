@@ -89,6 +89,8 @@ class Ano:
         clase_calc = Calculos()
         ano = int(self.input_ano.text)
         gasto_ano, ingresos_ano = clase_calc.calcular_saldo_ano(ano, usuario)
+        gasto_ing = clase_calc.calcular_gasto_ing_ano(ano, usuario)
+        gasto_ahorros = clase_calc.calcular_gasto_ahorros_ano(ano, usuario)
         alquiler_ano = clase_calc.calcular_alquiler_ano(ano,usuario)
         self.layout_saldo_ano = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
@@ -110,6 +112,14 @@ class Ano:
         valor_sin_alquiler = Label(text=str(round(gasto_ano - alquiler_ano, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
 
+        nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
+
+        nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+                                    size_hint_y=None)
+
         self.layout_saldo_ano.add_widget(nombre_ingreso)
         self.layout_saldo_ano.add_widget(valor_ingreso)
 
@@ -124,6 +134,12 @@ class Ano:
 
         self.layout_saldo_ano.add_widget(nombre_sin_alquiler)
         self.layout_saldo_ano.add_widget(valor_sin_alquiler)
+
+        self.layout_saldo_ano.add_widget(nombre_gasto_ing)
+        self.layout_saldo_ano.add_widget(valor_gasto_ing)
+
+        self.layout_saldo_ano.add_widget(nombre_gasto_ahorros)
+        self.layout_saldo_ano.add_widget(valor_gasto_ahorros)
 
         self.layout_stats_ano.add_widget(self.layout_saldo_ano)
 
@@ -182,7 +198,7 @@ class Ano:
         self.layout_gastos_ano = GridLayout(cols=1)
         self.layout_botones_buscar_ano = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_ano = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
-        self.layout_lista_gastos_ano = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_ano = GridLayout(cols=5, size_hint_y=None)
         self.layout_lista_gastos_ano.bind(minimum_height=self.layout_lista_gastos_ano.setter('height'))
         self.dropdown_categoria = DropDown()
         for cat in categorias:
@@ -226,22 +242,26 @@ class Ano:
                         label_concepto_ano = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_ano = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_ano = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_ano = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_ano.add_widget(label_fecha_ano)
                         self.layout_lista_gastos_ano.add_widget(label_concepto_ano)
                         self.layout_lista_gastos_ano.add_widget(label_categoria_ano)
                         self.layout_lista_gastos_ano.add_widget(label_precio_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_fuente_ano)
                 else:
                     if row and fecha_row.year == ano and row[2] == cat:
                         label_fecha_ano = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_ano = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_ano = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_ano = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_ano = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_ano.add_widget(label_fecha_ano)
                         self.layout_lista_gastos_ano.add_widget(label_concepto_ano)
                         self.layout_lista_gastos_ano.add_widget(label_categoria_ano)
                         self.layout_lista_gastos_ano.add_widget(label_precio_ano)
+                        self.layout_lista_gastos_ano.add_widget(label_fuente_ano)
 
         if len(self.layout_lista_gastos_ano.children) == 0:
             label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
