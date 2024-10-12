@@ -47,7 +47,7 @@ class EditarGasto:
         with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
-                self.data_list.append([row[0], row[1], row[2], row[3]])
+                self.data_list.append([row[0], row[1], row[2], row[3],row[4]])
 
         if len(self.data_list) > 10:
             for i in range(len(self.data_list)-10, len(self.data_list)):
@@ -70,8 +70,8 @@ class EditarGasto:
     def editar_gasto(self, usuario, row, instance):
         self.main_layout.remove_widget(self.layout_editar_gasto)
         self.layout_edicion_gasto = GridLayout(cols = 1, spacing = 10)
-        self.layout_gasto_antiguo = GridLayout(cols = 4, height=Window.height * 0.05, size_hint_y = None)
-        self.layout_gasto_nuevo = GridLayout(cols= 4, height=Window.height * 0.05, size_hint_y=None)
+        self.layout_gasto_antiguo = GridLayout(cols = 5, height=Window.height * 0.05, size_hint_y = None)
+        self.layout_gasto_nuevo = GridLayout(cols= 5, height=Window.height * 0.05, size_hint_y=None)
         self.layout_navegacion_edicion_gasto = GridLayout(cols=2, height=Window.height * 0.05, size_hint_y=None)
 
         btn_exit = Button(text='Salir', on_press=partial(self.exit_app), height=Window.height * 0.05, size_hint_y=None,
@@ -93,10 +93,12 @@ class EditarGasto:
         concepto_ant = Label(text = row[1], height=Window.height * 0.05, size_hint_y=None)
         categoria_ant = Label(text = row[2], height=Window.height * 0.05, size_hint_y=None)
         precio_ant = Label(text = row[3], height=Window.height * 0.05, size_hint_y=None)
+        fuente_ant = Label(text = row[4], height=Window.height * 0.05, size_hint_y=None)
         self.layout_gasto_antiguo.add_widget(fecha_ant)
         self.layout_gasto_antiguo.add_widget(concepto_ant)
         self.layout_gasto_antiguo.add_widget(categoria_ant)
         self.layout_gasto_antiguo.add_widget(precio_ant)
+        self.layout_gasto_antiguo.add_widget(fuente_ant)
         self.layout_edicion_gasto.add_widget(self.layout_gasto_antiguo)
 
         label_gasto_nuevo = Label(text="Gasto editado", height=Window.height * 0.05, size_hint_y=None)
@@ -114,10 +116,12 @@ class EditarGasto:
         self.fecha_nueva = TextInput(hint_text = "dd/mm/yyyy", height=Window.height * 0.05, size_hint_y=None)
         self.concepto_nueva = TextInput(hint_text = "Concepto", height=Window.height * 0.05, size_hint_y=None)
         self.precio_nueva = TextInput(hint_text = "Precio", height=Window.height * 0.05, size_hint_y=None)
+        self.fuente_nueva = TextInput(hint_text="Fuente", height=Window.height * 0.05, size_hint_y=None)
         self.layout_gasto_nuevo.add_widget(self.fecha_nueva)
         self.layout_gasto_nuevo.add_widget(self.concepto_nueva)
         self.layout_gasto_nuevo.add_widget(self.mainbutton_categoria)
         self.layout_gasto_nuevo.add_widget(self.precio_nueva)
+        self.layout_gasto_nuevo.add_widget(self.fuente_nueva)
         self.layout_edicion_gasto.add_widget(self.layout_gasto_nuevo)
 
         btn_editar_gasto = Button(text = "Editar gasto", height=Window.height * 0.05, size_hint_y=None,
@@ -132,7 +136,7 @@ class EditarGasto:
 
     def sobreescribir_csv(self, usuario, row,instance):
         row_nueva = [self.fecha_nueva.text, self.concepto_nueva.text, self.mainbutton_categoria.text,
-                     self.precio_nueva.text]
+                     self.precio_nueva.text, self.fuente_nueva.text]
         for i in range(len(self.data_list)):
             if self.data_list[i] == row:
                 self.data_list[i] = row_nueva
