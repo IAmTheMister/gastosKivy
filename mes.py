@@ -97,6 +97,8 @@ class Mes:
         ano_actual = int(self.input_ano.text)
         mes_actual = int(self.input_mes.text)
         gasto_actual, ingresos_actual = clase_calc.calcular_saldo_mes(usuario,ano_actual, mes_actual)
+        gasto_ing = clase_calc.calcular_gasto_ing_mes(usuario, ano_actual, mes_actual)
+        gasto_ahorros = clase_calc.calcular_gasto_ahorros_mes(usuario, ano_actual, mes_actual)
         saldo_actual = ingresos_actual - gasto_actual
         alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
@@ -119,6 +121,14 @@ class Mes:
         valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " €", height=Window.height * 0.05,
                                size_hint_y=None)
 
+        nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                   size_hint_y=None)
+
+        nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+                                   size_hint_y=None)
+
         self.layout_saldo_mes.add_widget(nombre_ingreso)
         self.layout_saldo_mes.add_widget(valor_ingreso)
 
@@ -133,6 +143,12 @@ class Mes:
 
         self.layout_saldo_mes.add_widget(nombre_sin_alquiler)
         self.layout_saldo_mes.add_widget(valor_sin_alquiler)
+
+        self.layout_saldo_mes.add_widget(nombre_gasto_ing)
+        self.layout_saldo_mes.add_widget(valor_gasto_ing)
+
+        self.layout_saldo_mes.add_widget(nombre_gasto_ahorros)
+        self.layout_saldo_mes.add_widget(valor_gasto_ahorros)
 
         self.layout_stats_mes.add_widget(self.layout_saldo_mes)
 
@@ -186,7 +202,7 @@ class Mes:
         self.layout_gastos_mes = GridLayout(cols=1)
         self.layout_botones_buscar_mes = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_mes = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
-        self.layout_lista_gastos_mes = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_mes = GridLayout(cols=5, size_hint_y=None)
         self.layout_lista_gastos_mes.bind(minimum_height=self.layout_lista_gastos_mes.setter('height'))
         self.dropdown_categoria = DropDown()
         for cat in categorias:
@@ -232,22 +248,26 @@ class Mes:
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
                         self.layout_lista_gastos_mes.add_widget(label_concepto_mes)
                         self.layout_lista_gastos_mes.add_widget(label_categoria_mes)
                         self.layout_lista_gastos_mes.add_widget(label_precio_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_fuente_mes)
                 else:
                     if row and fecha_row.year == ano and fecha_row.month == mes and row[2] == cat:
                         label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
                         self.layout_lista_gastos_mes.add_widget(label_concepto_mes)
                         self.layout_lista_gastos_mes.add_widget(label_categoria_mes)
                         self.layout_lista_gastos_mes.add_widget(label_precio_mes)
+                        self.layout_lista_gastos_mes.add_widget(label_fuente_mes)
 
         if len(self.layout_lista_gastos_mes.children) == 0:
             label_no_gastos = Label(text = "No hay gastos", height=Window.height * 0.05, size_hint_y=None)
