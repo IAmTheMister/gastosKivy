@@ -94,6 +94,8 @@ class Intervalo:
         inicio = self.input_inicio.text
         fin = self.input_fin.text
         gasto_total, ingresos = clase_calc.calcular_saldo_intervalo(fin, inicio, usuario)
+        gasto_ing = clase_calc.calcular_gasto_ing_intervalo(fin, inicio, usuario)
+        gasto_ahorros = clase_calc.calcular_gasto_ahorros_intervalo(fin, inicio, usuario)
         self.layout_saldo_intervalo = GridLayout(cols=2, height=Window.height * 0.15,
                                                  size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -105,6 +107,14 @@ class Intervalo:
         nombre_saldo = Label(text="Saldo:", height=Window.height * 0.05, size_hint_y=None)
         valor_saldo = Label(text=str(round(ingresos - gasto_total, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
+        nombre_gasto_ing = Label(text="Gastos financiados con ingresos:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                            size_hint_y=None)
+
+        nombre_gasto_ahorros = Label(text="Gastos financiados con ahorros:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+                            size_hint_y=None)
+
         self.layout_saldo_intervalo.add_widget(nombre_ingreso)
         self.layout_saldo_intervalo.add_widget(valor_ingreso)
 
@@ -113,6 +123,12 @@ class Intervalo:
 
         self.layout_saldo_intervalo.add_widget(nombre_saldo)
         self.layout_saldo_intervalo.add_widget(valor_saldo)
+
+        self.layout_saldo_intervalo.add_widget(nombre_gasto_ing)
+        self.layout_saldo_intervalo.add_widget(valor_gasto_ing)
+
+        self.layout_saldo_intervalo.add_widget(nombre_gasto_ahorros)
+        self.layout_saldo_intervalo.add_widget(valor_gasto_ahorros)
 
         self.layout_stats_intervalo.add_widget(self.layout_saldo_intervalo)
 
