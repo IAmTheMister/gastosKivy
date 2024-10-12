@@ -175,7 +175,7 @@ class Intervalo:
         self.layout_gastos_intervalo = GridLayout(cols=1)
         self.layout_botones_buscar_intervalo = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_intervalo = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
-        self.layout_lista_gastos_intervalo = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_intervalo = GridLayout(cols=5, size_hint_y=None)
         self.layout_lista_gastos_intervalo.bind(minimum_height=self.layout_lista_gastos_intervalo.setter('height'))
         self.dropdown_categoria = DropDown()
         for cat in categorias:
@@ -221,22 +221,28 @@ class Intervalo:
                         label_concepto_intervalo = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_intervalo = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_intervalo = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_intervalo = Label(text=row[4], height=Window.height * 0.05,
+                                                       size_hint_y=None)
 
                         self.layout_lista_gastos_intervalo.add_widget(label_fecha_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_concepto_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_categoria_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_precio_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_fuente_intervalo)
                 else:
                     if row and fecha_inicio <= fecha_row <= fecha_fin and row[2] == cat:
                         label_fecha_intervalo = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_intervalo = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_intervalo = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_intervalo = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_intervalo = Label(text=row[4], height=Window.height * 0.05,
+                                                       size_hint_y=None)
 
                         self.layout_lista_gastos_intervalo.add_widget(label_fecha_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_concepto_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_categoria_intervalo)
                         self.layout_lista_gastos_intervalo.add_widget(label_precio_intervalo)
+                        self.layout_lista_gastos_intervalo.add_widget(label_fuente_intervalo)
 
         if len(self.layout_lista_gastos_intervalo.children) == 0:
             label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
