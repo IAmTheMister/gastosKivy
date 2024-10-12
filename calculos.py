@@ -196,6 +196,24 @@ class Calculos:
                     alquiler += round(float(row[3]), 2)
         return alquiler
 
+    def calcular_gasto_ing_total(self, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[4] == "Ingresos":
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
+    def calcular_gasto_ahorros_total(self, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[4] == "Ahorros":
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
     def calcular_saldo_total(self, usuario):
         gasto_total = 0
         ingresos = 0

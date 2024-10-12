@@ -84,6 +84,8 @@ class ClaseTotal:
     def mostrar_stats_total(self, usuario):
         clase_calc = Calculos()
         gasto_actual, ingresos_actual = clase_calc.calcular_saldo_total(usuario)
+        gasto_ing = clase_calc.calcular_gasto_ing_total(usuario)
+        gasto_ahorros = clase_calc.calcular_gasto_ahorros_total(usuario)
         saldo_actual = ingresos_actual - gasto_actual
         alquiler_total = clase_calc.calcular_alquiler_total(usuario)
         self.layout_saldo_total = GridLayout(cols=2, height=Window.height * 0.15,
@@ -107,6 +109,14 @@ class ClaseTotal:
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
 
+        nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
+
+        nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+                                    size_hint_y=None)
+
         self.layout_saldo_total.add_widget(nombre_ingreso)
         self.layout_saldo_total.add_widget(valor_ingreso)
 
@@ -121,6 +131,12 @@ class ClaseTotal:
 
         self.layout_saldo_total.add_widget(nombre_sin_alquiler)
         self.layout_saldo_total.add_widget(valor_sin_alquiler)
+
+        self.layout_saldo_total.add_widget(nombre_gasto_ing)
+        self.layout_saldo_total.add_widget(valor_gasto_ing)
+
+        self.layout_saldo_total.add_widget(nombre_gasto_ahorros)
+        self.layout_saldo_total.add_widget(valor_gasto_ahorros)
 
         self.layout_stats_total.add_widget(self.layout_saldo_total)
 
@@ -174,7 +190,7 @@ class ClaseTotal:
         self.layout_gastos_total = GridLayout(cols=1)
         self.layout_botones_buscar_total = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_total = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
-        self.layout_lista_gastos_total = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_total = GridLayout(cols=5, size_hint_y=None)
         self.layout_lista_gastos_total.bind(minimum_height=self.layout_lista_gastos_total.setter('height'))
         self.dropdown_categoria = DropDown()
         for cat in categorias:
@@ -218,22 +234,26 @@ class ClaseTotal:
                         label_concepto_total = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_total = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_total = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_total = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_total.add_widget(label_fecha_total)
                         self.layout_lista_gastos_total.add_widget(label_concepto_total)
                         self.layout_lista_gastos_total.add_widget(label_categoria_total)
                         self.layout_lista_gastos_total.add_widget(label_precio_total)
+                        self.layout_lista_gastos_total.add_widget(label_fuente_total)
                 else:
                     if row and row[2] == cat:
                         label_fecha_total = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_total = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_total = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_total = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_total = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_total.add_widget(label_fecha_total)
                         self.layout_lista_gastos_total.add_widget(label_concepto_total)
                         self.layout_lista_gastos_total.add_widget(label_categoria_total)
                         self.layout_lista_gastos_total.add_widget(label_precio_total)
+                        self.layout_lista_gastos_total.add_widget(label_fuente_total)
 
         if len(self.layout_lista_gastos_total.children) == 0:
             label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
