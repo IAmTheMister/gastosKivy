@@ -109,9 +109,13 @@ class Mes:
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
         valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
-        nombre_saldo = Label(text="Saldo:", height=Window.height * 0.05, size_hint_y=None)
+        nombre_saldo = Label(text="Saldo (total):", height=Window.height * 0.05, size_hint_y=None)
         valor_saldo = Label(text=str(round(saldo_actual, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
+
+        nombre_saldo_ing = Label(text="Saldo (ingresos):", height=Window.height * 0.05, size_hint_y=None)
+        valor_saldo_ing = Label(text=str(round(ingresos_actual - gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
 
         nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
         valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " €", height=Window.height * 0.05,
@@ -137,6 +141,9 @@ class Mes:
 
         self.layout_saldo_mes.add_widget(nombre_saldo)
         self.layout_saldo_mes.add_widget(valor_saldo)
+
+        self.layout_saldo_mes.add_widget(nombre_saldo_ing)
+        self.layout_saldo_mes.add_widget(valor_saldo_ing)
 
         self.layout_saldo_mes.add_widget(nombre_alquiler)
         self.layout_saldo_mes.add_widget(valor_alquiler)

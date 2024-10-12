@@ -104,8 +104,12 @@ class Intervalo:
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
         valor_ingreso = Label(text=str(round(ingresos, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
-        nombre_saldo = Label(text="Saldo:", height=Window.height * 0.05, size_hint_y=None)
+        nombre_saldo = Label(text="Saldo (total):", height=Window.height * 0.05, size_hint_y=None)
         valor_saldo = Label(text=str(round(ingresos - gasto_total, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+
+        nombre_saldo_ing = Label(text="Saldo (ingresos):", height=Window.height * 0.05, size_hint_y=None)
+        valor_saldo_ing = Label(text=str(round(ingresos - gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
 
         nombre_gasto_ing = Label(text="Gastos financiados con ingresos:", height=Window.height * 0.05, size_hint_y=None)
         valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
@@ -123,6 +127,9 @@ class Intervalo:
 
         self.layout_saldo_intervalo.add_widget(nombre_saldo)
         self.layout_saldo_intervalo.add_widget(valor_saldo)
+
+        self.layout_saldo_intervalo.add_widget(nombre_saldo_ing)
+        self.layout_saldo_intervalo.add_widget(valor_saldo_ing)
 
         self.layout_saldo_intervalo.add_widget(nombre_gasto_ing)
         self.layout_saldo_intervalo.add_widget(valor_gasto_ing)
