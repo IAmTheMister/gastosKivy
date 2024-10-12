@@ -200,12 +200,12 @@
 02/09/2024,Barbacoa,Comida,11.38
 02/09/2024,Agua,Comida,1.11
 02/09/2024,Patinete,Transporte,1.5
-03/09/2024,Smash,Comida,5.89
-03/09/2024,Bocata pollo pesto,Comida,9.4
-03/09/2024,Burger King,Restaurantes,13.7
-03/09/2024,Bonobus,Transporte,8
-03/09/2024,Uber,Transporte,18.99
-03/09/2024,CHorizo y morcilla,Restaurantes,12.4
+03/09/2024,Smash,Comida,5.89,Ahorros
+03/09/2024,Bocata pollo pesto,Comida,9.4,Ahorros
+03/09/2024,Burger King,Restaurantes,13.7,Ahorros
+03/09/2024,Bonobus,Transporte,8,Ahorros
+03/09/2024,Uber,Transporte,18.99,Ahorros
+03/09/2024,CHorizo y morcilla,Restaurantes,12.4,Ahorros
 04/09/2024,Churros,Restaurantes,3.7
 04/09/2024,Kebab,Restaurantes,7.5
 04/09/2024,Peajes,Transporte,1.2
@@ -244,20 +244,20 @@
 06/09/2024,Carne picada mixta 1200,Comida,12.26
 06/09/2024,Huevos,Comida,3.15
 06/09/2024,Pechuga pollo,Comida,4.25
-05/09/2024,Shell,Viajes,11.47,Logroño 1
-05/09/2024,Peaje,Viajes,4.5,Logroño 1
-05/09/2024,Cena,Viajes,7.2,Logroño 1
+05/09/2024,Shell,Viajes,11.47,Ahorros
+05/09/2024,Peaje,Viajes,4.5,Ahorros
+05/09/2024,Cena,Viajes,7.2,Ahorros
 05/09/2024,Cafe,Comida,4.85
-05/09/2024,Cepsa Logroño,Viajes,50.6,Logroño 1
-06/09/2024,Tren Logroño,Viajes,60.7,Logroño 2
-06/09/2024,Uber galapagar,Viajes,21,Logroño 2
-06/09/2024,BP Galapagar,Viajes,30.28,Logroño 1
-07/09/2024,Cafe,Viajes,2.37,Logroño 2
-07/09/2024,Pizza con agua,Viajes,8.8,Logroño 2
-07/09/2024,Muffin,Viajes,3.1,Logroño 2
-07/09/2024,Repsol Logroño,Gasolina,52.85,Logroño 2
-07/09/2024,Peaje,Viajes,6.85,Logroño 2
-08/09/2024,Bosque de Carymar Ágreda,Viajes,25,Logroño 2
+05/09/2024,Cepsa Logroño,Viajes,50.6,Ahorros
+06/09/2024,Tren Logroño,Viajes,60.7,Ahorros
+06/09/2024,Uber galapagar,Viajes,21,Ahorros
+06/09/2024,BP Galapagar,Viajes,30.28,Ahorros
+07/09/2024,Cafe,Viajes,2.37,Ahorros
+07/09/2024,Pizza con agua,Viajes,8.8,Ahorros
+07/09/2024,Muffin,Viajes,3.1,Ahorros
+07/09/2024,Repsol Logroño,Gasolina,52.85,Ahorros
+07/09/2024,Peaje,Viajes,6.85,Ahorros
+08/09/2024,Bosque de Carymar Ágreda,Viajes,25,Ahorros
 10/09/2024,Gazpacho,Comida,15.96
 10/09/2024,Kiwis,Comida,0.79
 10/09/2024,Agua 6L,Comida,3.12
@@ -303,10 +303,10 @@
 17/09/2024,BP Galapagar,Gasolina,55.52
 17/09/2024,Cerdo estofado,Comida,4.17
 17/09/2024,Pollo filetes y pechuga,Comida,11.72
-17/09/2024,Barça - YB,Viajes,61,Barcelona
-18/09/2024,Cuchillas,Hogar,54.99
-18/09/2024,Enchufe doble,Hogar,3.9
-18/09/2024,Stickers JDT,Caprichos,4.99
+17/09/2024,Barça - YB,Viajes,61,Ahorros
+18/09/2024,Cuchillas,Hogar,54.99,Ahorros
+18/09/2024,Enchufe doble,Hogar,3.9,Ahorros
+18/09/2024,Stickers JDT,Caprichos,4.99,Ahorros
 19/09/2024,Aceite freir,Comida,1.99
 19/09/2024,Aceite Koipesol,Comida,1.79
 19/09/2024,Sacarina,Comida,3.49
@@ -314,7 +314,7 @@
 19/09/2024,Platanos,Comida,0.39
 19/09/2024,Five Guys,Restaurantes,18
 20/09/2024,Batidores,Hogar,1.49
-20/09/2024,Dispensador agua,Hogar,9.5
+20/09/2024,Dispensador agua,Hogar,9.5,Ahorros
 20/09/2024,Bol,Hogar,3.5
 20/09/2024,Medidor,Hogar,1.3
 20/09/2024,Caja ajos,Hogar,1.2
@@ -355,37 +355,37 @@
 25/09/2024,Crocs,Hogar,5
 25/09/2024,Calzoncillos,Hogar,8.99
 25/09/2024,Birras Pablo,Restaurantes,6
-27/09/2024,Peluquero,Hogar,20
-27/09/2024,Manolo bakes,Dulces,5
+27/09/2024,Peluquero,Hogar,20,Ahorros
+27/09/2024,Manolo bakes,Dulces,5,Ahorros
 27/09/2024,Zona azul,Transporte,1.19
 27/09/2024,Huevos XL,Comida,3.25
 27/09/2024,Cebolleta,Comida,1.29
 28/09/2024,BP Galapagar,Gasolina,53.74
-29/09/2024,Donut,Viajes,1.4,Valencia
-29/09/2024,Valenbisi,Viajes,3.99,Valencia
-29/09/2024,El Tarantin,Viajes,48.2,Valencia
-29/09/2024,Agua,Viajes,1.6,Valencia
-29/09/2024,Manolitos,Viajes,2.55,Valencia
-29/09/2024,Galp Valencia,Viajes,30.87,Valencia
-29/09/2024,BP Galapagar,Viajes,34.49,Valencia
-30/09/2024,Entrada Atheltic - Espanyol,Viajes,82.5,Pais Vasco
-30/09/2024,Manolo bakes Albert,Viajes,13.6,Barcelona
-30/09/2024,Salchichon Albert,Viajes,12.95,Barcelona
+29/09/2024,Donut,Viajes,1.4,Ahorros
+29/09/2024,Valenbisi,Viajes,3.99,Ahorros
+29/09/2024,El Tarantin,Viajes,48.2,Ahorros
+29/09/2024,Agua,Viajes,1.6,Ahorros
+29/09/2024,Manolitos,Viajes,2.55,Ahorros
+29/09/2024,Galp Valencia,Viajes,30.87,Ahorros
+29/09/2024,BP Galapagar,Viajes,34.49,Ahorros
+30/09/2024,Entrada Atheltic - Espanyol,Viajes,82.5,Ahorros
+30/09/2024,Manolo bakes Albert,Viajes,13.6,Ahorros
+30/09/2024,Salchichon Albert,Viajes,12.95,Ahorros
 30/09/2024,Agua,Comida,2.72
 30/09/2024,Mozarella rallada,Comida,1.54
 30/09/2024,Pizzas,Comida,3.19
 30/09/2024,Grana Padano,Comida,1.56
 30/09/2024,Tiras bacon,Comida,1.75
 30/09/2024,Tendedero,Hogar,6.99
-01/10/2024,Suscripción Romero,Hogar,22.9
-01/10/2024,Asador De Luz,Viajes,7
-01/10/2024,Repsol Zaragoza,Viajes,31.29
-01/10/2024,Bravas y schweppes,Viajes,11.35
-01/10/2024,Parking Port,Viajes,4.95
-01/10/2024,Billetes Metro,Viajes,5.1
-02/10/2024,Dunkin,Viajes,7.42
-02/10/2024,Repsol Zaragoza,Viajes,57.85
-02/10/2024,BP Galapagar,Viajes,30.3
+01/10/2024,Suscripción Romero,Hogar,22.9,Ahorros
+01/10/2024,Asador De Luz,Viajes,7,Ahorros
+01/10/2024,Repsol Zaragoza,Viajes,31.29,Ahorros
+01/10/2024,Bravas y schweppes,Viajes,11.35,Ahorros
+01/10/2024,Parking Port,Viajes,4.95,Ahorros
+01/10/2024,Billetes Metro,Viajes,5.1,Ahorros
+02/10/2024,Dunkin,Viajes,7.42,Ahorros
+02/10/2024,Repsol Zaragoza,Viajes,57.85,Ahorros
+02/10/2024,BP Galapagar,Viajes,30.3,Ahorros
 02/10/2024,Aceite 5L,Comida,7.95
 02/10/2024,Fairy,Hogar,5.99
 02/10/2024,Caldo paella,Comida,3.15
@@ -397,7 +397,7 @@
 02/10/2024,Lomo familiar,Comida,6.72
 02/10/2024,Hamburguesas x2,Comida,7.4
 02/10/2024,Jabon manos,Hogar,0.9
-02/10/2024,Entrada Alaves - Valladolid,Viajes,39.5
+02/10/2024,Entrada Alaves - Valladolid,Viajes,39.5,Ahorros
 03/10/2024,Pimiento,Comida,0.53
 03/10/2024,Langostinos,Comida,2.69
 03/10/2024,Cheddar,Comida,1.79
@@ -408,9 +408,9 @@
 04/10/2024,Pan hamburguesas,Comida,1.93
 04/10/2024,Bacon,Comida,1.49
 01/10/2024,Alquiler,Alquiler,340
-05/10/2024,Cable Cat6a,Hogar,20.99
-05/10/2024,Crimpadora,Hogar,12.99
-05/10/2024,Conectores RJ45,Hogar,5.99
+05/10/2024,Cable Cat6a,Hogar,20.99,Ahorros
+05/10/2024,Crimpadora,Hogar,12.99,Ahorros
+05/10/2024,Conectores RJ45,Hogar,5.99,Ahorros
 06/10/2024,Gimnasio,Hogar,29.99
 06/10/2024,Huevos,Comida,1.22
 07/10/2024,Tostadas,Restaurantes,4.2
@@ -419,7 +419,7 @@
 07/10/2024,Chroizo,Comida,2.55
 07/10/2024,Filetes ternera,Comida,5.72
 07/10/2024,Huevos x6,Comida,1.99
-07/10/2024,Maletin jamon,Caprichos,38.99
+07/10/2024,Maletin jamon,Caprichos,38.99,Ahorros
 07/10/2024,Lasca,Comida,3.15
 07/10/2024,Filetes cachopo,Comida,4.48
 07/10/2024,Havarti,Comida,3.25
@@ -435,7 +435,7 @@
 07/10/2024,Filetes pollo,Comida,4.58
 07/10/2024,Lasagna aldi,Comida,4.99
 07/10/2024,Mozzarella bufala,Comida,3.98
-08/10/2024,Correos regalo,Caprichos,21.25
+08/10/2024,Correos regalo,Caprichos,21.25,Ahorros
 08/10/2024,Limpiazapatos,Hogar,1.5
 08/10/2024,Platanos,Comida,0.54
 09/10/2024,Sal Roca,Comida,0.78
