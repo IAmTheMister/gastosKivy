@@ -115,6 +115,8 @@ class Dia:
     def mostrar_stats_dia(self, usuario):
         clase_calc = Calculos()
         gasto_total_dia = clase_calc.calcular_gasto_dia(usuario, self.input_dia.text)
+        gasto_ing = clase_calc.calcular_gasto_ing_dia(usuario, self.input_dia.text)
+        gasto_ahorros = clase_calc.calcular_gasto_ahorros_dia(usuario, self.input_dia.text)
         fecha_dia = datetime.strptime(self.input_dia.text, "%d/%m/%Y")
         gasto_total_mes, ingresos_mes = clase_calc.calcular_saldo_mes(usuario,fecha_dia.year, fecha_dia.month)
         alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,fecha_dia.year, fecha_dia.month)
@@ -135,13 +137,25 @@ class Dia:
         self.layout_gasto_total.add_widget(nombre_porcentaje_sin)
         self.layout_gasto_total.add_widget(valor_porcentaje_sin)
 
+        nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
+        self.layout_gasto_total.add_widget(nombre_gasto_ing)
+        self.layout_gasto_total.add_widget(valor_gasto_ing)
+
+        nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+                                    size_hint_y=None)
+        self.layout_gasto_total.add_widget(nombre_gasto_ahorros)
+        self.layout_gasto_total.add_widget(valor_gasto_ahorros)
+
         self.layout_stats_dia.add_widget(self.layout_gasto_total)
 
     def mostrar_gastos_dia(self, usuario):
         self.layout_gastos_dia = GridLayout(cols=1)
         self.layout_botones_buscar_dia = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
         self.scrollview_dia = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
-        self.layout_lista_gastos_dia = GridLayout(cols=4, size_hint_y=None)
+        self.layout_lista_gastos_dia = GridLayout(cols=5, size_hint_y=None)
         self.layout_lista_gastos_dia.bind(minimum_height=self.layout_lista_gastos_dia.setter('height'))
         self.dropdown_categoria = DropDown()
         for cat in categorias:
@@ -185,22 +199,26 @@ class Dia:
                         label_concepto_dia = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_dia = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_dia = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_dia = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_dia.add_widget(label_fecha_dia)
                         self.layout_lista_gastos_dia.add_widget(label_concepto_dia)
                         self.layout_lista_gastos_dia.add_widget(label_categoria_dia)
                         self.layout_lista_gastos_dia.add_widget(label_precio_dia)
+                        self.layout_lista_gastos_dia.add_widget(label_fuente_dia)
                 else:
                     if row and row[0] == self.input_dia.text and row[2] == cat:
                         label_fecha_dia = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_dia = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_dia = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
                         label_precio_dia = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_fuente_dia = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_dia.add_widget(label_fecha_dia)
                         self.layout_lista_gastos_dia.add_widget(label_concepto_dia)
                         self.layout_lista_gastos_dia.add_widget(label_categoria_dia)
                         self.layout_lista_gastos_dia.add_widget(label_precio_dia)
+                        self.layout_lista_gastos_dia.add_widget(label_fuente_dia)
 
         if len(self.layout_lista_gastos_dia.children) == 0:
             label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)

@@ -15,6 +15,27 @@ from functools import partial
 from datetime import datetime
 
 class Calculos:
+
+    def calcular_gasto_ing_dia(self, usuario, dia):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[0] == dia:
+                    if row[4] == "Ingresos":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
+    def calcular_gasto_ahorros_dia(self, usuario, dia):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[0] == dia:
+                    if row[4] == "Ahorros":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
     def calcular_gasto_dia(self, usuario, dia):
         gasto_total = 0
         with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
