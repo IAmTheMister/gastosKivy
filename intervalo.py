@@ -18,7 +18,7 @@ from calculos import Calculos
 
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
-              "Alquiler", "Viajes"]
+              "Alquiler", "Viajes", "Coche"]
 
 
 class Intervalo:

@@ -244,20 +244,20 @@
 06/09/2024,Carne picada mixta 1200,Comida,12.26,Ingresos
 06/09/2024,Huevos,Comida,3.15,Ingresos
 06/09/2024,Pechuga pollo,Comida,4.25,Ingresos
-05/09/2024,Shell,Viajes,11.47,Ahorros
-05/09/2024,Peaje,Viajes,4.5,Ahorros
-05/09/2024,Cena,Viajes,7.2,Ahorros
+05/09/2024,Shell,Coche,11.47,Ahorros
+05/09/2024,Peaje,Coche,4.5,Ahorros
+05/09/2024,Cena,Coche,7.2,Ahorros
 05/09/2024,Cafe,Comida,4.85,Ingresos
-05/09/2024,Cepsa Logroño,Viajes,50.6,Ahorros
-06/09/2024,Tren Logroño,Viajes,60.7,Ahorros
-06/09/2024,Uber galapagar,Viajes,21,Ahorros
-06/09/2024,BP Galapagar,Viajes,30.28,Ahorros
-07/09/2024,Cafe,Viajes,2.37,Ahorros
-07/09/2024,Pizza con agua,Viajes,8.8,Ahorros
-07/09/2024,Muffin,Viajes,3.1,Ahorros
+05/09/2024,Cepsa Logroño,Coche,50.6,Ahorros
+06/09/2024,Tren Logroño,Coche,60.7,Ahorros
+06/09/2024,Uber galapagar,Coche,21,Ahorros
+06/09/2024,BP Galapagar,Coche,30.28,Ahorros
+07/09/2024,Cafe,Coche,2.37,Ahorros
+07/09/2024,Pizza con agua,Coche,8.8,Ahorros
+07/09/2024,Muffin,Coche,3.1,Ahorros
 07/09/2024,Repsol Logroño,Gasolina,52.85,Ahorros
-07/09/2024,Peaje,Viajes,6.85,Ahorros
-08/09/2024,Bosque de Carymar Ágreda,Viajes,25,Ahorros
+07/09/2024,Peaje,Coche,6.85,Ahorros
+08/09/2024,Bosque de Carymar Ágreda,Coche,25,Ahorros
 10/09/2024,Gazpacho,Comida,15.96,Ingresos
 10/09/2024,Kiwis,Comida,0.79,Ingresos
 10/09/2024,Agua 6L,Comida,3.12,Ingresos
@@ -499,3 +499,8 @@
 21/10/2024,fanta limon 0 azucares,Comida,1.55,Ingresos
 21/10/2024,Pechuga pollo 440g,Comida,3.96,Ingresos
 21/10/2024,Jarabe tos,Medicamentos,8.95,Ingresos
+07/09/2024,Seat Ibiza ,Coche,4000,Ahorros
+07/10/2024,Venta Suzuki,Coche,-3000,Ahorros
+11/09/2024,"Aceite, neumaticso traseros y amortiguadores traseros",Coche,716.95,Ahorros
+24/10/2024,Five Guys,Restaurantes,20.5,Ingresos
+24/10/2024,Bombilla,Hogar,2.49,Ingresos
