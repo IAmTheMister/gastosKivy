@@ -377,7 +377,7 @@
 30/09/2024,Grana Padano,Comida,1.56,Ingresos
 30/09/2024,Tiras bacon,Comida,1.75,Ingresos
 30/09/2024,Tendedero,Hogar,6.99,Ingresos
-01/10/2024,Suscripción Romero,Hogar,22.9,Ahorros
+01/10/2024,Suscripción Romero,Hogar,22.9,Ingresos
 01/10/2024,Asador De Luz,Viajes,7,Ahorros
 01/10/2024,Repsol Zaragoza,Viajes,31.29,Ahorros
 01/10/2024,Bravas y schweppes,Viajes,11.35,Ahorros
@@ -408,9 +408,9 @@
 04/10/2024,Pan hamburguesas,Comida,1.93,Ingresos
 04/10/2024,Bacon,Comida,1.49,Ingresos
 01/10/2024,Alquiler,Alquiler,340,Ingresos
-05/10/2024,Cable Cat6a,Hogar,20.99,Ahorros
-05/10/2024,Crimpadora,Hogar,12.99,Ahorros
-05/10/2024,Conectores RJ45,Hogar,5.99,Ahorros
+05/10/2024,Cable Cat6a,Hogar,20.99,Ingresos
+05/10/2024,Crimpadora,Hogar,12.99,Ingresos
+05/10/2024,Conectores RJ45,Hogar,5.99,Ingresos
 06/10/2024,Gimnasio,Hogar,29.99,Ingresos
 06/10/2024,Huevos,Comida,1.22,Ingresos
 07/10/2024,Tostadas,Restaurantes,4.2,Ingresos
@@ -499,8 +499,46 @@
 21/10/2024,fanta limon 0 azucares,Comida,1.55,Ingresos
 21/10/2024,Pechuga pollo 440g,Comida,3.96,Ingresos
 21/10/2024,Jarabe tos,Medicamentos,8.95,Ingresos
-07/09/2024,Seat Ibiza ,Coche,4000,Ahorros
-07/10/2024,Venta Suzuki,Coche,-3000,Ahorros
-11/09/2024,"Aceite, neumaticso traseros y amortiguadores traseros",Coche,716.95,Ahorros
+11/09/2024,"Aceite, neumaticos traseros y amortiguadores traseros",Coche,716.95,Ahorros
 24/10/2024,Five Guys,Restaurantes,20.5,Ingresos
 24/10/2024,Bombilla,Hogar,2.49,Ingresos
+24/10/2024,Bar Jorge,Restaurantes,12,Ingresos
+25/10/2024,Nueces,Comida,2.2,Ingresos
+25/10/2024,Hielo,Comida,0.85,Ingresos
+25/10/2024,Bacon,Comida,2.2,Ingresos
+25/10/2024,Huevos,Comida,3.32,Ingresos
+25/10/2024,Pipas,Comida,1.1,Ingresos
+25/10/2024,Pan brioche,Comida,2.35,Ingresos
+25/10/2024,Turron blando,Dulces,2.6,Ingresos
+25/10/2024,Kebab,Restaurantes,8.5,Ingresos
+26/10/2024,Chatgpt,Hogar,22.52,Ingresos
+26/10/2024,Coca cola zero zero,Comida,1.45,Ingresos
+26/10/2024,Burger King,Restaurantes,16.29,Ingresos
+28/10/2024,Desayuno mercadona,Comida,1.17,Ingresos
+28/10/2024,Ajo en polvo,Comida,0.55,Ingresos
+28/10/2024,Avecrem carne,Comida,1.92,Ingresos
+28/10/2024,Hierbas provenzales,Comida,0.74,Ingresos
+28/10/2024,Ketchup,Comida,1.49,Ingresos
+28/10/2024,Picatostes,Comida,1.28,Ingresos
+28/10/2024,Sal fina salero,Comida,0.8,Ingresos
+28/10/2024,Salsa cesar,Comida,3.75,Ingresos
+28/10/2024,Spaghetti garofalo,Comida,3.48,Ingresos
+28/10/2024,Leche fresca,Comida,1.05,Ingresos
+28/10/2024,Mozarella rallada,Comida,3.08,Ingresos
+28/10/2024,Parmesano,Comida,3.25,Ingresos
+28/10/2024,Pizza jamon y queso,Comida,3.19,Ingresos
+28/10/2024,Lechuga romana,Comida,0.79,Ingresos
+28/10/2024,Pimiento,Comida,1.28,Ingresos
+28/10/2024,Brocheta,Comida,2.11,Ingresos
+28/10/2024,Carne picada ternera,Comida,6.7,Ingresos
+28/10/2024,Filete ternera,Comida,6.16,Ingresos
+28/10/2024,Pechugas de pollo,Comida,9.31,Ingresos
+28/10/2024,Liutenitza,Comida,3.4,Ingresos
+28/10/2024,Etar,Comida,3,Ingresos
+28/10/2024,Kashkaval,Comida,6.7,Ingresos
+28/10/2024,Sudzhuk,Comida,5.8,Ingresos
+28/10/2024,Lukanka,Comida,5.8,Ingresos
+28/10/2024,Shpek,Comida,4.2,Ingresos
+28/10/2024,Zona azul,Transporte,0.9,Ingresos
+28/10/2024,Bombones Rocio,Caprichos,7.98,Ingresos
+28/10/2024,Uber,Transporte,22.96,Ingresos
