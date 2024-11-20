@@ -45,6 +45,19 @@ class Calculos:
                     gasto_total += round(float(row[3]), 2)
         return gasto_total
 
+    def calcular_gasto_viajes_intervalo(self, fin, inicio, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                fecha_inicio = datetime.strptime(inicio, "%d/%m/%Y")
+                fecha_fin = datetime.strptime(fin, "%d/%m/%Y")
+                if row and fecha_inicio <= fecha_row <= fecha_fin:
+                    if row[2] == "Viajes":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
+
     def calcular_gasto_ing_intervalo(self, fin, inicio, usuario):
         gasto_total = 0
         with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
@@ -91,6 +104,18 @@ class Calculos:
                 if row and fecha_inicio <= fecha_row <= fecha_fin:
                     gasto_total += round(float(row[3]), 2)
         return gasto_total, ingresos
+
+    def calcular_gasto_viajes_mes(self,usuario, ano, mes):
+        gasto_total = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano and fecha_row.month == mes:
+                    if row[2] == "Viajes":
+                        gasto_total += round(float(row[3]), 2)
+
+        return gasto_total
 
     def calcular_gasto_ing_mes(self,usuario, ano, mes):
         gasto_total = 0
@@ -145,6 +170,16 @@ class Calculos:
                     alquiler_mes += round(float(row[3]), 2)
         return alquiler_mes
 
+    def calcular_gasto_viajes_ano(self, ano, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano:
+                    if row[2] == "Viajes":
+                        gasto_total += round(float(row[3]), 2)
+        return gasto_total
 
     def calcular_gasto_ing_ano(self, ano, usuario):
         gasto_total = 0
@@ -195,6 +230,15 @@ class Calculos:
                 if row and fecha_row.year == ano and cat == "Alquiler":
                     alquiler += round(float(row[3]), 2)
         return alquiler
+
+    def calcular_gasto_viajes_total(self, usuario):
+        gasto_total = 0
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                if row and row[2] == "Viajes":
+                    gasto_total += round(float(row[3]), 2)
+        return gasto_total
 
     def calcular_gasto_ing_total(self, usuario):
         gasto_total = 0

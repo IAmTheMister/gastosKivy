@@ -101,6 +101,8 @@ class Mes:
         gasto_ahorros = clase_calc.calcular_gasto_ahorros_mes(usuario, ano_actual, mes_actual)
         saldo_actual = ingresos_actual - gasto_actual
         alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
+        gasto_viajes = clase_calc.calcular_gasto_viajes_mes(usuario,ano_actual, mes_actual)
+        gasto_sin_viajes = gasto_actual - gasto_viajes
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -133,6 +135,11 @@ class Mes:
         valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
 
+        nombre_gasto_sin_viajes = Label(text="Gastos sin viajes:", height=Window.height * 0.05,
+                                        size_hint_y=None)
+        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " €", height=Window.height * 0.05,
+                                       size_hint_y=None)
+
         self.layout_saldo_mes.add_widget(nombre_ingreso)
         self.layout_saldo_mes.add_widget(valor_ingreso)
 
@@ -156,6 +163,9 @@ class Mes:
 
         self.layout_saldo_mes.add_widget(nombre_gasto_ahorros)
         self.layout_saldo_mes.add_widget(valor_gasto_ahorros)
+
+        self.layout_saldo_mes.add_widget(nombre_gasto_sin_viajes)
+        self.layout_saldo_mes.add_widget(valor_gasto_sin_viajes)
 
         self.layout_stats_mes.add_widget(self.layout_saldo_mes)
 

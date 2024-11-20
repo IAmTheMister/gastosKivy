@@ -96,6 +96,8 @@ class Intervalo:
         gasto_total, ingresos = clase_calc.calcular_saldo_intervalo(fin, inicio, usuario)
         gasto_ing = clase_calc.calcular_gasto_ing_intervalo(fin, inicio, usuario)
         gasto_ahorros = clase_calc.calcular_gasto_ahorros_intervalo(fin, inicio, usuario)
+        gasto_viajes = clase_calc.calcular_gasto_viajes_intervalo(fin, inicio, usuario)
+        gasto_sin_viajes = gasto_total - gasto_viajes
         self.layout_saldo_intervalo = GridLayout(cols=2, height=Window.height * 0.15,
                                                  size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
@@ -119,6 +121,11 @@ class Intervalo:
         valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
+        nombre_gasto_sin_viajes = Label(text="Gastos sin viajes:", height=Window.height * 0.05,
+                                     size_hint_y=None)
+        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " €", height=Window.height * 0.05,
+                                    size_hint_y=None)
+
         self.layout_saldo_intervalo.add_widget(nombre_ingreso)
         self.layout_saldo_intervalo.add_widget(valor_ingreso)
 
@@ -136,6 +143,9 @@ class Intervalo:
 
         self.layout_saldo_intervalo.add_widget(nombre_gasto_ahorros)
         self.layout_saldo_intervalo.add_widget(valor_gasto_ahorros)
+
+        self.layout_saldo_intervalo.add_widget(nombre_gasto_sin_viajes)
+        self.layout_saldo_intervalo.add_widget(valor_gasto_sin_viajes)
 
         self.layout_stats_intervalo.add_widget(self.layout_saldo_intervalo)
 
