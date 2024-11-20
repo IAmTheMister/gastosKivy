@@ -200,7 +200,7 @@
 02/09/2024,Barbacoa,Comida,11.38,Ingresos
 02/09/2024,Agua,Comida,1.11,Ingresos
 02/09/2024,Patinete,Transporte,1.5,Ingresos
-03/09/2024,Smash,Comida,5.89,Ahorros
+03/09/2024,Smash,Dulces,5.89,Ahorros
 03/09/2024,Bocata pollo pesto,Comida,9.4,Ahorros
 03/09/2024,Burger King,Restaurantes,13.7,Ahorros
 03/09/2024,Bonobus,Transporte,8,Ahorros
@@ -209,7 +209,7 @@
 04/09/2024,Churros,Restaurantes,3.7,Ingresos
 04/09/2024,Kebab,Restaurantes,7.5,Ingresos
 04/09/2024,Peajes,Transporte,1.2,Ingresos
-04/09/2024,Queso iberico,Comida,6.52,Ingresos
+04/09/2024,Queso iberico,Merienda,6.52,Ingresos
 04/09/2024,Pincho mexicano,Comida,4.28,Ingresos
 04/09/2024,Pizza jamon y queso,Comida,2.5,Ingresos
 04/09/2024,Ensalada cesar,Comida,2.39,Ingresos
@@ -237,7 +237,7 @@
 06/09/2024,Bacon tiras,Comida,1.75,Ingresos
 06/09/2024,Ajo,Comida,1.65,Ingresos
 06/09/2024,Cebolleta,Comida,1.29,Ingresos
-06/09/2024,Kiwi,Comida,0.88,Ingresos
+06/09/2024,Kiwi,Merienda,0.88,Ingresos
 06/09/2024,Patatas 3kg,Comida,3.57,Ingresos
 06/09/2024,Pepino,Comida,0.69,Ingresos
 06/09/2024,Tomates,Comida,0.87,Ingresos
@@ -259,10 +259,10 @@
 07/09/2024,Peaje,Coche,6.85,Ahorros
 08/09/2024,Bosque de Carymar Ágreda,Coche,25,Ahorros
 10/09/2024,Gazpacho,Comida,15.96,Ingresos
-10/09/2024,Kiwis,Comida,0.79,Ingresos
+10/09/2024,Kiwis,Merienda,0.79,Ingresos
 10/09/2024,Agua 6L,Comida,3.12,Ingresos
 10/09/2024,Agua 1.5L,Comida,2.34,Ingresos
-10/09/2024,Kiwis,Comida,2.33,Ingresos
+10/09/2024,Kiwis,Merienda,2.33,Ingresos
 11/09/2024,Tostadas con jamon sin tomate,Restaurantes,4.3,Ingresos
 11/09/2024,Manzanilla,Hogar,2.29,Ingresos
 11/09/2024,Camiseta campeones,Caprichos,9.95,Ingresos
@@ -287,15 +287,15 @@
 03/09/2024,Casa,Alquiler,340,Ingresos
 12/09/2024,Aquarius sin azucar latas,Comida,6.4,Ingresos
 12/09/2024,Plumero,Hogar,1.19,Ingresos
-16/09/2024,Salchichon,Comida,6.32,Ingresos
-16/09/2024,Jamon,Comida,4.9,Ingresos
+16/09/2024,Salchichon,Merienda,6.32,Ingresos
+16/09/2024,Jamon,Merienda,4.9,Ingresos
 16/09/2024,Hamburguesas,Comida,7.4,Ingresos
 16/09/2024,Macarrones 1kg,Comida,1.24,Ingresos
 16/09/2024,Pepino,Comida,1,Ingresos
 16/09/2024,Hummus,Comida,1,Ingresos
 16/09/2024,Laurel,Comida,0.8,Ingresos
 16/09/2024,Cebolleta,Comida,1.29,Ingresos
-16/09/2024,Queso semicurado,Comida,4.53,Ingresos
+16/09/2024,Queso semicurado,Merienda,4.53,Ingresos
 16/09/2024,Zanahoria,Comida,0.85,Ingresos
 16/09/2024,Jabon manos,Hogar,0.9,Ingresos
 16/09/2024,Tomate,Comida,0.99,Ingresos
@@ -311,7 +311,7 @@
 19/09/2024,Aceite Koipesol,Comida,1.79,Ingresos
 19/09/2024,Sacarina,Comida,3.49,Ingresos
 19/09/2024,Taquitos jamon,Comida,2.65,Ingresos
-19/09/2024,Platanos,Comida,0.39,Ingresos
+19/09/2024,Platanos,Merienda,0.39,Ingresos
 19/09/2024,Five Guys,Restaurantes,18,Ingresos
 20/09/2024,Batidores,Hogar,1.49,Ingresos
 20/09/2024,Dispensador agua,Hogar,9.5,Ahorros
@@ -325,13 +325,13 @@
 23/09/2024,Alubias,Comida,1.06,Ingresos
 23/09/2024,Azafran,Comida,1.77,Ingresos
 23/09/2024,Cookies,Comida,1.18,Ingresos
-23/09/2024,Mayonesa,Comida,1.52,Ingresos
+23/09/2024,Mayonesa,Merienda,1.52,Ingresos
 23/09/2024,Pan rallado,Comida,0.9,Ingresos
 23/09/2024,Spaghetti,Comida,1.7,Ingresos
 23/09/2024,Pan rústico,Comida,2.45,Ingresos
 23/09/2024,Bacon x2,Comida,3.74,Ingresos
-23/09/2024,Jamon,Comida,4.99,Ingresos
-23/09/2024,Salchichon,Comida,8.89,Ingresos
+23/09/2024,Jamon,Merienda,4.99,Ingresos
+23/09/2024,Salchichon,Merienda,8.89,Ingresos
 23/09/2024,Cebolleta,Comida,0.99,Ingresos
 23/09/2024,Pimiento,Comida,0.74,Ingresos
 23/09/2024,Brochetas x2,Comida,4.88,Ingresos
@@ -401,7 +401,7 @@
 03/10/2024,Pimiento,Comida,0.53,Ingresos
 03/10/2024,Langostinos,Comida,2.69,Ingresos
 03/10/2024,Cheddar,Comida,1.79,Ingresos
-03/10/2024,Pipas,Comida,1.22,Ingresos
+03/10/2024,Pipas,Merienda,1.22,Ingresos
 03/10/2024,Cebolleta,Comida,1.52,Ingresos
 04/10/2024,Cables coche,Hogar,17.99,Ingresos
 04/10/2024,Tomate rosa,Comida,1.76,Ingresos
@@ -429,15 +429,15 @@
 07/10/2024,Pechugas pollo x3,Comida,15.24,Ingresos
 07/10/2024,Flexo 2m,Hogar,1.19,Ingresos
 07/10/2024,Jamon serrano,Comida,2.35,Ingresos
-07/10/2024,Salchichon,Comida,9.29,Ingresos
+07/10/2024,Salchichon,Merienda,9.29,Ingresos
 07/10/2024,Lentejas,Comida,0.76,Ingresos
-07/10/2024,Tomate rosado,Comida,2.08,Ingresos
+07/10/2024,Tomate rosado,Merienda,2.08,Ingresos
 07/10/2024,Filetes pollo,Comida,4.58,Ingresos
 07/10/2024,Lasagna aldi,Comida,4.99,Ingresos
-07/10/2024,Mozzarella bufala,Comida,3.98,Ingresos
+07/10/2024,Mozzarella bufala,Merienda,3.98,Ingresos
 08/10/2024,Correos regalo,Caprichos,21.25,Ahorros
 08/10/2024,Limpiazapatos,Hogar,1.5,Ingresos
-08/10/2024,Platanos,Comida,0.54,Ingresos
+08/10/2024,Platanos,Merienda,0.54,Ingresos
 09/10/2024,Sal Roca,Comida,0.78,Ingresos
 09/10/2024,Nutella,Dulces,2.69,Ingresos
 09/10/2024,Cookies,Dulces,1.18,Ingresos
@@ -456,15 +456,15 @@
 14/10/2024,2-quesos rallados,Comida,1.68,Ingresos
 14/10/2024,Healdos chocolate negro,Dulces,2.7,Ingresos
 14/10/2024,Atun,Comida,5.3,Ingresos
-14/10/2024,Queso iberico,Comida,5.42,Ingresos
+14/10/2024,Queso iberico,Merienda,5.42,Ingresos
 14/10/2024,Tomate frito,Comida,2.7,Ingresos
 14/10/2024,Cebolleta,Comida,1.32,Ingresos
 14/10/2024,Ghocchis,Comida,3.15,Ingresos
 14/10/2024,Mayonesa,Comida,2.65,Ingresos
-14/10/2024,Nueces,Comida,2.2,Ingresos
+14/10/2024,Nueces,Merienda,2.2,Ingresos
 14/10/2024,Chorizo iberico,Comida,2.65,Ingresos
 14/10/2024,Cintas bacon,Comida,2.2,Ingresos
-14/10/2024,Fuet,Comida,2.57,Ingresos
+14/10/2024,Fuet,Merienda,2.57,Ingresos
 14/10/2024,Champinones,Comida,1.98,Ingresos
 14/10/2024,7up,Caprichos,1.59,Ingresos
 14/10/2024,Pizza jamon y queso,Comida,2.5,Ingresos
@@ -491,9 +491,9 @@
 20/10/2024,Alfombrilla,Hogar,1.69,Ingresos
 21/10/2024,Papel higienico,Hogar,4.6,Ingresos
 21/10/2024,Papel cocina,Hogar,2.25,Ingresos
-21/10/2024,Jamon cebo,Comida,4.39,Ingresos
-21/10/2024,Nueces,Comida,1.65,Ingresos
-21/10/2024,Pipas peladas,Comida,1.1,Ingresos
+21/10/2024,Jamon cebo,Merienda,4.39,Ingresos
+21/10/2024,Nueces,Merienda,1.65,Ingresos
+21/10/2024,Pipas peladas,Merienda,1.1,Ingresos
 21/10/2024,Cebolleta,Comida,3.04,Ingresos
 21/10/2024,Aceite koipesol,Comida,1.74,Ingresos
 21/10/2024,fanta limon 0 azucares,Comida,1.55,Ingresos
@@ -503,11 +503,11 @@
 24/10/2024,Five Guys,Restaurantes,20.5,Ingresos
 24/10/2024,Bombilla,Hogar,2.49,Ingresos
 24/10/2024,Bar Jorge,Restaurantes,12,Ingresos
-25/10/2024,Nueces,Comida,2.2,Ingresos
+25/10/2024,Nueces,Merienda,2.2,Ingresos
 25/10/2024,Hielo,Comida,0.85,Ingresos
 25/10/2024,Bacon,Comida,2.2,Ingresos
 25/10/2024,Huevos,Comida,3.32,Ingresos
-25/10/2024,Pipas,Comida,1.1,Ingresos
+25/10/2024,Pipas,Merienda,1.1,Ingresos
 25/10/2024,Pan brioche,Comida,2.35,Ingresos
 25/10/2024,Turron blando,Dulces,2.6,Ingresos
 25/10/2024,Kebab,Restaurantes,8.5,Ingresos
@@ -533,11 +533,11 @@
 28/10/2024,Carne picada ternera,Comida,6.7,Ingresos
 28/10/2024,Filete ternera,Comida,6.16,Ingresos
 28/10/2024,Pechugas de pollo,Comida,9.31,Ingresos
-28/10/2024,Liutenitza,Comida,3.4,Ingresos
+28/10/2024,Liutenitza,Merienda,3.4,Ingresos
 28/10/2024,Etar,Comida,3,Ingresos
-28/10/2024,Kashkaval,Comida,6.7,Ingresos
-28/10/2024,Sudzhuk,Comida,5.8,Ingresos
-28/10/2024,Lukanka,Comida,5.8,Ingresos
+28/10/2024,Kashkaval,Merienda,6.7,Ingresos
+28/10/2024,Sudzhuk,Merienda,5.8,Ingresos
+28/10/2024,Lukanka,Merienda,5.8,Ingresos
 28/10/2024,Shpek,Comida,4.2,Ingresos
 28/10/2024,Zona azul,Transporte,0.9,Ingresos
 28/10/2024,Bombones Rocio,Caprichos,7.98,Ingresos
@@ -563,11 +563,11 @@
 02/11/2024,Turron,Dulces,3.99,Ingresos
 02/11/2024,Cebolleta,Comida,1.52,Ingresos
 02/11/2024,Alquiler,Alquiler,340,Ingresos
-04/11/2024,Pipas,Comida,1.1,Ingresos
-04/11/2024,Nueces,Comida,2.2,Ingresos
+04/11/2024,Pipas,Merienda,1.1,Ingresos
+04/11/2024,Nueces,Merienda,2.2,Ingresos
 04/11/2024,Pan rallado,Comida,0.9,Ingresos
 04/11/2024,Pechugas pollo,Comida,3.29,Ingresos
-04/11/2024,Pan viena,Comida,0.4,Ingresos
+04/11/2024,Pan viena,Merienda,0.4,Ingresos
 04/11/2024,Huevos,Comida,3.32,Ingresos
 06/11/2024,McDonalds,Viajes,14.91,Ahorros
 06/11/2024,Cafe,Viajes,2.3,Ahorros
@@ -621,19 +621,19 @@
 12/11/2024,Lentejas,Comida,1.46,Ingresos
 12/11/2024,Pimientos piquillo,Comida,2.29,Ingresos
 12/11/2024,Salsa Tikka Masala,Comida,4.19,Ingresos
-12/11/2024,Mozarella bufala,Comida,5.49,Ingresos
+12/11/2024,Mozarella bufala,Merienda,5.49,Ingresos
 12/11/2024,Provolone,Comida,4.34,Ingresos
-12/11/2024,Jamon,Comida,5.29,Ingresos
+12/11/2024,Jamon,Merienda,5.29,Ingresos
 12/11/2024,Cebollas,Comida,1.59,Ingresos
 12/11/2024,Pimiento Rojo,Comida,0.38,Ingresos
-12/11/2024,Tomate Rosa,Comida,2.01,Ingresos
+12/11/2024,Tomate Rosa,Merienda,2.01,Ingresos
 12/11/2024,Pechugas de pollo,Comida,4.48,Ingresos
 12/11/2024,Chorizo,Comida,2.78,Ingresos
 12/11/2024,Pechuga fileteada,Comida,4.7,Ingresos
 13/11/2024,iCloud,Hogar,0.99,Ingresos
 13/11/2024,Aceite 5L,Comida,6.91,Ingresos
 15/11/2024,Pizzas,Comida,2.9,Ingresos
-15/11/2024,Mozzarella bufala,Comida,1.76,Ingresos
+15/11/2024,Mozzarella bufala,Merienda,1.76,Ingresos
 15/11/2024,Cheddar,Comida,1.9,Ingresos
 15/11/2024,Haburgeusas de vaca madurada,Comida,5.4,Ingresos
 15/11/2024,Hamburguesas cordero,Comida,3.7,Ingresos
@@ -644,9 +644,9 @@
 16/11/2024,Pulguitas,Comida,1.02,Ingresos
 16/11/2024,Hummus,Comida,1.1,Ingresos
 17/11/2024,Champions Burger,Restaurantes,33,Ingresos
-18/11/2024,Nueces,Comida,4.4,Ingresos
-18/11/2024,Almendras,Comida,2.09,Ingresos
-18/11/2024,Pipas,Comida,1.1,Ingresos
+18/11/2024,Nueces,Merienda,4.4,Ingresos
+18/11/2024,Almendras,Merienda,2.09,Ingresos
+18/11/2024,Pipas,Merienda,1.1,Ingresos
 18/11/2024,Jabon manos,Hogar,0.9,Ingresos
 18/11/2024,Polvorones,Dulces,2.42,Ingresos
 19/11/2024,Zona verde,Transporte,0.7,Ingresos
@@ -656,13 +656,13 @@
 19/11/2024,Mayonesa,Comida,2.09,Ingresos
 19/11/2024,Picatostes,Comida,1.28,Ingresos
 19/11/2024,Salsa cesar,Comida,3.75,Ingresos
-19/11/2024,Queso curado GC,Comida,6.31,Ingresos
+19/11/2024,Queso curado GC,Merienda,6.31,Ingresos
 19/11/2024,Leche,Comida,1.53,Ingresos
 19/11/2024,Mozarella rallada,Comida,1.54,Ingresos
 19/11/2024,Parmesano,Comida,2.29,Ingresos
 19/11/2024,Provolone,Comida,3.5,Ingresos
-19/11/2024,Jamon,Comida,11.5,Ingresos
-19/11/2024,Salchichón,Comida,9.51,Ingresos
+19/11/2024,Jamon,Merienda,11.5,Ingresos
+19/11/2024,Salchichón,Merienda,9.51,Ingresos
 19/11/2024,Salmon,Comida,4.93,Ingresos
 19/11/2024,Batavia,Comida,2,Ingresos
 19/11/2024,Zanahorias,Comida,0.87,Ingresos
