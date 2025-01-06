@@ -14,10 +14,10 @@ import csv
 import json
 from functools import partial
 from datetime import datetime
+from calculos import Calculos
 
-categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
-              "Caprichos", "Comida", "Restaurantes", "Medicamentos",
-              "Alquiler", "Viajes", "Coche","Merienda","Viajes"]
+categorias = ["Gasolina", "Alojamiento", "Transporte", "Dulces", "Ocio", "Vuelos",
+              "Souvenirs", "Comida", "Restaurantes", "Viajes", "Otros"]
 
 
 class Viajes:
@@ -72,10 +72,10 @@ class Viajes:
         btn_mostrar_stats = Button(text='Estadisticas', on_press = partial(self.boton_stats_viajes, usuario, viaje),
                                    height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_categoria = Button(text='Categoria',
+        btn_mostrar_categoria = Button(text='Categoria', on_press = partial(self.categoria_viajes, usuario, viaje),
                                        height=Window.height * 0.05, size_hint_y=None)
 
-        btn_mostrar_gastos = Button(text='Gastos',
+        btn_mostrar_gastos = Button(text='Gastos', on_press = partial(self.gastos_viajes, usuario, viaje),
                                     height=Window.height * 0.05, size_hint_y=None)
 
         self.layout_botones_viajes.add_widget(btn_mostrar_stats)
@@ -110,6 +110,132 @@ class Viajes:
         self.layout_saldo_viajes.add_widget(valor_sin_gas)
 
         self.layout_stats_viajes.add_widget(self.layout_saldo_viajes)
+        
+    def categoria_viajes(self,usuario, viaje, instance):
+        if len(self.layout_stats_viajes.children) > 0:
+            self.layout_stats_viajes.clear_widgets()
+        else:
+            self.mostrar_gasto_categorias_viajes(usuario, viaje)
+
+    def gastos_viajes(self,usuario, viaje, instance):
+        if len(self.layout_stats_viajes.children) > 0:
+            self.layout_stats_viajes.clear_widgets()
+        else:
+            self.mostrar_gastos_viajes(usuario, viaje)
+
+    def mostrar_gasto_categorias_viajes(self, usuario, viaje):
+        self.layout_encabezados_categoria_viajes = GridLayout(cols=3, height=Window.height * 0.05, size_hint_y=None)
+        encabezado_categoria = Label(text="Categoría", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_porcentaje = Label(text="%", height=Window.height * 0.05, size_hint_y=None)
+        self.layout_encabezados_categoria_viajes.add_widget(encabezado_categoria)
+        self.layout_encabezados_categoria_viajes.add_widget(encabezado_gasto)
+        self.layout_encabezados_categoria_viajes.add_widget(encabezado_porcentaje)
+        self.layout_stats_viajes.add_widget(self.layout_encabezados_categoria_viajes)
+
+        gasto_viaje, gasto_viaje_sin_gas = self.calcular_gasto_viaje(usuario, viaje)
+
+        for i in range(len(categorias)):
+            self.layout_categoria_viajes = GridLayout(cols=3, rows=1, height=Window.height * 0.05,
+                                                         size_hint_y=None)
+            gasto_categoría_viaje = 0
+            with open(usuario + "/viajes" + "_" + usuario + ".csv", newline='\n') as csvfile:
+                reader = csv.reader(csvfile, delimiter=',')
+                for row in reader:
+                    if row[4] == viaje and row[2] == categorias[i]:
+                        gasto_categoría_viaje += round(float(row[3]), 2)
+            if gasto_categoría_viaje > 0:
+                nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoría_viaje, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+                porcentaje = Label(text=str(round(gasto_categoría_viaje / gasto_viaje * 100, 2)) + "%",
+                                   height=Window.height * 0.05, size_hint_y=None)
+                self.layout_categoria_viajes.add_widget(nombre)
+                self.layout_categoria_viajes.add_widget(valor)
+                self.layout_categoria_viajes.add_widget(porcentaje)
+                self.layout_stats_viajes.add_widget(self.layout_categoria_viajes)
+
+    def mostrar_gastos_viajes(self, usuario, viaje):
+        self.layout_gastos_viajes = GridLayout(cols=1)
+        self.layout_botones_buscar_viajes = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
+        self.scrollview_viajes = ScrollView(height=Window.height * (1 - self.altura), size_hint_y=None)
+        self.layout_lista_gastos_viajes = GridLayout(cols=5, size_hint_y=None)
+        self.layout_lista_gastos_viajes.bind(minimum_height=self.layout_lista_gastos_viajes.setter('height'))
+        self.dropdown_categoria = DropDown()
+        for cat in categorias:
+            btn = Button(text=cat, size_hint_y=None, height=Window.height * 0.05)
+            btn.bind(on_release=lambda btn: self.dropdown_categoria.select(btn.text))
+            self.dropdown_categoria.add_widget(btn)
+
+        btn_todas = Button(text="Categoria", size_hint_y=None, height=Window.height * 0.05)
+        btn_todas.bind(on_release=lambda btn_todas: self.dropdown_categoria.select(btn_todas.text))
+        self.dropdown_categoria.add_widget(btn_todas)
+
+        self.mainbutton_categoria = Button(text='Categoria', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_categoria.bind(on_release=self.dropdown_categoria.open)
+        self.dropdown_categoria.bind(on_select=lambda instance, x: setattr(self.mainbutton_categoria, 'text', x))
+        self.layout_botones_buscar_viajes.add_widget(self.mainbutton_categoria)
+
+        btn_buscar = Button(text="Buscar", on_press=partial(self.buscar_gastos_viajes, usuario, viaje),
+                            size_hint_y=None, height=Window.height * 0.05)
+        self.layout_botones_buscar_viajes.add_widget(btn_buscar)
+        self.layout_gastos_viajes.add_widget(self.layout_botones_buscar_viajes)
+        self.layout_stats_viajes.add_widget(self.layout_gastos_viajes)
+
+    def buscar_gastos_viajes(self, usuario, viaje, instance):
+        if len(self.layout_lista_gastos_viajes.children) > 0:
+            self.layout_gastos_viajes.remove_widget(self.scrollview_viajes)
+            self.scrollview_viajes.remove_widget(self.layout_lista_gastos_viajes)
+            self.layout_lista_gastos_viajes.clear_widgets()
+            self.altura = 0.27
+        else:
+            self.mostrar_lista_gastos_viajes(usuario, viaje)
+
+    def mostrar_lista_gastos_viajes(self, usuario, viaje):
+        cat = self.mainbutton_categoria.text
+        with open(usuario + "/viajes" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if cat == "Categoria":
+                    if row[4] == viaje:
+                        label_fecha_viajes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_viajes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_viajes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_viajes = Label(text=row[3] + " €", height=Window.height * 0.05,
+                                                       size_hint_y=None)
+                        label_fuente_viajes = Label(text=row[4], height=Window.height * 0.05,
+                                                       size_hint_y=None)
+
+                        self.layout_lista_gastos_viajes.add_widget(label_fecha_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_concepto_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_categoria_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_precio_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_fuente_viajes)
+                else:
+                    if row[4] == viaje and row[2] == cat:
+                        label_fecha_viajes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
+                        label_concepto_viajes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
+                        label_categoria_viajes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_viajes = Label(text=row[3] + " €", height=Window.height * 0.05,
+                                                       size_hint_y=None)
+                        label_fuente_viajes = Label(text=row[4], height=Window.height * 0.05,
+                                                       size_hint_y=None)
+
+                        self.layout_lista_gastos_viajes.add_widget(label_fecha_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_concepto_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_categoria_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_precio_viajes)
+                        self.layout_lista_gastos_viajes.add_widget(label_fuente_viajes)
+
+        if len(self.layout_lista_gastos_viajes.children) == 0:
+            label_no_gastos = Label(text="No hay gastos", height=Window.height * 0.05, size_hint_y=None)
+            self.layout_lista_gastos_viajes.add_widget(label_no_gastos)
+
+        self.scrollview_viajes.add_widget(self.layout_lista_gastos_viajes)
+        self.layout_gastos_viajes.add_widget(self.scrollview_viajes)
+            
+            
+#--------------------------------------------------------------------
 
     def calcular_gasto_viaje(self, usuario, viaje):
         gasto = 0
