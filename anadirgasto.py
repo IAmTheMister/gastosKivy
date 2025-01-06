@@ -57,14 +57,28 @@ class AnadirGasto:
         self.input_precio = TextInput(hint_text='Precio', multiline=False,
                                       height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
 
-        self.input_fuente = TextInput(hint_text='Fuente', multiline=False,
-                                      height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
+        # self.input_fuente = TextInput(hint_text='Fuente', multiline=False,
+        #                               height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
+
+        self.dropdown_fuente = DropDown()
+
+        # btn_ing = Button(text="Ingresos", size_hint_y=None, height=Window.height * 0.05)
+        # btn_ing.bind(on_release=lambda btn_ing: self.dropdown_fuente.select(btn_ing.text))
+        # self.dropdown_fuente.add_widget(btn_ing)
+
+        btn_ahorro = Button(text="Ahorros", size_hint_y=None, height=Window.height * 0.05)
+        btn_ahorro.bind(on_release=lambda btn_ahorro: self.dropdown_fuente.select(btn_ahorro.text))
+        self.dropdown_fuente.add_widget(btn_ahorro)
+
+        self.mainbutton_fuente = Button(text='Ingresos', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_fuente.bind(on_release=self.dropdown_fuente.open)
+        self.dropdown_fuente.bind(on_select=lambda instance, x: setattr(self.mainbutton_fuente, 'text', x))
 
         self.layout_inputs_anadir_gasto.add_widget(self.input_fecha)
         self.layout_inputs_anadir_gasto.add_widget(self.input_concepto)
         self.layout_inputs_anadir_gasto.add_widget(self.mainbutton_categoria)
         self.layout_inputs_anadir_gasto.add_widget(self.input_precio)
-        self.layout_inputs_anadir_gasto.add_widget(self.input_fuente)
+        self.layout_inputs_anadir_gasto.add_widget(self.mainbutton_fuente)
         self.layout_anadir_gasto.add_widget(self.layout_inputs_anadir_gasto)
 
         btn_anadir = Button(text='Añadir gasto', on_press=partial(self.anadir_gasto, usuario),
@@ -79,7 +93,7 @@ class AnadirGasto:
         con = self.input_concepto.text
         cat = self.mainbutton_categoria.text
         pre = self.input_precio.text
-        fue = self.input_fuente.text
+        fue = self.mainbutton_fuente.text
         with open(usuario + "/gastos"+"_"+usuario+".csv", mode='a', newline="\n") as csvfile:
             write = csv.writer(csvfile,delimiter = ",")
             write.writerow([fecha,con,cat,pre,fue])
