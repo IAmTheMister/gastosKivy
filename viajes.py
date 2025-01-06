@@ -17,7 +17,7 @@ from datetime import datetime
 
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
-              "Alquiler", "Viajes", "Coche","Merienda"]
+              "Alquiler", "Viajes", "Coche","Merienda","Viajes"]
 
 
 class Viajes:
@@ -45,7 +45,10 @@ class Viajes:
         self.layout_navegacion_viajes.add_widget(btn_volver)
         self.layout_viajes.add_widget(self.layout_navegacion_viajes)
 
+        self.btn_anadir_gasto_viaje = Button(text='Añadir gasto', on_press = partial(self.pagina_anadir_gasto_viaje,usuario), height=Window.height * 0.1, size_hint_y=None,
+                          background_color=(2, 2, 2, 1), color=(0, 0, 0, 1))
 
+        self.layout_viajes.add_widget(self.btn_anadir_gasto_viaje)
 
         self.main_layout.add_widget(self.layout_viajes)
 
@@ -61,6 +64,7 @@ class Viajes:
         self.layout_viajes.add_widget(self.scrollview_data_viajes)
 
     def mostrar_viaje(self, usuario, viaje, instance):
+        self.layout_viajes.remove_widget(self.btn_anadir_gasto_viaje)
         self.layout_viajes.remove_widget(self.scrollview_data_viajes)
         self.layout_botones_viajes = GridLayout(cols=3, height=Window.height * 0.05, size_hint_y=None)
         self.layout_viajes.add_widget(self.layout_botones_viajes)
@@ -129,6 +133,84 @@ class Viajes:
                 if row[4] not in lista_viajes:
                     lista_viajes.append(row[4])
         return lista_viajes
+
+    def pagina_anadir_gasto_viaje(self,usuario, instance):
+        self.layout_viajes.remove_widget(self.layout_navegacion_viajes)
+        self.layout_viajes.remove_widget(self.scrollview_data_viajes)
+        self.layout_viajes.remove_widget(self.btn_anadir_gasto_viaje)
+        self.menu_anadir_gasto_viaje(usuario)
+
+    def menu_anadir_gasto_viaje(self, usuario):
+        self.layout_anadir_gasto_viaje = GridLayout(cols=1, spacing=10, height=Window.height)
+        self.layout_inputs_anadir_gasto_viaje = GridLayout(cols=5, height=Window.height * 0.05, size_hint_y=None)
+        self.layout_navegacion_anadir_gasto_viaje = GridLayout(cols=2, height=Window.height * 0.05, size_hint_y=None)
+
+        btn_exit = Button(text='Salir', on_press=partial(self.exit_app), height=Window.height * 0.05, size_hint_y=None,
+                          background_color=(2, 2, 2, 1), color=(0, 0, 0, 1))
+
+        btn_volver = Button(text='Volver', on_press=partial(self.boton_volver_anadir_gasto_viaje), height=Window.height * 0.05,
+                            size_hint_y=None,
+                            background_color=(2, 2, 2, 1), color=(0, 0, 0, 1))
+
+        self.layout_navegacion_anadir_gasto_viaje.add_widget(btn_exit)
+        self.layout_navegacion_anadir_gasto_viaje.add_widget(btn_volver)
+        self.layout_anadir_gasto_viaje.add_widget(self.layout_navegacion_anadir_gasto_viaje)
+
+        self.dropdown_categoria_viaje = DropDown()
+        for cat in categorias:
+            btn = Button(text=cat, size_hint_y=None, height=Window.height * 0.05)
+            btn.bind(on_release=lambda btn: self.dropdown_categoria_viaje.select(btn.text))
+            self.dropdown_categoria_viaje.add_widget(btn)
+        self.mainbutton_categoria_viaje = Button(text='Categoria', height=Window.height * 0.05, size_hint_y=None)
+        self.mainbutton_categoria_viaje.bind(on_release=self.dropdown_categoria_viaje.open)
+        self.dropdown_categoria_viaje.bind(on_select=lambda instance, x: setattr(self.mainbutton_categoria_viaje, 'text', x))
+
+        self.input_fecha_viaje = TextInput(hint_text='(dd/mm/yyyy)', multiline=False,
+                                     height=Window.height * 0.05, size_hint_y=None)
+        self.input_concepto_viaje = TextInput(hint_text='Concepto', multiline=False,
+                                        height=Window.height * 0.05, size_hint_y=None)
+        self.input_precio_viaje = TextInput(hint_text='Precio', multiline=False,
+                                      height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
+
+        self.input_nombre_viaje = TextInput(hint_text='Viaje', multiline=False,
+                                      height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
+
+        self.layout_inputs_anadir_gasto_viaje.add_widget(self.input_fecha_viaje)
+        self.layout_inputs_anadir_gasto_viaje.add_widget(self.input_concepto_viaje)
+        self.layout_inputs_anadir_gasto_viaje.add_widget(self.mainbutton_categoria_viaje)
+        self.layout_inputs_anadir_gasto_viaje.add_widget(self.input_precio_viaje)
+        self.layout_inputs_anadir_gasto_viaje.add_widget(self.input_nombre_viaje)
+        self.layout_anadir_gasto_viaje.add_widget(self.layout_inputs_anadir_gasto_viaje)
+
+        btn_anadir = Button(text='Añadir gasto', on_press=partial(self.anadir_gasto_viaje, usuario),
+                            height=Window.height * 0.05, size_hint_y=None)
+
+        self.layout_anadir_gasto_viaje.add_widget(btn_anadir)
+        self.layout_viajes.add_widget(self.layout_anadir_gasto_viaje)
+
+
+    def anadir_gasto_viaje(self, usuario, instance):
+        fecha = self.input_fecha_viaje.text
+        con = self.input_concepto_viaje.text
+        cat = self.mainbutton_categoria_viaje.text
+        pre = self.input_precio_viaje.text
+        nombre = self.input_nombre_viaje.text
+        with open(usuario + "/viajes"+"_"+usuario+".csv", mode='a', newline="\n") as csvfile:
+            write = csv.writer(csvfile,delimiter = ",")
+            write.writerow([fecha,con,cat,pre,nombre])
+
+        self.layout_viajes.remove_widget(self.layout_anadir_gasto_viaje)
+        self.layout_viajes.add_widget(self.layout_navegacion_viajes)
+        self.layout_viajes.add_widget(self.btn_anadir_gasto_viaje)
+        self.layout_viajes.add_widget(self.scrollview_data_viajes)
+
+
+    def boton_volver_anadir_gasto_viaje(self, instance):
+        self.layout_viajes.remove_widget(self.layout_anadir_gasto_viaje)
+        self.layout_viajes.add_widget(self.layout_navegacion_viajes)
+        self.layout_viajes.add_widget(self.btn_anadir_gasto_viaje)
+        self.layout_viajes.add_widget(self.scrollview_data_viajes)
+
 
     def boton_volver_viajes(self, instance):
         self.main_layout.remove_widget(self.layout_viajes)

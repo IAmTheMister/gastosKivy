@@ -57,14 +57,7 @@ class AnadirGasto:
         self.input_precio = TextInput(hint_text='Precio', multiline=False,
                                       height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
 
-        # self.input_fuente = TextInput(hint_text='Fuente', multiline=False,
-        #                               height=Window.height * 0.05, size_hint_y=None, size_hint_x=0.6)
-
         self.dropdown_fuente = DropDown()
-
-        # btn_ing = Button(text="Ingresos", size_hint_y=None, height=Window.height * 0.05)
-        # btn_ing.bind(on_release=lambda btn_ing: self.dropdown_fuente.select(btn_ing.text))
-        # self.dropdown_fuente.add_widget(btn_ing)
 
         btn_ahorro = Button(text="Ahorros", size_hint_y=None, height=Window.height * 0.05)
         btn_ahorro.bind(on_release=lambda btn_ahorro: self.dropdown_fuente.select(btn_ahorro.text))
