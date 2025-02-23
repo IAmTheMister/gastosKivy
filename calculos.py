@@ -117,6 +117,58 @@ class Calculos:
 
         return gasto_total
 
+    def calcular_gasto_rel_comida_mes(self,usuario, ano, mes):
+        categorias_comida = ["Dulces", "Comida", "Restaurantes", "Merienda"]
+        gasto_rel_comida = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano and fecha_row.month == mes:
+                    if row[2] in categorias_comida:
+                        gasto_rel_comida += round(float(row[3]), 2)
+
+        return gasto_rel_comida
+    
+    def calcular_gasto_rel_ocio_mes(self,usuario, ano, mes):
+        categorias_ocio = ["Ocio", "Caprichos"]
+        gasto_rel_ocio = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano and fecha_row.month == mes:
+                    if row[2] in categorias_ocio:
+                        gasto_rel_ocio += round(float(row[3]), 2)
+
+        return gasto_rel_ocio
+    
+    def calcular_gasto_rel_transporte_mes(self,usuario, ano, mes):
+        categorias_transporte = ["Transporte", "Gasolina", "Coche"]
+        gasto_rel_transporte = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano and fecha_row.month == mes:
+                    if row[2] in categorias_transporte:
+                        gasto_rel_transporte += round(float(row[3]), 2)
+
+        return gasto_rel_transporte
+    
+    def calcular_gasto_rel_resto_mes(self,usuario, ano, mes):
+        categorias_resto = ["Hogar", "Medicamentos"]
+        gasto_rel_resto = 0
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
+                if row and fecha_row.year == ano and fecha_row.month == mes:
+                    if row[2] in categorias_resto:
+                        gasto_rel_resto += round(float(row[3]), 2)
+
+        return gasto_rel_resto
+
     def calcular_gasto_ing_mes(self,usuario, ano, mes):
         gasto_total = 0
         with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:

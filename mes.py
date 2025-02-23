@@ -20,6 +20,7 @@ categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
               "Alquiler", "Viajes", "Coche","Merienda"]
 
+
 class Mes:
     def __init__(self, main_layout, main_page):
         self.main_layout = main_layout
@@ -171,26 +172,39 @@ class Mes:
 
     def mostrar_gasto_categorias_mes(self, usuario):
         clase_calc = Calculos()
+
+        self.layout_mostrar_categoria_mes = GridLayout(cols=1, height=Window.height*1.5, size_hint_y=None)
+        self.scrollview_categorias_mes = ScrollView(height=Window.height, size_hint_y=None)
         self.layout_encabezados_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
+        self.layout_categorias_por_separado_mes = GridLayout(cols=4, height=Window.height * 0.9, size_hint_y=None)
         ano = int(self.input_ano.text)
         mes = int(self.input_mes.text)
+
         gasto_mes, ingresos_mes = clase_calc.calcular_saldo_mes(usuario, ano, mes)
         alquiler_mes = clase_calc.calcular_alquiler_mes(usuario, ano, mes)
+        viajes_mes = clase_calc.calcular_gasto_viajes_mes(usuario, ano, mes)
 
-        encabezado_categoria = Label(text = "Categoría", height=Window.height * 0.05, size_hint_y=None)
+        encabezado_separados = Label(text="Categorías separadas",
+                                  height=Window.height * 0.05,
+                                  size_hint_y=None)
+        self.layout_mostrar_categoria_mes.add_widget(encabezado_separados)
+
+        encabezado_categoria = Label(text="Categoría", height=Window.height * 0.05, size_hint_y=None)
         encabezado_gasto = Label(text="Gasto", height=Window.height * 0.05, size_hint_y=None)
         encabezado_porcentaje = Label(text="%", height=Window.height * 0.05, size_hint_y=None)
         encabezado_por_sin_alq = Label(text="% sin alquiler", height=Window.height * 0.05, size_hint_y=None)
+
         self.layout_encabezados_categoria_mes.add_widget(encabezado_categoria)
         self.layout_encabezados_categoria_mes.add_widget(encabezado_gasto)
         self.layout_encabezados_categoria_mes.add_widget(encabezado_porcentaje)
         self.layout_encabezados_categoria_mes.add_widget(encabezado_por_sin_alq)
-        self.layout_stats_mes.add_widget(self.layout_encabezados_categoria_mes)
+
+        self.layout_mostrar_categoria_mes.add_widget(self.layout_encabezados_categoria_mes)
 
         for i in range(len(categorias)):
             self.layout_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
             gasto_categoría = 0
-            with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+            with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 for row in reader:
                     fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -199,21 +213,117 @@ class Mes:
             if gasto_categoría > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoría,2))+" €", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoría, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
-                porcentaje = Label(text=str(round(gasto_categoría/gasto_mes*100,2))+"%", height=Window.height * 0.05,
+                porcentaje = Label(text=str(round(gasto_categoría / gasto_mes * 100, 2)) + "%",
+                                   height=Window.height * 0.05,
                                    size_hint_y=None)
                 self.layout_categoria_mes.add_widget(porcentaje)
                 if categorias[i] != "Alquiler":
-                    porcentaje_sin_alquiler = Label(text=str(round(gasto_categoría / (gasto_mes-alquiler_mes)*100, 2)) + "%", height=Window.height * 0.05,
-                                   size_hint_y=None)
+                    porcentaje_sin_alquiler = Label(
+                        text=str(round(gasto_categoría / (gasto_mes - alquiler_mes) * 100, 2)) + "%",
+                        height=Window.height * 0.05,
+                        size_hint_y=None)
                 else:
                     porcentaje_sin_alquiler = Label(
                         text="",
                         height=Window.height * 0.05,
                         size_hint_y=None)
                 self.layout_categoria_mes.add_widget(porcentaje_sin_alquiler)
-                self.layout_stats_mes.add_widget(self.layout_categoria_mes)
+                self.layout_mostrar_categoria_mes.add_widget(self.layout_categoria_mes)
+
+        encabezado_grupos = Label(text="Categorías agrupadas",
+                                  height=Window.height * 0.05,
+                                  size_hint_y=None)
+        self.layout_mostrar_categoria_mes.add_widget(encabezado_grupos)
+
+        # self.layout_stats_mes.add_widget(self.layout_mostrar_categoria_mes)
+
+        gasto_comida = clase_calc.calcular_gasto_rel_comida_mes(usuario, ano, mes)
+        gasto_ocio = clase_calc.calcular_gasto_rel_ocio_mes(usuario, ano, mes)
+        gasto_transporte = clase_calc.calcular_gasto_rel_transporte_mes(usuario, ano, mes)
+        gasto_resto = clase_calc.calcular_gasto_rel_resto_mes(usuario, ano, mes)
+
+        layout_grupos_mes = GridLayout(cols=2, height=Window.height * 0.05, size_hint_y=None)
+
+        label_rel_comida_mes = Label(text="Relacionado con comida:",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+        valor_rel_comida_mes = Label(text=str(round(gasto_comida, 2)) + " €",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_comida_mes)
+        layout_grupos_mes.add_widget(valor_rel_comida_mes)
+
+        label_rel_ocio_mes = Label(text="Relacionado con ocio:",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio, 2)) + " €",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_ocio_mes)
+        layout_grupos_mes.add_widget(valor_rel_ocio_mes)
+
+        label_rel_viajes_mes = Label(text="Viajes:",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+        valor_rel_viajes_mes = Label(text=str(round(viajes_mes, 2)) + " €",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_viajes_mes)
+        layout_grupos_mes.add_widget(valor_rel_viajes_mes)
+
+        label_rel_transporte_mes = Label(text="Relacionado con transporte:",
+                                         height=Window.height * 0.05,
+                                         size_hint_y=None)
+        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte, 2)) + " €",
+                                         height=Window.height * 0.05,
+                                         size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_transporte_mes)
+        layout_grupos_mes.add_widget(valor_rel_transporte_mes)
+
+        label_rel_alquiler_mes = Label(text="Alquiler:",
+                                       height=Window.height * 0.05,
+                                       size_hint_y=None)
+        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes, 2)) + " €",
+                                       height=Window.height * 0.05,
+                                       size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_alquiler_mes)
+        layout_grupos_mes.add_widget(valor_rel_alquiler_mes)
+
+        label_rel_resto_mes = Label(text="Resto de gastos:",
+                                    height=Window.height * 0.05,
+                                    size_hint_y=None)
+        valor_rel_resto_mes = Label(text=str(round(gasto_resto, 2)) + " €",
+                                    height=Window.height * 0.05,
+                                    size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_resto_mes)
+        layout_grupos_mes.add_widget(valor_rel_resto_mes)
+
+        self.layout_mostrar_categoria_mes.add_widget(layout_grupos_mes)
+
+        self.scrollview_categorias_mes.add_widget(self.layout_mostrar_categoria_mes)
+
+        self.layout_stats_mes.add_widget(self.scrollview_categorias_mes)
+
+        # self.layout_stats_mes.add_widget(self.layout_mostrar_categoria_mes)
+
+
+    def gastos_categorias_separados(self, usuario, ano, mes):
+        print("separados")
+
+
+    def gastos_categorias_agrupados(self, usuario, ano, mes):
+        print("Agrupados")
+        clase_calc = Calculos()
+
+
 
     def mostrar_gastos_mes(self, usuario):
         self.layout_gastos_mes = GridLayout(cols=1)
