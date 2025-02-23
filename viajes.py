@@ -30,7 +30,7 @@ class Viajes:
         self.layout_stats_viajes = GridLayout(cols=1)
         self.layout_viajes = GridLayout(cols=1, spacing=10, height=Window.height)
         self.layout_navegacion_viajes = GridLayout(cols=2, height=Window.height * 0.05, size_hint_y=None)
-        self.scrollview_data_viajes = ScrollView(height = Window.height * (1 - self.altura), size_hint_y = None)
+        self.scrollview_data_viajes = ScrollView(height = Window.height * (1 - 4 * self.altura), size_hint_y = None)
         self.layout_data_viajes = GridLayout(cols = 1, spacing = 10, size_hint_y = None)
         self.layout_data_viajes.bind(minimum_height=self.layout_data_viajes.setter('height'))
 
