@@ -376,17 +376,6 @@ class Mes:
 
         # self.layout_stats_mes.add_widget(self.layout_mostrar_categoria_mes)
 
-
-    def gastos_categorias_separados(self, usuario, ano, mes):
-        print("separados")
-
-
-    def gastos_categorias_agrupados(self, usuario, ano, mes):
-        print("Agrupados")
-        clase_calc = Calculos()
-
-
-
     def mostrar_gastos_mes(self, usuario):
         self.layout_gastos_mes = GridLayout(cols=1)
         self.layout_botones_buscar_mes = GridLayout(cols=2, size_hint_y=None, height=Window.height * 0.05)
