@@ -173,7 +173,7 @@ class Mes:
     def mostrar_gasto_categorias_mes(self, usuario):
         clase_calc = Calculos()
 
-        self.layout_mostrar_categoria_mes = GridLayout(cols=1, height=Window.height*1.5, size_hint_y=None)
+        self.layout_mostrar_categoria_mes = GridLayout(cols=1, height=Window.height*2.5, size_hint_y=None)
         self.scrollview_categorias_mes = ScrollView(height=Window.height, size_hint_y=None)
         self.layout_encabezados_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
         self.layout_categorias_por_separado_mes = GridLayout(cols=4, height=Window.height * 0.9, size_hint_y=None)
