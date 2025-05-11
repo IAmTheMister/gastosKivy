@@ -1414,6 +1414,21 @@
 27/04/2025,Huevos,Comida,1.95,Ingresos
 27/04/2025,Parrilla total,Restaurantes,27,Ingresos
 28/04/2025,Reembolso Pablo coche,Viajes,-15.67,Ingresos
+28/04/2025,Cacahuetes con miel,Merienda,1.85,Ingresos
+28/04/2025,Picatostes,Comida,2.82,Ingresos
+28/04/2025,Salsa cesar,Comida,3.75,Ingresos
+28/04/2025,Salsa tikka masala,Comida,4.79,Ingresos
+28/04/2025,Mozarella rallada,Comida,1.57,Ingresos
+28/04/2025,Petalos parmesano,Comida,2.29,Ingresos
+28/04/2025,Bacon tiras,Comida,3.78,Ingresos
+28/04/2025,Jamon cebo,Comida,5.25,Ingresos
+28/04/2025,Cebolla morada,Comida,1.39,Ingresos
+28/04/2025,Tomate rosa,Comida,1.81,Ingresos
+28/04/2025,Secreto iberico,Comida,7.7,Ingresos
+28/04/2025,Pechugas pollo x2,Comida,4.52,Ingresos
+28/04/2025,Bidones gasolina 3x2,Hogar,36.4,Ahorros
+28/04/2025,30L diesel reserva,Hogar,41.96,Ahorros
+28/04/2025,Galp Villalba,Gasolina,15.64,Ingresos
 29/04/2025,Parking no pagado,Viajes,5.34,Ingresos
 02/05/2025,Platanos canarias,Merienda,1.32,Ingresos
 02/05/2025,Pan,Comida,1.65,Ingresos
@@ -1422,12 +1437,13 @@
 03/05/2025,Cheddar,Comida,2.05,Ingresos
 03/05/2025,Panceta curada,Comida,2.55,Ingresos
 03/05/2025,Huevos,Comida,3.9,Ingresos
-03/05/2025,Peajes,Transporte,30.3,Ingresos
+03/05/2025,Peajes,Transporte,30.3,Ahorros
 03/05/2025,Colonia Seoul,Hogar,12.95,Ingresos
-03/05/2025,Cafe del norte,Restaurantes,9.9,Ingresos
-03/05/2025,Gofre,Dulces,6,Ingresos
-03/05/2025,Parking Isabel La Católica,Transporte,2.25,Ingresos
-03/05/2025,Galp Villalba,Gasolina,38.87,Ingresos
+03/05/2025,Cafe del norte,Restaurantes,9.9,Ahorros
+03/05/2025,Gofre,Dulces,6,Ahorros
+03/05/2025,Parking Isabel La Católica,Transporte,2.25,Ahorros
+03/05/2025,Galp Villalba,Gasolina,10,Ingresos
+03/05/2025,Galp Villalba Valladolid,Gasolina,28.87,Ahorros
 04/05/2025,Mahou mixta x3,Caprichos,2.43,Ingresos
 04/05/2025,Feta x2,Comida,4.8,Ingresos
 04/05/2025,Pechugas de pollo x4,Comida,10.96,Ingresos
@@ -1441,3 +1457,38 @@
 05/05/2025,Pepino,Comida,1.03,Ingresos
 05/05/2025,Salmón,Comida,6.74,Ingresos
 05/05/2025,Tomate rosa,Comida,3.02,Ingresos
+07/05/2025,Tarjeta Revolut,Hogar,5.13,Ingresos
+08/05/2025,Pan,Comida,0.83,Ingresos
+08/05/2025,Gel ducha,Hogar,1.49,Ingresos
+08/05/2025,Five Guys,Restaurantes,20.5,Ingresos
+08/05/2025,Cacahuetes Eagle,Merienda,3.7,Ingresos
+08/05/2025,Tortillas Old el Paso,Comida,2.99,Ingresos
+08/05/2025,Helados chocolate,Dulces,3.99,Ingresos
+08/05/2025,Mantequilla,Comida,2.45,Ingresos
+08/05/2025,Pizza jamon y queso,Comida,3.19,Ingresos
+08/05/2025,Havarti,Comida,3.35,Ingresos
+08/05/2025,Jamon iberico 200g,Comida,9.38,Ingresos
+08/05/2025,Cintas bacon x2,Comida,3.98,Ingresos
+08/05/2025,Jamon cocido x3,Comida,5.08,Ingresos
+08/05/2025,Queso oveja tdt,Merienda,6.54,Ingresos
+08/05/2025,Champiñones,Comida,1.27,Ingresos
+08/05/2025,Alitas,Comida,3.53,Ingresos
+08/05/2025,Filetes pollo x2,Comida,8.32,Ingresos
+08/05/2025,Secreto iberico,Comida,7.58,Ingresos
+08/05/2025,Carne picada 1kg,Comida,4.10,Ingresos
+08/05/2025,Lomo iberico,Comida,4.95,Ingresos
+09/05/2025,Manolo bakes,Restaurantes,5.45,Ingresos
+09/05/2025,Aceite 5W30 5L,Coche,57.99,Ahorros
+09/05/2025,Gnocchi,Comida,3.15,Ingresos
+09/05/2025,Ambientador,Coche,1.45,Ingresos
+09/05/2025,Bolsas bocata,Hogar,0.85,Ingresos
+09/05/2025,Hamburguesas x2,Comida,5.8,Ingresos
+09/05/2025,Nueces x2,Merienda,5.4,Ingresos
+09/05/2025,Pan,Comida,0.65,Ingresos
+10/05/2025,Thunderbolts*,Ocio,13.5,Ingresos
+10/05/2025,Refresco cine,Ocio,7.5,Ingresos
+11/05/2025,Kebab,Restaurantes,10,Ingresos
+11/05/2025,Paulaner 0.5L x2,Caprichos,3.1,Ingresos
+11/05/2025,Pepino,Comida,0.99,Ingresos
+11/05/2025,Tomate rosa,Comida,1.92,Ingresos
+11/05/2025,Pan,Comida,0.87,Ingresos
