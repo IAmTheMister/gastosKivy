@@ -87,7 +87,7 @@ class AnadirGasto:
         cat = self.mainbutton_categoria.text
         pre = self.input_precio.text
         fue = self.mainbutton_fuente.text
-        with open(usuario + "/gastos"+"_"+usuario+".csv", mode='a', newline="\n") as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", mode='a', newline="\n", encoding = "utf-8") as csvfile:
             write = csv.writer(csvfile,delimiter = ",")
             write.writerow([fecha,con,cat,pre,fue])
 

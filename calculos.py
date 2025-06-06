@@ -18,7 +18,7 @@ class Calculos:
 
     def calcular_gasto_ing_dia(self, usuario, dia):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[0] == dia:
@@ -28,7 +28,7 @@ class Calculos:
 
     def calcular_gasto_ahorros_dia(self, usuario, dia):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[0] == dia:
@@ -38,7 +38,7 @@ class Calculos:
 
     def calcular_gasto_dia(self, usuario, dia):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[0] == dia:
@@ -47,7 +47,7 @@ class Calculos:
 
     def calcular_gasto_viajes_intervalo(self, fin, inicio, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -60,7 +60,7 @@ class Calculos:
 
     def calcular_gasto_ing_intervalo(self, fin, inicio, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -73,7 +73,7 @@ class Calculos:
 
     def calcular_gasto_ahorros_intervalo(self, fin, inicio, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -87,7 +87,7 @@ class Calculos:
     def calcular_saldo_intervalo(self, fin, inicio, usuario):
         gasto_total = 0
         ingresos = 0
-        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -95,7 +95,7 @@ class Calculos:
                 fecha_fin = datetime.strptime(fin, "%d/%m/%Y")
                 if row and fecha_inicio <= fecha_row <= fecha_fin:
                     ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos" + "_" + usuario + ".csv") as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -107,7 +107,7 @@ class Calculos:
 
     def calcular_gasto_viajes_mes(self,usuario, ano, mes):
         gasto_total = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -120,7 +120,7 @@ class Calculos:
     def calcular_gasto_rel_comida_mes(self,usuario, ano, mes):
         categorias_comida = ["Dulces", "Comida", "Restaurantes", "Merienda"]
         gasto_rel_comida = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -133,7 +133,7 @@ class Calculos:
     def calcular_gasto_rel_ocio_mes(self,usuario, ano, mes):
         categorias_ocio = ["Ocio", "Caprichos"]
         gasto_rel_ocio = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -146,7 +146,7 @@ class Calculos:
     def calcular_gasto_rel_transporte_mes(self,usuario, ano, mes):
         categorias_transporte = ["Transporte", "Gasolina", "Coche"]
         gasto_rel_transporte = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -159,7 +159,7 @@ class Calculos:
     def calcular_gasto_rel_resto_mes(self,usuario, ano, mes):
         categorias_resto = ["Hogar", "Medicamentos"]
         gasto_rel_resto = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -171,7 +171,7 @@ class Calculos:
 
     def calcular_gasto_ing_mes(self,usuario, ano, mes):
         gasto_total = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -183,7 +183,7 @@ class Calculos:
 
     def calcular_gasto_ahorros_mes(self,usuario, ano, mes):
         gasto_total = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -196,13 +196,13 @@ class Calculos:
     def calcular_saldo_mes(self,usuario, ano, mes):
         gasto_total = 0
         ingresos = 0
-        with open(usuario + "/ingresos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/ingresos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
                 if row and fecha_row.year == ano and fecha_row.month == mes:
                     ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -213,7 +213,7 @@ class Calculos:
 
     def calcular_alquiler_mes(self,usuario,ano, mes):
         alquiler_mes = 0
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -224,7 +224,7 @@ class Calculos:
 
     def calcular_gasto_viajes_ano(self, ano, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -235,7 +235,7 @@ class Calculos:
 
     def calcular_gasto_ing_ano(self, ano, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -246,7 +246,7 @@ class Calculos:
 
     def calcular_gasto_ahorros_ano(self, ano, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -258,7 +258,7 @@ class Calculos:
     def calcular_saldo_ano(self, ano, usuario):
         gasto_total = 0
         ingresos = 0
-        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -274,7 +274,7 @@ class Calculos:
 
     def calcular_alquiler_ano(self, ano, usuario):
         alquiler = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -285,7 +285,7 @@ class Calculos:
 
     def calcular_gasto_viajes_total(self, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[2] == "Viajes":
@@ -294,7 +294,7 @@ class Calculos:
 
     def calcular_gasto_ing_total(self, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[4] == "Ingresos":
@@ -303,7 +303,7 @@ class Calculos:
 
     def calcular_gasto_ahorros_total(self, usuario):
         gasto_total = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row and row[4] == "Ahorros":
@@ -313,12 +313,12 @@ class Calculos:
     def calcular_saldo_total(self, usuario):
         gasto_total = 0
         ingresos = 0
-        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/ingresos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row:
                     ingresos += round(float(row[1]), 2)
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 if row:
@@ -327,7 +327,7 @@ class Calculos:
 
     def calcular_alquiler_total(self, usuario):
         alquiler = 0
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 cat = row[2]

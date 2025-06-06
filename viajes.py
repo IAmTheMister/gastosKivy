@@ -97,10 +97,10 @@ class Viajes:
                                            size_hint_y=None)
         gasto_viaje, gasto_viaje_sin_gas = self.calcular_gasto_viaje(usuario, viaje)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_viaje, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_viaje, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_sin_gas = Label(text="Gasto sin gasolina:", height=Window.height * 0.05, size_hint_y=None)
-        valor_sin_gas = Label(text=str(round(gasto_viaje_sin_gas, 2)) +" €", height=Window.height * 0.05,
+        valor_sin_gas = Label(text=str(round(gasto_viaje_sin_gas, 2)) +" лв*", height=Window.height * 0.05,
                                    size_hint_y=None)
 
         self.layout_saldo_viajes.add_widget(nombre_gasto)
@@ -146,7 +146,7 @@ class Viajes:
                         gasto_categoría_viaje += round(float(row[3]), 2)
             if gasto_categoría_viaje > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
-                valor = Label(text=str(round(gasto_categoría_viaje, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoría_viaje, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
                 porcentaje = Label(text=str(round(gasto_categoría_viaje / gasto_viaje * 100, 2)) + "%",
                                    height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_viajes.add_widget(nombre)
@@ -201,7 +201,7 @@ class Viajes:
                         label_fecha_viajes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_viajes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_viajes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_viajes = Label(text=row[3] + " €", height=Window.height * 0.05,
+                        label_precio_viajes = Label(text=row[3] + " лв*", height=Window.height * 0.05,
                                                        size_hint_y=None)
                         label_fuente_viajes = Label(text=row[4], height=Window.height * 0.05,
                                                        size_hint_y=None)
@@ -216,7 +216,7 @@ class Viajes:
                         label_fecha_viajes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_viajes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_viajes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_viajes = Label(text=row[3] + " €", height=Window.height * 0.05,
+                        label_precio_viajes = Label(text=row[3] + " лв*", height=Window.height * 0.05,
                                                        size_hint_y=None)
                         label_fuente_viajes = Label(text=row[4], height=Window.height * 0.05,
                                                        size_hint_y=None)

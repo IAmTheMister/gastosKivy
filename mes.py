@@ -107,38 +107,38 @@ class Mes:
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_actual, 2))+" €", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_actual, 2))+" лв*", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_saldo = Label(text="Saldo (total):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " €", height=Window.height * 0.05,
+        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " лв*", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_saldo_ing = Label(text="Saldo (ingresos):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo_ing = Label(text=str(round(ingresos_actual - gasto_ing, 2)) + " €", height=Window.height * 0.05,
+        valor_saldo_ing = Label(text=str(round(ingresos_actual - gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
                                 size_hint_y=None)
 
         nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " €", height=Window.height * 0.05,
+        valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " лв*", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_sin_alquiler = Label(text="Gasto sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " €", height=Window.height * 0.05,
+        valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " лв*", height=Window.height * 0.05,
                                size_hint_y=None)
 
         nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
                                    size_hint_y=None)
 
         nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " лв*", height=Window.height * 0.05,
                                    size_hint_y=None)
 
         nombre_gasto_sin_viajes = Label(text="Gastos sin viajes:", height=Window.height * 0.05,
                                         size_hint_y=None)
-        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " €", height=Window.height * 0.05,
+        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " лв*", height=Window.height * 0.05,
                                        size_hint_y=None)
 
         self.layout_saldo_mes.add_widget(nombre_ingreso)
@@ -201,7 +201,7 @@ class Mes:
         label_rel_comida_mes = Label(text="Relacionado con comida:",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        valor_rel_comida_mes = Label(text=str(round(gasto_comida, 2)) + " €",
+        valor_rel_comida_mes = Label(text=str(round(gasto_comida, 2)) + " лв*",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
         porcentaje_gasto_total_rel_comida = Label(text=str(round(gasto_comida/gasto_mes * 100, 2)) + " %",
@@ -215,7 +215,7 @@ class Mes:
         label_rel_ocio_mes = Label(text="Relacionado con ocio:",
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
-        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio, 2)) + " €",
+        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio, 2)) + " лв*",
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
         porcentaje_gasto_total_rel_ocio = Label(text=str(round(gasto_ocio / gasto_mes * 100, 2)) + " %",
@@ -229,7 +229,7 @@ class Mes:
         label_rel_viajes_mes = Label(text="Viajes:",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        valor_rel_viajes_mes = Label(text=str(round(viajes_mes, 2)) + " €",
+        valor_rel_viajes_mes = Label(text=str(round(viajes_mes, 2)) + " лв*",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
         porcentaje_gasto_total_rel_viajes = Label(text=str(round(viajes_mes / gasto_mes * 100, 2)) + " %",
@@ -243,7 +243,7 @@ class Mes:
         label_rel_transporte_mes = Label(text="Relacionado con transporte:",
                                          height=Window.height * 0.05,
                                          size_hint_y=None)
-        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte, 2)) + " €",
+        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte, 2)) + " лв*",
                                          height=Window.height * 0.05,
                                          size_hint_y=None)
         porcentaje_gasto_total_rel_transporte = Label(text=str(round(gasto_transporte / gasto_mes * 100, 2)) + " %",
@@ -257,7 +257,7 @@ class Mes:
         label_rel_alquiler_mes = Label(text="Alquiler:",
                                        height=Window.height * 0.05,
                                        size_hint_y=None)
-        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes, 2)) + " €",
+        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes, 2)) + " лв*",
                                        height=Window.height * 0.05,
                                        size_hint_y=None)
         porcentaje_gasto_total_rel_alquiler = Label(text=str(round(alquiler_mes / gasto_mes * 100, 2)) + " %",
@@ -271,7 +271,7 @@ class Mes:
         label_rel_resto_mes = Label(text="Resto de gastos:",
                                     height=Window.height * 0.05,
                                     size_hint_y=None)
-        valor_rel_resto_mes = Label(text=str(round(gasto_resto, 2)) + " €",
+        valor_rel_resto_mes = Label(text=str(round(gasto_resto, 2)) + " лв*",
                                     height=Window.height * 0.05,
                                     size_hint_y=None)
         porcentaje_gasto_total_rel_resto = Label(text=str(round(gasto_resto / gasto_mes * 100, 2)) + " %",
@@ -311,7 +311,7 @@ class Mes:
         for i in range(len(categorias)):
             self.layout_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
             gasto_categoria = 0
-            with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 for row in reader:
                     fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -320,7 +320,7 @@ class Mes:
             if gasto_categoria > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoria, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoria, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
                 porcentaje = Label(text=str(round(gasto_categoria / gasto_ingresos_mes * 100, 2)) + "%",
                                    height=Window.height * 0.05,
@@ -347,7 +347,7 @@ class Mes:
         for i in range(len(categorias)):
             self.layout_categoria_mes = GridLayout(cols=4, height=Window.height * 0.05, size_hint_y=None)
             gasto_categoria = 0
-            with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+            with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 for row in reader:
                     fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -356,7 +356,7 @@ class Mes:
             if gasto_categoria > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoria, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoria, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
                 porcentaje = Label(text=str(round(gasto_categoria / gasto_ahorros_mes * 100, 2)) + "%",
                                    height=Window.height * 0.05,
@@ -416,7 +416,7 @@ class Mes:
         ano = int(self.input_ano.text)
         mes = int(self.input_mes.text)
         cat = self.mainbutton_categoria.text
-        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos" + "_" + usuario + ".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 fecha_row = datetime.strptime(row[0], "%d/%m/%Y")
@@ -425,7 +425,7 @@ class Mes:
                         label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
@@ -438,7 +438,7 @@ class Mes:
                         label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)

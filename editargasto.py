@@ -44,7 +44,7 @@ class EditarGasto:
         self.layout_editar_gasto.add_widget(self.layout_navegacion_editar_gasto)
 
         self.data_list = []
-        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n') as csvfile:
+        with open(usuario + "/gastos"+"_"+usuario+".csv", newline='\n', encoding = "utf-8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:
                 self.data_list.append([row[0], row[1], row[2], row[3],row[4]])
