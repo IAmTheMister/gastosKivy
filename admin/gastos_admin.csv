@@ -1552,12 +1552,12 @@
 02/06/2025,Брашно,Comida,2.19,Ingresos
 02/06/2025,Чушки,Comida,3.01,Ingresos
 02/06/2025,Чесън,Comida,1.99,Ingresos
-02/06/2025,Бърсалка за под,Hogar,3.99,Ingresos
+02/06/2025,Бърсалка за под,Hogar,3.99,Ahorros
 02/06/2025,Краве масло,Comida,4.69,Ingresos
 02/06/2025,Горчица,Comida,3.49,Ingresos
 02/06/2025,Кисело Мляко,Comida,1.89,Ingresos
 02/06/2025,Бяло вино,Comida,4.89,Ingresos
-02/06/2025,Дръжка,Hogar,3.69,Ingresos
+02/06/2025,Дръжка,Hogar,3.69,Ahorros
 02/06/2025,Краставица,Comida,1.28,Ingresos
 02/06/2025,Доматен сос,Comida,4.79,Ingresos
 02/06/2025,Бреф,Hogar,6.49,Ingresos
@@ -1572,7 +1572,7 @@
 02/06/2025,Лук,Comida,0.82,Ingresos
 03/06/2025,Салфетки,Hogar,1.79,Ingresos
 03/06/2025,Пликове,Hogar,1.49,Ingresos
-03/06/2025,Везна,Hogar,9.99,Ingresos
+03/06/2025,Везна,Hogar,9.99,Ahorros
 03/06/2025,Телешко бонфиле,Comida,29.98,Ingresos
 03/06/2025,Сапун за ръце с дозатор,Hogar,5.99,Ingresos
 03/06/2025,Сапун за ръце рефил,Hogar,6.99,Ingresos
@@ -1581,8 +1581,8 @@
 04/06/2025,Сол,Comida,1.35,Ingresos
 04/06/2025,Етър,Caprichos,1.69,Ingresos
 04/06/2025,Бира Стела Артоа,Caprichos,7.77,Ingresos
-04/06/2025,Буркан за спагети,Hogar,8.99,Ingresos
-04/06/2025,Мерителна кана,Hogar,2.99,Ingresos
+04/06/2025,Буркан за спагети,Hogar,8.99,Ahorros
+04/06/2025,Мерителна кана,Hogar,2.99,Ahorros
 04/06/2025,Споти,Hogar,9.99,Ingresos
 04/06/2025,А1 интернет,Hogar,35.18,Ingresos
 05/06/2025,Хляб,Comida,2.85,Ingresos
@@ -1592,13 +1592,13 @@
 05/06/2025,Кисело мляко,Comida,2.09,Ingresos
 05/06/2025,Торбичка,Hogar,0.39,Ingresos
 06/06/2025,Чанти за боклук,Hogar,3.49,Ingresos
-06/06/2025,Кош за боклук,Hogar,31.99,Ingresos
+06/06/2025,Кош за боклук,Hogar,31.99,Ahorros
 06/06/2025,Препарат за стъкла,Hogar,4.49,Ingresos
-06/06/2025,Купа 2.5л,Hogar,2.79,Ingresos
-06/06/2025,Купа 4л,Hogar,3.79,Ingresos
+06/06/2025,Купа 2.5л,Hogar,2.79,Ahorros
+06/06/2025,Купа 4л,Hogar,3.79,Ahorros
 06/06/2025,Кърпи,Hogar,2.79,Ingresos
-06/06/2025,Капак,Hogar,19.99,Ingresos
-08/06/2025,Кофа с цедка,Hogar,5.99,Ingresos
+06/06/2025,Капак,Hogar,19.99,Ahorros
+08/06/2025,Кофа с цедка,Hogar,5.99,Ahorros
 08/06/2025,Тоалетна хартия,Hogar,12.99,Ingresos
 08/06/2025,Наденица,Comida,1.7,Ingresos
 08/06/2025,Капия печена,Comida,4.99,Ingresos
@@ -1623,7 +1623,7 @@
 08/06/2025,Кубети,Comida,2.2,Ingresos
 08/06/2025,Яйца х10 Л,Comida,6.29,Ingresos
 08/06/2025,Грана падано х2,Comida,12.98,Ingresos
-08/06/2025,Пименто де ла вера сладък,Hogar,5.29,Ingresos
+08/06/2025,Пиментон де ла вера сладък,Hogar,5.29,Ingresos
 08/06/2025,Пиментон де ла вера пикантен,Hogar,5.29,Ingresos
 08/06/2025,Прясно мляко 500мл,Comida,1.49,Ingresos
 09/06/2025,Данни револют,Hogar,3.5,Ingresos
@@ -1644,4 +1644,36 @@
 09/06/2025,Медицинско,Coche,40,Ahorros
 09/06/2025,Такса МПС,Coche,25,Ahorros
 09/06/2025,Гума Сънфул,Coche,95,Ahorros
-09/06/2025,Такси,Transporte,13,Ahorros
+09/06/2025,Таксита,Transporte,13,Ahorros
+11/06/2025,Вода,Comida,0.75,Ingresos
+11/06/2025,Баничка,Comida,3.61,Ingresos
+11/06/2025,Вода,Comida,2.2,Ingresos
+11/06/2025,Бекон 200г,Comida,4.99,Ingresos
+12/06/2025,Лук,Comida,0.33,Ingresos
+12/06/2025,Картофи,Comida,1.33,Ingresos
+12/06/2025,Чушка,Comida,0.33,Ingresos
+12/06/2025,Гъби,Comida,2.99,Ingresos
+13/06/2025,iCloud,Hogar,1.99,Ingresos
+13/06/2025,Миринда,Caprichos,1.49,Ingresos
+13/06/2025,Хляб,Comida,1.49,Ingresos
+13/06/2025,Сьомга,Comida,7.26,Ingresos
+13/06/2025,Кашкавал Елена,Comida,7.44,Ingresos
+13/06/2025,Лепенки,Medicamentos,1.99,Ingresos
+13/06/2025,Кисело мляко ,Comida,1.45,Ingresos
+13/06/2025,Сирене Дунавия,Comida,6.99,Ingresos
+14/06/2025,Тениска Адидас,Hogar,25,Ahorros
+14/06/2025,Тениска червена,Hogar,19.9,Ahorros
+14/06/2025,Фитнес 1 месец,Hogar,65,Ingresos
+14/06/2025,Стела артоа х8,Caprichos,11.99,Ingresos
+14/06/2025,Дюнер,Restaurantes,10.9,Ingresos
+14/06/2025,Вафла халва,Dulces,0.75,Ingresos
+14/06/2025,Контрафиле телешко,Comida,9.96,Ingresos
+14/06/2025,Вода трапезна,Comida,3.49,Ingresos
+14/06/2025,Халат с качулка,Hogar,69.99,Ahorros
+14/06/2025,Чаши,Hogar,21.54,Ahorros
+14/06/2025,Кърпи х3,Hogar,17.97,Ahorros
+14/06/2025,Закачалки,Hogar,3.99,Ahorros
+14/06/2025,Дълбоки чинии х2,Hogar,17.98,Ahorros
+14/06/2025,Стъпка кухня,Hogar,4.99,Ahorros
+14/06/2025,Стъпка баня,Hogar,9.99,Ahorros
+13/06/2025,Наем,Alquiler,850,Ingresos
