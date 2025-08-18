@@ -1584,7 +1584,7 @@
 04/06/2025,Буркан за спагети,Hogar,8.99,Ahorros
 04/06/2025,Мерителна кана,Hogar,2.99,Ahorros
 04/06/2025,Споти,Hogar,9.99,Ingresos
-04/06/2025,А1 интернет,Hogar,35.18,Ingresos
+04/06/2025,А1 интернет,Suministros,35.18,Ingresos
 05/06/2025,Хляб,Comida,2.85,Ingresos
 05/06/2025,Пилешки крилца,Comida,7.99,Ingresos
 05/06/2025,Ханско кюфте,Comida,5.99,Ingresos
@@ -1732,8 +1732,8 @@
 24/06/2025,Вода,Hogar,0.69,Ingresos
 25/06/2025,Каско кола,Coche,515,Ahorros
 25/06/2025,Данък кола,Coche,65.49,Ahorros
-19/06/2025,ТЕЦ,Hogar,41.62,Ingresos
-20/06/2025,Ток,Hogar,8.21,Ingresos
+19/06/2025,ТЕЦ,Suministros,41.62,Ingresos
+20/06/2025,Ток,Suministros,8.21,Ingresos
 25/06/2025,Хляб,Comida,1.49,Ingresos
 25/06/2025,Картофи,Comida,0.38,Ingresos
 25/06/2025,Домати розови,Comida,1.9,Ingresos
@@ -1784,7 +1784,7 @@
 12/07/2025,Лазаня,Comida,9.49,Ingresos
 12/07/2025,Закуска,Comida,3.98,Ingresos
 12/07/2025,Филе елена,Comida,10.66,Ingresos
-13/07/2025,А1,Hogar,96.83,Ingresos
+13/07/2025,А1,Suministros,96.83,Ingresos
 13/07/2025,Лук,Comida,0.36,Ingresos
 13/07/2025,Мелио обезмаслител,Hogar,7.28,Ingresos
 13/07/2025,Олио х2,Comida,4.78,Ingresos
@@ -1838,8 +1838,8 @@
 20/07/2025,Сирене дунавия 200г,Comida,5.99,Ingresos
 20/07/2025,Кисело мляко,Comida,1.99,Ingresos
 20/07/2025,Чанта,Hogar,0.39,Ingresos
-19/07/2025,ТЕЦ,Hogar,41.76,Ingresos
-21/07/2025,Ток,Hogar,18.05,Ingresos
+19/07/2025,ТЕЦ,Suministros,41.76,Ingresos
+21/07/2025,Ток,Suministros,18.05,Ingresos
 21/07/2025,Вода,Comida,7.47,Ingresos
 21/07/2025,Хепи,Restaurantes,42.17,Ingresos
 21/07/2025,Обувалка,Hogar,1.99,Ahorros
@@ -1897,7 +1897,7 @@
 03/08/2025,Баничка х2,Merienda,1.98,Ingresos
 04/08/2025,Ресторант -1,Comida,11.61,Ingresos
 05/08/2025,Ресторант -1,Comida,11.5,Ingresos
-05/08/2025,А1,Hogar,55.74,Ingresos
+05/08/2025,А1,Suministros,55.74,Ingresos
 06/08/2025,Свински бут елена,Comida,10.58,Ingresos
 06/08/2025,Баничка с маслина х2,Merienda,2.38,Ingresos
 06/08/2025,Фокача,Merienda,1.99,Ingresos

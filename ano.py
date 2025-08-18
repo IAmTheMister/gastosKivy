@@ -18,7 +18,7 @@ from calculos import Calculos
 
 categorias = ["Gasolina", "Hogar", "Transporte", "Dulces", "Ocio",
               "Caprichos", "Comida", "Restaurantes", "Medicamentos",
-              "Alquiler", "Viajes", "Coche", "Merienda"]
+              "Alquiler", "Viajes", "Coche", "Merienda", "Suministros"]
 
 
 class Ano:

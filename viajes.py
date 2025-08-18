@@ -17,7 +17,7 @@ from datetime import datetime
 from calculos import Calculos
 
 categorias = ["Gasolina", "Alojamiento", "Transporte", "Dulces", "Ocio", "Vuelos",
-              "Souvenirs", "Comida", "Restaurantes", "Otros"]
+              "Souvenirs", "Comida", "Restaurantes", "Otros", "Suministros"]
 
 
 class Viajes:
