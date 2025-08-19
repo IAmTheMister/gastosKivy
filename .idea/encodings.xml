@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/admin/gastos_admin.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/gastos_admin_bgn.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/gastos_admin_bgn_eur.csv" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

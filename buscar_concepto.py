@@ -76,7 +76,7 @@ class BuscarConcepto:
                     label_fecha_concepto = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                     label_concepto_concepto = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                     label_categoria_concepto = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                    label_precio_concepto = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                    label_precio_concepto = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
 
                     self.layout_lista_gastos_concepto.add_widget(label_fecha_concepto)
                     self.layout_lista_gastos_concepto.add_widget(label_concepto_concepto)

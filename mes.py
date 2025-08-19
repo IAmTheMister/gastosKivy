@@ -101,44 +101,48 @@ class Mes:
         gasto_ing = clase_calc.calcular_gasto_ing_mes(usuario, ano_actual, mes_actual)
         gasto_ahorros = clase_calc.calcular_gasto_ahorros_mes(usuario, ano_actual, mes_actual)
         saldo_actual = ingresos_actual - gasto_actual
-        alquiler_mes = clase_calc.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
-        gasto_viajes = clase_calc.calcular_gasto_viajes_mes(usuario,ano_actual, mes_actual)
+        alquiler_mes_ing, alquiler_mes_aho = clase_calc.calcular_alquiler_mes(usuario,ano_actual, mes_actual)
+        gasto_viajes_ing, gasto_viajes_aho = clase_calc.calcular_gasto_viajes_mes(usuario,ano_actual, mes_actual)
+
+        alquiler_mes = alquiler_mes_ing + alquiler_mes_aho
+        gasto_viajes = gasto_viajes_ing + gasto_viajes_aho
+
         gasto_sin_viajes = gasto_actual - gasto_viajes
         self.layout_saldo_mes = GridLayout(cols=2, height=Window.height * 0.15,
                                            size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_actual, 2))+" лв*", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_actual, 2))+" €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_saldo = Label(text="Saldo (total):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " лв*", height=Window.height * 0.05,
+        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_saldo_ing = Label(text="Saldo (ingresos):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo_ing = Label(text=str(round(ingresos_actual - gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
+        valor_saldo_ing = Label(text=str(round(ingresos_actual - gasto_ing, 2)) + " €", height=Window.height * 0.05,
                                 size_hint_y=None)
 
         nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " лв*", height=Window.height * 0.05,
+        valor_alquiler = Label(text=str(round(alquiler_mes, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_sin_alquiler = Label(text="Gasto sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " лв*", height=Window.height * 0.05,
+        valor_sin_alquiler = Label(text=str(round(gasto_actual-alquiler_mes, 2)) + " €", height=Window.height * 0.05,
                                size_hint_y=None)
 
         nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
 
         nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
 
         nombre_gasto_sin_viajes = Label(text="Gastos sin viajes:", height=Window.height * 0.05,
                                         size_hint_y=None)
-        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " €", height=Window.height * 0.05,
                                        size_hint_y=None)
 
         self.layout_saldo_mes.add_widget(nombre_ingreso)
@@ -181,30 +185,38 @@ class Mes:
         mes = int(self.input_mes.text)
 
         gasto_mes, ingresos_mes = clase_calc.calcular_saldo_mes(usuario, ano, mes)
-        alquiler_mes = clase_calc.calcular_alquiler_mes(usuario, ano, mes)
-        viajes_mes = clase_calc.calcular_gasto_viajes_mes(usuario, ano, mes)
+        alquiler_mes_ing, alquiler_mes_aho = clase_calc.calcular_alquiler_mes(usuario, ano, mes)
+        viajes_mes_ing, viajes_mes_aho = clase_calc.calcular_gasto_viajes_mes(usuario, ano, mes)
         gasto_ingresos_mes = clase_calc.calcular_gasto_ing_mes(usuario, ano, mes)
         gasto_ahorros_mes = clase_calc.calcular_gasto_ahorros_mes(usuario, ano, mes)
+
+        alquiler_mes = alquiler_mes_ing + alquiler_mes_aho
+        viajes_mes = viajes_mes_ing + viajes_mes_aho
 
         encabezado_grupos = Label(text="Categorías agrupadas",
                                   height=Window.height * 0.05,
                                   size_hint_y=None)
         self.layout_mostrar_categoria_mes.add_widget(encabezado_grupos)
 
-        gasto_comida = clase_calc.calcular_gasto_rel_comida_mes(usuario, ano, mes)
-        gasto_ocio = clase_calc.calcular_gasto_rel_ocio_mes(usuario, ano, mes)
-        gasto_transporte = clase_calc.calcular_gasto_rel_transporte_mes(usuario, ano, mes)
-        gasto_resto = clase_calc.calcular_gasto_rel_resto_mes(usuario, ano, mes)
+        gasto_comida_ing,gasto_comida_aho = clase_calc.calcular_gasto_rel_comida_mes(usuario, ano, mes)
+        gasto_ocio_ing,gasto_ocio_aho = clase_calc.calcular_gasto_rel_ocio_mes(usuario, ano, mes)
+        gasto_transporte_ing,gasto_transporte_aho = clase_calc.calcular_gasto_rel_transporte_mes(usuario, ano, mes)
+        gasto_resto_ing,gasto_resto_aho = clase_calc.calcular_gasto_rel_resto_mes(usuario, ano, mes)
+
+        encabezado_grupos_ing = Label(text="Ingresos:",
+                                  height=Window.height * 0.05,
+                                  size_hint_y=None)
+        self.layout_mostrar_categoria_mes.add_widget(encabezado_grupos_ing)
 
         layout_grupos_mes = GridLayout(cols=3, height=Window.height * 0.3, size_hint_y=None)
 
         label_rel_comida_mes = Label(text="Relacionado con comida:",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        valor_rel_comida_mes = Label(text=str(round(gasto_comida, 2)) + " лв*",
+        valor_rel_comida_mes = Label(text=str(round(gasto_comida_ing, 2)) + " €",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        porcentaje_gasto_total_rel_comida = Label(text=str(round(gasto_comida/gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_comida = Label(text=str(round(gasto_comida_ing/gasto_mes * 100, 2)) + " %",
                                              height=Window.height * 0.05,
                                              size_hint_y=None)
 
@@ -215,10 +227,10 @@ class Mes:
         label_rel_ocio_mes = Label(text="Relacionado con ocio:",
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
-        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio, 2)) + " лв*",
+        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio_ing, 2)) + " €",
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
-        porcentaje_gasto_total_rel_ocio = Label(text=str(round(gasto_ocio / gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_ocio = Label(text=str(round(gasto_ocio_ing / gasto_mes * 100, 2)) + " %",
                                                   height=Window.height * 0.05,
                                                   size_hint_y=None)
 
@@ -229,10 +241,10 @@ class Mes:
         label_rel_viajes_mes = Label(text="Viajes:",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        valor_rel_viajes_mes = Label(text=str(round(viajes_mes, 2)) + " лв*",
+        valor_rel_viajes_mes = Label(text=str(round(viajes_mes_ing, 2)) + " €",
                                      height=Window.height * 0.05,
                                      size_hint_y=None)
-        porcentaje_gasto_total_rel_viajes = Label(text=str(round(viajes_mes / gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_viajes = Label(text=str(round(viajes_mes_ing / gasto_mes * 100, 2)) + " %",
                                                 height=Window.height * 0.05,
                                                 size_hint_y=None)
 
@@ -243,10 +255,10 @@ class Mes:
         label_rel_transporte_mes = Label(text="Relacionado con transporte:",
                                          height=Window.height * 0.05,
                                          size_hint_y=None)
-        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte, 2)) + " лв*",
+        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte_ing, 2)) + " €",
                                          height=Window.height * 0.05,
                                          size_hint_y=None)
-        porcentaje_gasto_total_rel_transporte = Label(text=str(round(gasto_transporte / gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_transporte = Label(text=str(round(gasto_transporte_ing / gasto_mes * 100, 2)) + " %",
                                                 height=Window.height * 0.05,
                                                 size_hint_y=None)
 
@@ -257,10 +269,10 @@ class Mes:
         label_rel_alquiler_mes = Label(text="Alquiler:",
                                        height=Window.height * 0.05,
                                        size_hint_y=None)
-        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes, 2)) + " лв*",
+        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes_ing, 2)) + " €",
                                        height=Window.height * 0.05,
                                        size_hint_y=None)
-        porcentaje_gasto_total_rel_alquiler = Label(text=str(round(alquiler_mes / gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_alquiler = Label(text=str(round(alquiler_mes_ing / gasto_mes * 100, 2)) + " %",
                                                       height=Window.height * 0.05,
                                                       size_hint_y=None)
 
@@ -268,13 +280,13 @@ class Mes:
         layout_grupos_mes.add_widget(valor_rel_alquiler_mes)
         layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_alquiler)
 
-        label_rel_resto_mes = Label(text="Resto de gastos:",
+        label_rel_resto_mes = Label(text="Relacionado con casa:",
                                     height=Window.height * 0.05,
                                     size_hint_y=None)
-        valor_rel_resto_mes = Label(text=str(round(gasto_resto, 2)) + " лв*",
+        valor_rel_resto_mes = Label(text=str(round(gasto_resto_ing, 2)) + " €",
                                     height=Window.height * 0.05,
                                     size_hint_y=None)
-        porcentaje_gasto_total_rel_resto = Label(text=str(round(gasto_resto / gasto_mes * 100, 2)) + " %",
+        porcentaje_gasto_total_rel_resto = Label(text=str(round(gasto_resto_ing / gasto_mes * 100, 2)) + " %",
                                                       height=Window.height * 0.05,
                                                       size_hint_y=None)
 
@@ -283,6 +295,104 @@ class Mes:
         layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_resto)
 
         self.layout_mostrar_categoria_mes.add_widget(layout_grupos_mes)
+
+
+        #-------------------------------------------
+
+        encabezado_grupos_aho = Label(text="Ahorros:",
+                                      height=Window.height * 0.05,
+                                      size_hint_y=None)
+        self.layout_mostrar_categoria_mes.add_widget(encabezado_grupos_aho)
+
+        layout_grupos_mes = GridLayout(cols=3, height=Window.height * 0.3, size_hint_y=None)
+
+        label_rel_comida_mes = Label(text="Relacionado con comida:",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+        valor_rel_comida_mes = Label(text=str(round(gasto_comida_aho, 2)) + " €",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+        porcentaje_gasto_total_rel_comida = Label(text=str(round(gasto_comida_aho / gasto_mes * 100, 2)) + " %",
+                                                  height=Window.height * 0.05,
+                                                  size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_comida_mes)
+        layout_grupos_mes.add_widget(valor_rel_comida_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_comida)
+
+        label_rel_ocio_mes = Label(text="Relacionado con ocio:",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+        valor_rel_ocio_mes = Label(text=str(round(gasto_ocio_aho, 2)) + " €",
+                                   height=Window.height * 0.05,
+                                   size_hint_y=None)
+        porcentaje_gasto_total_rel_ocio = Label(text=str(round(gasto_ocio_aho / gasto_mes * 100, 2)) + " %",
+                                                height=Window.height * 0.05,
+                                                size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_ocio_mes)
+        layout_grupos_mes.add_widget(valor_rel_ocio_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_ocio)
+
+        label_rel_viajes_mes = Label(text="Viajes:",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+        valor_rel_viajes_mes = Label(text=str(round(viajes_mes_aho, 2)) + " €",
+                                     height=Window.height * 0.05,
+                                     size_hint_y=None)
+        porcentaje_gasto_total_rel_viajes = Label(text=str(round(viajes_mes_aho / gasto_mes * 100, 2)) + " %",
+                                                  height=Window.height * 0.05,
+                                                  size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_viajes_mes)
+        layout_grupos_mes.add_widget(valor_rel_viajes_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_viajes)
+
+        label_rel_transporte_mes = Label(text="Relacionado con transporte:",
+                                         height=Window.height * 0.05,
+                                         size_hint_y=None)
+        valor_rel_transporte_mes = Label(text=str(round(gasto_transporte_aho, 2)) + " €",
+                                         height=Window.height * 0.05,
+                                         size_hint_y=None)
+        porcentaje_gasto_total_rel_transporte = Label(text=str(round(gasto_transporte_aho / gasto_mes * 100, 2)) + " %",
+                                                      height=Window.height * 0.05,
+                                                      size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_transporte_mes)
+        layout_grupos_mes.add_widget(valor_rel_transporte_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_transporte)
+
+        label_rel_alquiler_mes = Label(text="Alquiler:",
+                                       height=Window.height * 0.05,
+                                       size_hint_y=None)
+        valor_rel_alquiler_mes = Label(text=str(round(alquiler_mes_aho, 2)) + " €",
+                                       height=Window.height * 0.05,
+                                       size_hint_y=None)
+        porcentaje_gasto_total_rel_alquiler = Label(text=str(round(alquiler_mes_aho / gasto_mes * 100, 2)) + " %",
+                                                    height=Window.height * 0.05,
+                                                    size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_alquiler_mes)
+        layout_grupos_mes.add_widget(valor_rel_alquiler_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_alquiler)
+
+        label_rel_resto_mes = Label(text="Relacionado con casa:",
+                                    height=Window.height * 0.05,
+                                    size_hint_y=None)
+        valor_rel_resto_mes = Label(text=str(round(gasto_resto_aho, 2)) + " €",
+                                    height=Window.height * 0.05,
+                                    size_hint_y=None)
+        porcentaje_gasto_total_rel_resto = Label(text=str(round(gasto_resto_aho / gasto_mes * 100, 2)) + " %",
+                                                 height=Window.height * 0.05,
+                                                 size_hint_y=None)
+
+        layout_grupos_mes.add_widget(label_rel_resto_mes)
+        layout_grupos_mes.add_widget(valor_rel_resto_mes)
+        layout_grupos_mes.add_widget(porcentaje_gasto_total_rel_resto)
+
+        self.layout_mostrar_categoria_mes.add_widget(layout_grupos_mes)
+
+        #------------------------------------------
 
 
 
@@ -320,7 +430,7 @@ class Mes:
             if gasto_categoria > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoria, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoria, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
                 porcentaje = Label(text=str(round(gasto_categoria / gasto_ingresos_mes * 100, 2)) + "%",
                                    height=Window.height * 0.05,
@@ -356,7 +466,7 @@ class Mes:
             if gasto_categoria > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoria, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoria, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_mes.add_widget(valor)
                 porcentaje = Label(text=str(round(gasto_categoria / gasto_ahorros_mes * 100, 2)) + "%",
                                    height=Window.height * 0.05,
@@ -425,7 +535,7 @@ class Mes:
                         label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_mes = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)
@@ -438,7 +548,7 @@ class Mes:
                         label_fecha_mes = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_mes = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_mes = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_mes = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_mes = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_mes = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_mes.add_widget(label_fecha_mes)

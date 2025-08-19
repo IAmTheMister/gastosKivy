@@ -86,10 +86,11 @@ class AnadirGasto:
         con = self.input_concepto.text
         cat = self.mainbutton_categoria.text
         pre = self.input_precio.text
+        pre_eur = round(float(pre) / 1.95583,2)
         fue = self.mainbutton_fuente.text
         with open(usuario + "/gastos"+"_"+usuario+".csv", mode='a', newline="\n", encoding = "utf-8") as csvfile:
             write = csv.writer(csvfile,delimiter = ",")
-            write.writerow([fecha,con,cat,pre,fue])
+            write.writerow([fecha,con,cat,str(pre_eur),fue])
 
         self.main_layout.remove_widget(self.layout_anadir_gasto)
         self.main_layout.add_widget(self.main_page)

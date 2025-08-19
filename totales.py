@@ -94,39 +94,39 @@ class ClaseTotal:
         self.layout_saldo_total = GridLayout(cols=2, height=Window.height * 0.15,
                                              size_hint_y=None)
         nombre_gasto = Label(text="Gasto total:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto = Label(text=str(round(gasto_actual, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto = Label(text=str(round(gasto_actual, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_ingreso = Label(text="Ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+        valor_ingreso = Label(text=str(round(ingresos_actual, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
 
         nombre_saldo = Label(text="Saldo (total):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " лв*", height=Window.height * 0.05,
+        valor_saldo = Label(text=str(round(saldo_actual, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_saldo_ing = Label(text="Saldo (ingresos):", height=Window.height * 0.05, size_hint_y=None)
-        valor_saldo_ing = Label(text=str(round(ingresos_actual-gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
+        valor_saldo_ing = Label(text=str(round(ingresos_actual-gasto_ing, 2)) + " €", height=Window.height * 0.05,
                             size_hint_y=None)
 
         nombre_alquiler = Label(text="Alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_alquiler = Label(text=str(round(alquiler_total, 2)) + " лв*", height=Window.height * 0.05,
+        valor_alquiler = Label(text=str(round(alquiler_total, 2)) + " €", height=Window.height * 0.05,
                                size_hint_y=None)
 
         nombre_sin_alquiler = Label(text="Gasto sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
-        valor_sin_alquiler = Label(text=str(round(gasto_actual - alquiler_total, 2)) + " лв*",
+        valor_sin_alquiler = Label(text=str(round(gasto_actual - alquiler_total, 2)) + " €",
                                    height=Window.height * 0.05,
                                    size_hint_y=None)
 
         nombre_gasto_ing = Label(text="Gasto procedente de ingresos:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
                                 size_hint_y=None)
 
         nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
-        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
                                     size_hint_y=None)
 
         nombre_gasto_sin_viajes = Label(text="Gastos sin viajes:", height=Window.height * 0.05,
                                         size_hint_y=None)
-        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " лв*", height=Window.height * 0.05,
+        valor_gasto_sin_viajes = Label(text=str(round(gasto_sin_viajes, 2)) + " €", height=Window.height * 0.05,
                                        size_hint_y=None)
 
         self.layout_saldo_total.add_widget(nombre_ingreso)
@@ -185,7 +185,7 @@ class ClaseTotal:
             if gasto_categoria > 0:
                 nombre = Label(text=categorias[i], height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_total.add_widget(nombre)
-                valor = Label(text=str(round(gasto_categoria, 2)) + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                valor = Label(text=str(round(gasto_categoria, 2)) + " €", height=Window.height * 0.05, size_hint_y=None)
                 self.layout_categoria_total.add_widget(valor)
                 porcentaje = Label(text=str(round(gasto_categoria / gasto_total * 100, 2)) + "%",
                                    height=Window.height * 0.05,
@@ -251,7 +251,7 @@ class ClaseTotal:
                         label_fecha_total = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_total = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_total = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_total = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_total = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_total = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_total.add_widget(label_fecha_total)
@@ -264,7 +264,7 @@ class ClaseTotal:
                         label_fecha_total = Label(text=row[0], height=Window.height * 0.05, size_hint_y=None)
                         label_concepto_total = Label(text=row[1], height=Window.height * 0.05, size_hint_y=None)
                         label_categoria_total = Label(text=row[2], height=Window.height * 0.05, size_hint_y=None)
-                        label_precio_total = Label(text=row[3] + " лв*", height=Window.height * 0.05, size_hint_y=None)
+                        label_precio_total = Label(text=row[3] + " €", height=Window.height * 0.05, size_hint_y=None)
                         label_fuente_total = Label(text=row[4], height=Window.height * 0.05, size_hint_y=None)
 
                         self.layout_lista_gastos_total.add_widget(label_fecha_total)
