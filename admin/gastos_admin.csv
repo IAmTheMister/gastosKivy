@@ -1895,8 +1895,8 @@
 02/08/2025,Пърленки,Comida,0.71,Ingresos
 03/08/2025,Сьомга,Comida,6.98,Ingresos
 03/08/2025,Баничка х2,Merienda,1.01,Ingresos
-04/08/2025,Ресторант -1,Comida,5.94,Ingresos
-05/08/2025,Ресторант -1,Comida,5.88,Ingresos
+04/08/2025,Ресторант -1,Restaurantes,5.94,Ingresos
+05/08/2025,Ресторант -1,Restaurantes,5.88,Ingresos
 05/08/2025,А1,Suministros,28.5,Ingresos
 06/08/2025,Свински бут елена,Comida,5.41,Ingresos
 06/08/2025,Баничка с маслина х2,Merienda,1.22,Ingresos
@@ -1950,7 +1950,7 @@
 12/08/2025,Яйца,Comida,2.55,Ingresos
 12/08/2025,Пърленка,Comida,0.51,Ingresos
 13/08/2025,Бирени фъстъци,Comida,1.79,Ingresos
-14/08/2025,Кете,Comida,8.68,Ingresos
+14/08/2025,Кете,Restaurantes,8.68,Ingresos
 14/08/2025,Майонеза Краси,Comida,1.27,Ingresos
 09/08/2025,Хепи,Restaurantes,39.38,Ahorros
 10/08/2025,Кино,Ocio,16.36,Ahorros
@@ -1961,7 +1961,7 @@
 12/08/2025,При братовчеда,Restaurantes,28.12,Ahorros
 13/08/2025,Паркинг летище,Transporte,3.07,Ingresos
 12/08/2025,iCloud,Hogar,1.02,Ingresos
-12/08/2025,Бургер,Comida,9.97,Ingresos
+12/08/2025,Бургер,Restaurantes,9.97,Ingresos
 13/08/2025,Бира,Caprichos,13.72,Ingresos
 13/08/2025,Рексона,Hogar,2.55,Ingresos
 13/08/2025,Тутки,Dulces,2.67,Ingresos
@@ -1972,7 +1972,7 @@
 14/08/2025,Шел Младост,Gasolina,46.79,Ingresos
 14/08/2025,Вода баба,Hogar,9.92,Ingresos
 14/08/2025,Кашкавал дядо,Hogar,12.26,Ingresos
-15/08/2025,Кете,Comida,10.32,Ingresos
+15/08/2025,Кете,Restaurantes,10.32,Ingresos
 16/08/2025,БДЖ,Transporte,7.36,Ingresos
 17/08/2025,Вода,Comida,1.84,Ingresos
 17/08/2025,Бреф,Hogar,3.57,Ingresos
@@ -1990,3 +1990,71 @@
 19/08/2025,Пърленка,Comida,0.3,Ingresos
 19/08/2025,Кашкавал пане,Comida,4.58,Ingresos
 17/08/2025,Билет трамвай,Transporte,0.82,Ingresos
+20/08/2025,Ток,Suministros,9.59,Ingresos
+20/08/2025,Наем,Alquiler,434.6,Ingresos
+21/08/2025,Кете,Restaurantes,9.81,Ingresos
+22/08/2025,Пица лаб,Restaurantes,8.64,Ingresos
+22/08/2025,Фанта тути фрути,Caprichos,1.22,Ingresos
+23/08/2025,Споти,Hogar,6.9,Ingresos
+23/08/2025,Панталоне бежови,Hogar,20.6,Ahorros
+23/08/2025,Полота х4,Hogar,74.37,Ahorros
+23/08/2025,Мултивитамин,Medicamentos,0.86,Ingresos
+23/08/2025,Магнезий,Medicamentos,1.12,Ingresos
+23/08/2025,Минерали,Medicamentos,1.12,Ingresos
+23/08/2025,Вода,Comida,0.35,Ingresos
+23/08/2025,Бекон,Comida,3.57,Ingresos
+23/08/2025,Кисело мляко на баба х22,Comida,2.03,Ingresos
+23/08/2025,Пилешко филе 650г ,Comida,3.64,Ingresos
+23/08/2025,Кайма смес,Comida,5.03,Ingresos
+23/08/2025,Яйца х6,Comida,1.94,Ingresos
+23/08/2025,Чушки,Comida,0.93,Ingresos
+23/08/2025,Олио х2,Comida,2.44,Ingresos
+23/08/2025,Лук,Comida,0.3,Ingresos
+24/08/2025,Бомбони линдт,Coche,8.38,Ahorros
+24/08/2025,Естрейа Галисия х8,Caprichos,9.78,Ingresos
+24/08/2025,Узо пилавас,Coche,10.48,Ahorros
+24/08/2025,Съединител,Coche,365.57,Ahorros
+24/08/2025,Интернет Гиген,Suministros,17.64,Ingresos
+24/08/2025,Батерии,Hogar,2.55,Ingresos
+24/08/2025,Фенер челен,Hogar,8.18,Ingresos
+24/08/2025,Свински опашки,Hogar,4.6,Ingresos
+25/08/2025,Бешамел,Restaurantes,7.57,Ingresos
+27/08/2025,Бешамел,Restaurantes,7.87,Ingresos
+28/08/2025,Пица франко,Restaurantes,12.78,Ingresos
+28/08/2025,Естрейа Галисия голяма х6,Caprichos,13.16,Ingresos
+28/08/2025,Чанта х2,Hogar,0.4,Ingresos
+28/08/2025,Моцарела ди буфала,Comida,9.95,Ingresos
+21/08/2025,Паста,Dulces,1.68,Ingresos
+21/08/2025,Торта гараж,Dulces,2.55,Ingresos
+21/08/2025,Цитронада,Caprichos,1.02,Ingresos
+21/08/2025,Бургер,Comida,3.83,Ingresos
+21/08/2025,Картофи,Comida,0.28,Ingresos
+21/08/2025,Закусца пица,Merienda,1.28,Ingresos
+21/08/2025,Моркови,Comida,1.78,Ingresos
+21/08/2025,Хляб,Comida,0.76,Ingresos
+23/08/2025,Чанта,Hogar,0.2,Ingresos
+23/08/2025,Домати,Comida,0.79,Ingresos
+23/08/2025,Картофи,Comida,0.39,Ingresos
+23/08/2025,Кайма смес 200г,Comida,1.26,Ingresos
+23/08/2025,Краставица,Comida,0.2,Ingresos
+23/08/2025,Майонеза Краси,Comida,1.27,Ingresos
+23/08/2025,Чедър,Comida,3.47,Ingresos
+23/08/2025,Сладолед фамилия,Dulces,3.88,Ingresos
+23/08/2025,Тортила,Comida,2.76,Ingresos
+25/08/2025,Пърленка,Comida,0.51,Ingresos
+26/08/2025,Сладолед фамилия,Dulces,2.81,Ingresos
+26/08/2025,Пърленка,Comida,0.51,Ingresos
+26/08/2025,Пица парче,Comida,1.53,Ingresos
+26/08/2025,Лазаня болоньезе х2,Comida,4.59,Ingresos
+28/08/2025,Чедър,Comida,2.81,Ingresos
+28/08/2025,Шунка,Comida,2.81,Ingresos
+28/08/2025,Ековаучер,Comida,-0.97,Ingresos
+28/08/2025,Вода Горна Баня х2,Comida,3.06,Ingresos
+28/08/2025,Кроасан х3,Dulces,3.05,Ingresos
+28/08/2025,Бяло вино х2,Comida,5.1,Ingresos
+28/08/2025,Яйца х6,Comida,1.94,Ingresos
+28/08/2025,Моркови,Comida,0.33,Ingresos
+28/08/2025,Кайма смес 1.2 кг,Comida,9.76,Ingresos
+28/08/2025,Торби за боклук,Hogar,1.94,Ingresos
+20/08/2025,Парцали,Hogar,0.81,Ingresos
+25/08/2025,Пърленка,Comida,0.51,Ingresos

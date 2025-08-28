@@ -136,6 +136,10 @@ class Mes:
         valor_gasto_ing = Label(text=str(round(gasto_ing, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
 
+        nombre_gasto_ing_sin_alq = Label(text="Gasto procedente de ingresos sin alquiler:", height=Window.height * 0.05, size_hint_y=None)
+        valor_gasto_ing_sin_alq = Label(text=str(round(gasto_ing - alquiler_mes, 2)) + " €", height=Window.height * 0.05,
+                                size_hint_y=None)
+
         nombre_gasto_ahorros = Label(text="Gasto procedente de ahorros:", height=Window.height * 0.05, size_hint_y=None)
         valor_gasto_ahorros = Label(text=str(round(gasto_ahorros, 2)) + " €", height=Window.height * 0.05,
                                    size_hint_y=None)
@@ -165,6 +169,9 @@ class Mes:
 
         self.layout_saldo_mes.add_widget(nombre_gasto_ing)
         self.layout_saldo_mes.add_widget(valor_gasto_ing)
+
+        self.layout_saldo_mes.add_widget(nombre_gasto_ing_sin_alq)
+        self.layout_saldo_mes.add_widget(valor_gasto_ing_sin_alq)
 
         self.layout_saldo_mes.add_widget(nombre_gasto_ahorros)
         self.layout_saldo_mes.add_widget(valor_gasto_ahorros)
